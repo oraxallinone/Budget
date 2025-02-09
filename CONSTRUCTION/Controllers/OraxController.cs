@@ -429,6 +429,7 @@ namespace CONSTRUCTION.Controllers
         {
             try
             {
+
                 tblBudgetMaster obj = new tblBudgetMaster();
                 obj.month = data.month;
                 obj.salary = data.salary;
