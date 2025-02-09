@@ -1,0 +1,594 @@
+﻿@model CONSTRUCTION.Models.CreateReceiptViewModel
+
+@{
+    ViewBag.Title = "Create Receipt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/application-css/common-date-format.css" rel="stylesheet" />
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid" style="padding-right: 0px; padding-left: 0px">
+
+            @using (Html.BeginForm())
+            {
+               
+
+
+                <div class="card card-info card-outline">
+                    @*<div class="card-header">
+                            <h3 class="card-title">Create New Receipt</h3>
+
+
+                        </div>*@
+                    <div style="background-color: #d7c67ecc">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-2">
+                                    <label for="panNo" style="font-size:13px">Select Company</label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    @Html.DropDownList(Model.companyName.ToString(), new List<SelectListItem> {
+                                     new SelectListItem { Text = "-- Choose Company --", Value = "0"},
+                                   new SelectListItem { Text = "OMM SUPPLIER AND CONSTRUCTION", Value = "1"},
+                                   new SelectListItem { Text = "OMM SAI CONSTRUCTION", Value = "2"},
+                                   }, new
+                                   {
+                                       @class = "form-control form-control-sm",
+                                       id = "companyId"
+                                   })
+                                </div>
+
+
+
+
+
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-2">
+                                    <label for="refNo" style="font-size:13px">Reference Number</label>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    @Html.TextBoxFor(m => m.refNo, new
+                               {
+                                   @class = "form-control form-control-sm",
+                                   @readonly = "readonly",
+                                   Styles = "color:#e9ecef"
+                               })
+                                </div>
+
+                                <div class="form-group col-md-1">
+                                    <label for="receiptDate" style="font-size:13px"> Date</label>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    @Html.TextBoxFor(m => m.receiptDate, new
+                               {
+                                   @class = "form-control form-control-sm",
+                                   type = "date"
+                               })
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <label for="rsp_name" style="font-size:13px">Name</label>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    @Html.TextBoxFor(m => m.rsp_name, new
+                               {
+                                   placeholder = "Name",
+                                   @class = "form-control form-control-sm",
+                                   maxlength = "100"
+
+                               })
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="form-group col-md-2">
+                                    <label for="rsp_gstin" style="font-size:13px">GSTIN</label>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    @Html.TextBoxFor(m => m.rsp_gstin, new
+                               {
+                                   @class = "form-control form-control-sm",
+                                   maxlength = "20"
+                               })
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="name_addr" style="font-size:12px">Address:</label>
+                                    @Html.TextAreaFor(m => m.name_addr, new
+                               {
+                                   placeholder = "Address",
+                                   @class = "form-control form-control-sm",
+                                   maxlength = "150"
+                               })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="rsp_addrOfP" style="font-size:12px">Address of the Recipient/ Purchaser Place of Supply </label>
+
+                                    @Html.TextAreaFor(m => m.rsp_addrOfP, new
+                               {
+                                   placeholder = "Address of the Recipient/ Purchaser Place of Supply",
+                                   @class = "form-control form-control-sm",
+                                   maxlength = "150"
+                               })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="rsp_addrOfD" style="font-size:12px">Address of Delivery,if different form Place of Supply</label>
+
+                                    @Html.TextAreaFor(m => m.rsp_addrOfD, new
+                               {
+                                   placeholder = "Address of Delivery,if different form Place of Supply",
+                                   @class = "form-control form-control-sm",
+                                   maxlength = "150"
+                               })
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="row">
+                                <table id="tblInvoice" width="100%" class="tableCust" style="border: 1px solid #dfd198; background-color: #dfd198;">
+                                    <thead>
+                                        <tr class="fontMenuHeader textCenter" style="font-size: 11px;">
+                                            <td style="width:4% ;text-align: center;"> SL No </td>
+                                            <td style="width:21% ;"> Description Of Goods/Services </td>
+                                            <td style="width:8% ;"> HSN</td>
+                                            <td style="width:12% ;"> Qantity</td>
+                                            <td style="width:8% ;"> Rate </td>
+                                            <td style="width:8% ;"> Value </td>
+                                            <td style="width:8% ;"> CGST%</td>
+                                            <td style="width:8% ;"> CGST Amt</td>
+                                            <td style="width:8% ;"> SGST%</td>
+                                            <td style="width:8% ;"> SGST Amt</td>
+                                            <td style="width:10% ;"> Total </td>
+                                            <td style="width:5% ;">  </td>
+                                        </tr>
+                                        <tr class="fontMenuBody">
+                                            <td class="textCenter"> </td>
+                                            <td>
+                                                <input id="itm_ItemCodeT" type="hidden" />
+                                                @Html.DropDownList("goods_desc", (IEnumerable<SelectListItem>)ViewBag.goods, "-- Select One --", new
+                                           {
+                                               @class = "form-control form-control-sm"
+                                           })
+                                            </td>
+                                            <td class="textCenter"><input id="goods_hsn" type="text" class="form-control form-control-sm" placeholder="HSN" readonly="readonly" /></td>
+                                            <td class="textCenter">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <td><i id="iMinus" class="fa-solid fa-circle-minus" style="height:22px"></i></td>
+                                                            <td><input id="goods_qty" type="text" class="form-control form-control-sm  numbers-only" placeholder="qty" /></td>
+                                                            <td><i id="iPlus" class="fa-solid fa-circle-plus" style="height:22px"></i> </td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </td>
+                                            <td class="textCenter"><input id="goods_rate" type="text" class="form-control form-control-sm" placeholder="rate" readonly="readonly" /></td>
+
+                                            <td class="textRight"><input id="goods_value" type="text" class="form-control form-control-sm numbers-only" placeholder="value" readonly="readonly" /></td>
+
+                                            <td class="textCenter"><input id="goods_cgst_p" type="text" class="form-control form-control-sm numbers-only" placeholder="cgst%" readonly="readonly" /></td>
+
+                                            <td class="textCenter"><input id="goods_cgst_amt" type="text" class="form-control form-control-sm numbers-only" readonly="readonly" placeholder="cgst amt" /></td>
+
+                                            <td class="textRight"><input id="goods_sgst_p" type="text" class="form-control form-control-sm numbers-only" placeholder="sgst %" readonly="readonly" /></td>
+
+                                            <td class="textCenter"><input id="goods_sgst_amt" type="text" class="form-control form-control-sm numbers-only" readonly="readonly" placeholder="sgst amt" /></td>
+
+                                            <td class="textCenter"><input id="goods_total" type="text" class="form-control form-control-sm numbers-only" readonly="readonly" placeholder="total" /></td>
+
+                                            <td class="textRight"> <input id="btnAddItm" type="button" class="btn btn-sm btn-outline-success bg-info" value="Add" /> </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="background-color: #b9bfb4"></tbody>
+                                    <tfoot>
+                                        <tr class="fontMenuHeader" style="border: 1px solid #95c6cc">
+                                            <td colspan="2" class="textCenter">  </td>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td class="textRightR gItmValueR re-set">  </td>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td> Total</td>
+                                            <td class="textRightR gItmGstValue re-set"> </td>
+                                            <td class="textRight gItmTotal re-set" style="border: 1px solid #95c6cc"> 0.00 </td>
+                                            <td></td>
+                                        </tr>
+
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn  btn-sm btn-info w104" id="receiptSubmit">Submit</button>
+                            <button type="button" id="reset" class="btn btn-sm btn-outline-danger w104">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</div>
+<script src="~/Scripts/application-js/common.js"></script>
+@*<script src="~/Scripts/application-js/gst-receipt-create.js"></script>*@
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+
+
+
+        $(".numbers-only").keypress(function (e) {
+            if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
+        });
+
+
+        //$("#dateOfInvoice").val(formatDate());
+        $("#receiptDate").val(formatDate());
+        console.clear();
+
+
+        //$('[id^=itm_Quantity]').keypress(validateNumber);
+
+
+
+        //get item detais by id
+        $("#goods_desc").change(function () {
+            let selectedItemId = $('select#goods_desc option:selected').val();
+            let goods = parseInt(selectedItemId);
+            $.ajax({
+                type: "POST",
+                url: '/FinalInvoice/GetGoodsById',
+                data: { id: goods },
+                dataType: "json",
+                success: function (data) {
+                    var result = JSON.parse(data);
+                    $("#goods_rate").val(result[0].rate);
+                    $("#goods_hsn").val(result[0].hsn);
+                    $("#goods_value").val('');
+                    $("#goods_cgst_p").val(result[0].sgst_p);
+                    $("#goods_cgst_amt").val('');
+                    $("#goods_sgst_p").val(result[0].cgst_p);
+                    $("#goods_sgst_amt").val('');
+                    $("#goods_total").val('');
+                    $("#goods_qty").val('');
+
+                    $("#goods_qty").val('1');
+                    taxCalculation();
+                }
+            });
+        });
+
+        //on key up do calculation
+        $("#goods_qty").keyup(function () {
+            let itmName = $('select#goods_desc option:selected').text();
+            if (itmName == "-- Select One --") { swal("", "Please select a good", "error"); return false; }
+            let value = $("#goods_qty").val();
+            if (value == "" || parseInt(value) == 0) { swal("", "Please add a quantity", "info"); return false; }
+
+            taxCalculation();
+        });
+
+        $(document).on('click', '#iMinus', function (e) {
+            let itmName = $('select#goods_desc option:selected').text();
+            if (itmName == "-- Select One --") { swal("", "Please select a good", "error"); return false; }
+            let value = $("#goods_qty").val();
+            if (value == "" || parseInt(value) == 0) { swal("", "Please add a quantity", "info"); return false; }
+            if (value != "" || parseInt(value) > 0) { $("#goods_qty").val(parseInt(value) - 1); }
+            taxCalculation();
+        });
+
+        $(document).on('click', '#iPlus', function (e) {
+            let itmName = $('select#goods_desc option:selected').text();
+            if (itmName == "-- Select One --") { swal("", "Please select a good", "error"); return false; }
+            let value = $("#goods_qty").val();
+            if (value == "") { $("#goods_qty").val(1); }
+            if (value != "") { $("#goods_qty").val(parseInt(value) + 1); }
+            taxCalculation();
+        });
+
+
+
+        //add multiple item to table
+        let slno = 0;
+        $("#btnAddItm").click(function () {
+            //let custId = $('select#custId option:selected').val(); if (custId == "") { swal("", "Please choose customer first", "error"); return false; }
+            let goodsId = $('select#goods_desc option:selected').val();
+            let goodsName = $('select#goods_desc option:selected').text();
+            let goodsHsn = $("#goods_hsn").val();
+            let goodsQty = $("#goods_qty").val();
+            let goodsRate = $("#goods_rate").val();
+            let goodsValue = $("#goods_value").val();
+
+            let goodsCGST_P = $("#goods_cgst_p").val();
+            let goodsCGST_Amt = $("#goods_cgst_amt").val();
+            let goodsSGST_P = $("#goods_sgst_p").val();
+            let goodsSGST_Amt = $("#goods_sgst_amt").val();
+
+            let goodsTotal = $("#goods_total").val(); goods_total
+
+
+            if (goodsName == "-- Select One --") { swal("", "Please select a good", "error"); return false; }
+            if (goodsQty == "") { swal("", "Qantity should not be empty", "error"); return false; }
+            if (parseInt(goodsQty) < 1) { swal("", "Please add a quantity", "error"); return false; }
+            if (goodsRate == "") { alert("Rate should not be empty"); return false; }
+            //if (goodsValue == "" || goodsValue == 0) { alert("Value should not be empty"); return false; }
+
+            slno = slno + 1;
+            let bodyHtml = " <tr class='fontMenuBody tableBorderitem cTableRow' style='vertical-align: text-top;'>" +
+                                  "<td class='textCenter cItmCode' style='color:#b9bfb4'>" + goodsId + "  <span style='color:black'>" + slno + "</span> </td>" +
+                                  "<td class='cItmName'>" + goodsName + " </td>" +
+                                   "<td class='cItmHsn'>" + goodsHsn + " </td>" +
+                                  "<td class='textCenter cItmQty'>" + goodsQty + "</td>" +
+                                  "<td class='textCenter cItmRate'>" + goodsRate + "</td>" +
+                                  "<td class='textRight cItmValue'>" + goodsValue + "</td>" +
+
+                                  "<td class='textCenter cItmCGSTp'>" + goodsCGST_P + "</td>" +
+                                  "<td class='textCenter cItmCGSTa'>" + goodsCGST_Amt + "</td>" +
+                                  "<td class='textCenter cItmSGSTp'>" + goodsSGST_P + "</td>" +
+                                  "<td class='textCenter cItmSGSTa'>" + goodsSGST_Amt + "</td>" +
+
+                                  "<td class='textRight cItmTotal'>" + goodsTotal + "</td>" +
+                                  "<td class='textCenter'>" +
+                                        "<input type='button' class='fa-solid fa-trash-can fontRed btmItmDelete' /> </td>" +
+                                  "</tr>";
+
+            $("#tblInvoice tbody").append(bodyHtml);
+            calulateValue();
+            //gstCalculation();
+            resetAdd();
+        });
+
+        //remove added items
+        $(document).on("click", '.btmItmDelete', function () {
+            if (!confirm("Do you want to delete")) { return false; }
+            $(this).closest('tr').remove();
+            calulateValue();
+            swal("Item Removed", "", "success");
+        });
+
+
+        $('#reset').click(function () {
+            location.reload();
+        });
+
+
+        $('#receiptSubmit').click(function () {
+            //let ICustId = $('select#custId option:selected').val(); if (ICustId == "") { swal("", "Please choose customer first", "error"); return false; }//custId
+            let companyName = $('select#companyId option:selected').val();
+            let refNo = $('#refNo').val();
+            let receiptDate = $('#receiptDate').val();
+            let rsp_name = $('#rsp_name').val();
+            let rsp_gstin = $('#rsp_gstin').val();
+
+
+            let name_addr = $('#name_addr').val();
+            let rsp_addrOfP = $('#rsp_addrOfP').val();
+            let rsp_addrOfD = $('#rsp_addrOfD').val();
+
+
+            let receiptGrand_total = $('.gItmTotal').text();
+
+
+            if ($('#tblInvoice tbody > tr').length < 1) { swal("", "Please include at least one good to generate the receipt", "error"); return false; }
+            if (refNo == "") { swal("", "Reference Number should not be empty", "error"); return false; }
+            if (receiptDate == "") { swal("", "Date should not be empty", "error"); return false; }
+            if (rsp_name == "") { swal("", "Nam should not be empty", "error"); return false; }
+
+            if (name_addr == "") { swal("", "Address should not be empty", "error"); return false; }
+            if (rsp_addrOfP == "") { swal("", "Address of the Recipient/ Purchaser Place of Supply should not be empty", "error"); return false; }
+
+            if (receiptGrand_total == "0.00") { swal("", "invoice total should not be zero", "error"); return false; }
+
+            let addedItemList = [];
+            let count = 0;
+
+
+            $('#tblInvoice tbody > tr').each(function (index, tr) {
+                let _cItmCode = $(this).find('td.cItmCode').text();
+                let _cItmName = $(this).find('td.cItmName').text();
+                let _cItmHsn = $(this).find('td.cItmHsn').text();
+
+                let _cItmQty = $(this).find('td.cItmQty').text();
+                let _cItmRate = $(this).find('td.cItmRate').text();
+                let _cItmValue = $(this).find('td.cItmValue').text();
+
+                let _cItmCGSTp = $(this).find('td.cItmCGSTp').text();
+                let _cItmCGSTa = $(this).find('td.cItmCGSTa').text();
+                let _cItmSGSTp = $(this).find('td.cItmSGSTp').text();
+                let _cItmSGSTa = $(this).find('td.cItmSGSTa').text();
+
+                let _cItmTotal = $(this).find('td.cItmTotal').text();
+
+                let singItem = {
+                    refNo: refNo,
+                    trsp_goodsName: _cItmName,
+                    trsp_hsn: _cItmHsn,//from here net trackd
+                    trsp_qty: parseFloat(_cItmQty),
+                    trsp_price: parseFloat(_cItmRate),
+                    trsp_valueOfGoods: parseFloat(_cItmValue),
+                    trsp_cgstP: parseFloat(_cItmCGSTp),
+                    trsp_cgstA: parseFloat(_cItmCGSTa),
+                    trsp_sgstP: parseFloat(_cItmSGSTp),
+                    trsp_sgstA: parseFloat(_cItmSGSTa),
+                    trsp_total: parseFloat(_cItmTotal),
+                    isActive: true,
+                    createdDate: new Date(),
+                    updatedDate: null
+                }
+                addedItemList.push(singItem);
+            });
+
+
+            let CreateInvoiceViewModel = {
+
+                refNo: refNo,
+                receiptDate: receiptDate,
+                companyName: parseInt(companyName),
+                rsp_name: rsp_name,
+                name_addr: name_addr,
+                rsp_addrOfP: rsp_addrOfP,
+                rsp_addrOfD: rsp_addrOfD,
+                rsp_gstin: rsp_gstin,
+                rsp_grandTotal: receiptGrand_total,
+                isActive: true,
+                createdDate: new Date(),
+                updatedDate: null,
+                transactionList: addedItemList,
+            }
+            $.ajax({
+                url: '/FinalInvoice/CreateReceipt',
+                type: "POST",
+                dataType: "json",
+                contentType: 'application/json',
+                data: JSON.stringify(CreateInvoiceViewModel),
+                success: function (data) {
+                    if (data == 'success') {
+                        //swal("Receipt created", "invoiceNo", "success");
+                        alert("Receipt created");
+                        clearReceipt();
+                        location.reload();
+                    }
+                }
+            });
+        });
+
+        function clearReceipt() {
+            $('#rsp_name').val('');
+            $('#name_addr').val('');
+            $('#rsp_addrOfP').val('');
+            $('#rsp_addrOfD').val('');
+            $('#rsp_gstin').val('');
+            $('.cTableRow').remove();
+
+        }
+
+
+        //functions list
+        function hidelFooterGstGroup() {
+            $(".section-group").hide();
+            $(".section-sgst").hide();
+            $(".section-igst").hide();
+        }
+
+        function taxCalculation() {
+            let qty = parseInt($("#goods_qty").val());
+            let rate = parseFloat($("#goods_rate").val());
+            let gst = parseFloat($("#goods_sgst_p").val());
+            gst = gst * 2;
+
+            let value = qty * rate;
+            let taxAble = (gst * value) / 100;
+            let halfTax = taxAble / 2;
+            let taotal = value + taxAble;
+
+
+
+            $("#goods_value").val(value.toFixed(2));
+
+
+            $("#goods_sgst_amt").val(halfTax.toFixed(2));
+            $("#goods_cgst_amt").val(halfTax.toFixed(2));
+
+
+
+
+
+
+            $("#itm_GstValue").val(taxAble.toFixed(2));
+            $("#goods_total").val(taotal.toFixed(2));//Math.round()
+        };
+
+
+        function resetPageAfterSave() {
+            $("#tblInvoice tbody").empty();
+            calulateValue();
+        }
+
+        function calulateValue() {
+            let finalgItmValue = 0.00;
+            let finalgItmGst = 0.00;
+            let finalggItmTotal = 0.00;
+
+            if ($("#tblInvoice tbody>tr").length > 0) {
+                $('.cItmValue').each(function () {
+                    finalgItmValue = finalgItmValue + parseFloat($(this).html());
+                    $('.gItmValue').html(Math.round(finalgItmValue).toFixed(2));
+                });
+
+                $('.cItmGstValue').each(function () {
+                    finalgItmGst = finalgItmGst + parseFloat($(this).html());
+                    $('.gItmGstValue').html(Math.round(finalgItmGst).toFixed(2));
+                });
+
+                $('.cItmTotal').each(function () {
+                    finalggItmTotal = finalggItmTotal + parseFloat($(this).html());
+                    $('.gItmTotal').html(Math.round(finalggItmTotal).toFixed(2));
+                });
+            }
+            else {
+                $('.gItmValue').html(finalgItmValue.toFixed(2));
+                $('.gItmGstValue').html(finalgItmGst.toFixed(2));
+                $('.gItmTotal').html(finalggItmTotal.toFixed(2));
+            };
+        }
+
+        function resetAdd() {
+            $("#goods_desc").val($("#goods_desc option:first").val());
+            $("#goods_qty").val('');
+            $("#goods_rate").val('');
+            $("#goods_value").val('');
+            $("#goods_cgst_p").val('');
+            $("#goods_cgst_amt").val('');
+            $("#goods_sgst_p").val('');
+            $("#goods_sgst_amt").val('');
+            $("#goods_total").val('');
+            $("#goods_hsn").val('');
+
+
+        }
+    });
+
+
+
+</script>

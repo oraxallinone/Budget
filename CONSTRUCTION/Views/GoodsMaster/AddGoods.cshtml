@@ -1,0 +1,253 @@
+﻿@*@{
+        ViewBag.Title = "AddGoods";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>AddGoods</h2>*@
+
+
+@model CONSTRUCTION.Models.GoodsMaster
+@{
+    ViewBag.Title = "Add Goods";
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new
+{
+    id = "signupform"
+}))
+{
+    <div class="content-wrapper">
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-info card-outline">
+                            <div class="card-header">
+                                <h3 class="card-title">New Goods</h3>
+                            </div>
+                            <div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        @*<div class="form-group col-md-2">
+                                                     <label for="exampleInputEmail1">Goods Code</label>
+                                                     @Html.TextBoxFor(m => m.ItemCode, new
+                                            {
+                                                placeholder = "Item Code",
+                                                @class = "form-control form-control-sm",
+                                                @readonly = "readonly"
+                                            })
+                                                     @Html.ValidationMessageFor(m => m.ItemCode, "", new
+                                            {
+                                                @class = "text-danger"
+                                            })
+                                                 </div>*@
+
+
+                                        <div class="form-group col-md-9">
+                                            <label for="exampleInputEmail1">Goods Description</label>
+                                            @Html.TextAreaFor(m => m.descriptionOfGoods, new
+                                       {
+                                           placeholder = "Goods Description",
+                                           @class = "form-control form-control-sm"
+                                       })
+                                            @Html.ValidationMessageFor(m => m.descriptionOfGoods, "", new
+                                       {
+                                           @class = "text-danger",
+                                           @cols = 10,
+                                           @rows = 10
+
+                                       })
+                                        </div>
+
+
+
+
+
+                                        @*<div class="form-group col-md-2">
+                                                <label for="exampleInputEmail1">Gst</label>
+                                                <select class="form-control form-control-sm" id="Gst" name="Gst">
+                                                    <option value="0">-- Select One --</option>
+                                                    <option value="5">5</option>
+                                                    <option value="12">12</option>
+                                                    <option value="18">18</option>
+                                                </select>
+                                            </div>*@
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-3">
+                                            <label for="exampleInputEmail1">Rate</label>
+                                            @Html.TextBoxFor(m => m.rate, new
+                                       {
+                                           placeholder = "Rate",
+                                           @class = "form-control form-control-sm numbers33-only",
+                                           maxlength = "9",
+                                           onkeypress = "return AllowDecimalNumbersOnly(this,event)"
+
+                                       })
+                                            @Html.ValidationMessageFor(m => m.rate, "", new
+                                       {
+                                           @class = "text-danger"
+                                       })
+                                        </div>
+
+
+                                        <div class="form-group col-md-3">
+                                            <label for="exampleInputEmail1">CGST %</label>
+                                            @Html.TextBoxFor(m => m.cgst_p, new
+                                       {
+                                           type = "text",
+                                           placeholder = "CGST",
+                                           @class = "form-control form-control-sm numbers-only",
+                                           maxlength = "5"
+                                       })
+                                            @Html.ValidationMessageFor(m => m.cgst_p, "", new
+                                       {
+                                           @class = "text-danger"
+                                       })
+                                        </div>
+
+
+                                        <div class="form-group col-md-3">
+                                            <label for="exampleInputEmail1">SGST %</label>
+                                            @Html.TextBoxFor(m => m.sgst_p, new
+                                       {
+                                           type = "text",
+                                           placeholder = "SGST",
+                                           @class = "form-control form-control-sm numbers-only",
+                                           maxlength = "5"
+                                       })
+                                            @Html.ValidationMessageFor(m => m.sgst_p, "", new
+                                       {
+                                           @class = "text-danger"
+                                       })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="exampleInputEmail1">HSN</label>
+                                            @Html.TextBoxFor(m => m.hsn, new
+                                       {
+                                           type = "text",
+                                           placeholder = "HSN",
+                                           @class = "form-control form-control-sm",
+                                           maxlength = "10"
+                                       })
+                                            @Html.ValidationMessageFor(m => m.hsn, "", new
+                                       {
+                                           @class = "text-danger"
+                                       })
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    @if (ViewBag.isPresent != null)
+                                    { <span class="bg-red btn btn-sm">@ViewBag.isPresent</span> }
+
+
+                                    <button type="submit" id="itemSubmit" class="btn  btn-sm  btn-info w104">Submit</button>
+                                    <a href="/Product/ItemList" class="btn btn-sm   btn-outline-danger w104">Back</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+}
+
+
+
+<aside class="control-sidebar control-sidebar-dark"></aside>
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".numbers-only").keypress(function (e) {
+            if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
+        });
+
+
+
+        $("#itemSubmit").click(function (e) {
+            e.preventDefault();
+            var ItemCode = $("#ItemCode").val();
+            var ItemDetails = $("#ItemDetails").val();
+            var HSN = $("#HSN").val();
+            var Rate = $("#Rate").val();
+            var Gst = $("#Gst").val();
+            var isPost = false;
+
+            if (ItemCode == "") { swal("", "Item Code should not be empty", "error"); return false; }
+            if (ItemDetails == "") { swal("", "Item Details should not be empty", "error"); return false; }
+
+            if (HSN == "") { swal("", "HSN should not be empty", "error"); return false; }
+            if (Rate == "") { swal("", "Rate should not be empty", "error"); return false; }
+            if (Gst == "" || Gst == 0) { swal("", "Gst should not be empty", "error"); return false; }
+
+            isPost = true
+
+            if (isPost == true) {
+                $("#signupform").submit();
+            }
+        });
+
+        $('[id^=Rate]').keypress(validateNumber);
+        $('[id^=Gst]').keypress(validateNumber);
+
+
+        function validateNumber(event) {
+            //var key = window.event ? event.keyCode : event.which;
+            //if (event.keyCode === 8 || event.keyCode === 46) {
+            //    return true;
+            //} else if (key < 48 || key > 57) {
+            //    return false;
+            //} else {
+            //    return true;
+            //}
+            if ((event.which > 47 && event.which < 58) || (event.which == 46 || event.which == 8)) {
+                // your condition
+            }
+            else {
+                event.preventDefault();
+            }
+        };
+
+        $('#Gst').change(function () {
+
+            var gst = $('#Gst').val();
+            if (gst != 0) {
+                var tempGst = parseInt(gst);
+                $('#Cgst').val(tempGst / 2);
+                $('#Sgst').val(tempGst / 2);
+            }
+            else {
+                $('#Cgst').val('');
+                $('#Sgst').val('');
+            }
+        });
+
+    });
+
+    function AllowDecimalNumbersOnly(input, kbEvent) {
+        var keyCode, keyChar;
+        keyCode = kbEvent.keyCode;
+        if (window.event)
+            keyCode = kbEvent.keyCode;
+        else
+            keyCode = kbEvent.which;
+        if (keyCode == null) return true;
+        // get character
+        keyChar = String.fromCharCode(keyCode);
+        var charSet = ".0123456789";
+        // check valid chars
+        if (charSet.indexOf(keyChar) != -1) return true;
+        // control keys
+        if (keyCode == null || keyCode == 0 || keyCode == 8 || keyCode == 9 || keyCode == 13 || keyCode == 27) return true;
+        return false;
+    }
+</script>

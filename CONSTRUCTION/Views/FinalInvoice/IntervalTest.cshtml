@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "IntervalTest";
+}
+
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid" style="padding-right: 0px; padding-left: 0px">
+
+            @using (Html.BeginForm())
+            {
+                <div class="card card-info card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">Create New Receipt</h3>
+
+
+                    </div>
+                    <div style="background-color: #d7c67ecc">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    
+                                    <div id="dis">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <input type="text" id="one" />
+                        <div class="card-footer">
+                            <button type="button" class="btn  btn-sm btn-info w104" id="receiptSubmit">Submit</button>
+                            <button type="button" id="reset" class="btn btn-sm btn-outline-danger w104">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</div>
+
+
+
+
+
+
+<script src="~/Scripts/application-js/intervalTest.js"></script>
+ 

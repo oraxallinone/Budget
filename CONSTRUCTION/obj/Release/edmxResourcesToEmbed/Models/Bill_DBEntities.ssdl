@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="cbtsplco_ommsuppliersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CounterMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="counterName" Type="varchar" MaxLength="250" />
+    <Property Name="counterValue" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerMaster">
+    <Key>
+      <PropertyRef Name="custId" />
+    </Key>
+    <Property Name="custId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="custName" Type="varchar" MaxLength="250" />
+    <Property Name="addr1" Type="varchar" MaxLength="250" />
+    <Property Name="addr2" Type="varchar" MaxLength="250" />
+    <Property Name="addr3" Type="varchar" MaxLength="250" />
+    <Property Name="gstIn" Type="varchar" MaxLength="250" />
+    <Property Name="gstType" Type="int" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="updatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GoodsMaster">
+    <Key>
+      <PropertyRef Name="goodsId" />
+    </Key>
+    <Property Name="goodsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descriptionOfGoods" Type="nvarchar(max)" />
+    <Property Name="hsn" Type="varchar" MaxLength="50" />
+    <Property Name="rate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="cgst_p" Type="int" />
+    <Property Name="sgst_p" Type="int" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="updatedDate" Type="datetime" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InvoiceDetail">
+    <Key>
+      <PropertyRef Name="IId" />
+    </Key>
+    <Property Name="IId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="INo" Type="varchar" MaxLength="250" />
+    <Property Name="IDraftNo" Type="varchar" MaxLength="250" />
+    <Property Name="IDate" Type="datetime" />
+    <Property Name="ICustId" Type="int" Nullable="false" />
+    <Property Name="IinvoiceStatus" Type="varchar" MaxLength="250" />
+    <Property Name="TotalValue" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TotalGST" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TotalTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="GrandTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ItemMaster">
+    <Key>
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemCode" Type="varchar" MaxLength="250" />
+    <Property Name="ItemDetails" Type="varchar" MaxLength="250" />
+    <Property Name="HSN" Type="varchar" MaxLength="250" />
+    <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Gst" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ItemTransaction">
+    <Key>
+      <PropertyRef Name="IdT" />
+    </Key>
+    <Property Name="IdT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceNoT" Type="varchar" MaxLength="250" />
+    <Property Name="DraftNoT" Type="varchar" MaxLength="250" />
+    <Property Name="ItemCodeT" Type="varchar" MaxLength="250" />
+    <Property Name="ItemDetails" Type="varchar" MaxLength="250" />
+    <Property Name="HSN" Type="varchar" MaxLength="250" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Rate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Value" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="GstRate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="GstValue" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblBudget">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="group1" Type="varchar" MaxLength="50" />
+    <Property Name="group2" Type="varchar" MaxLength="50" />
+    <Property Name="group3" Type="varchar" MaxLength="50" />
+    <Property Name="group4" Type="varchar" MaxLength="50" />
+    <Property Name="details" Type="nvarchar(max)" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="createdDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblBudgetMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="month" Type="varchar" MaxLength="50" />
+    <Property Name="monthName" Type="varchar" MaxLength="50" />
+    <Property Name="montOrder" Type="int" />
+    <Property Name="year" Type="int" />
+    <Property Name="salary" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="fromDate" Type="datetime" />
+    <Property Name="todate" Type="datetime" />
+    <Property Name="salaryDate" Type="date" />
+    <Property Name="need" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="want" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="saving" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tblGoogsTrans">
+    <Key>
+      <PropertyRef Name="tGoodslno" />
+    </Key>
+    <Property Name="tGoodslno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tInvoiceNo" Type="varchar" MaxLength="50" />
+    <Property Name="tGoodsDesc" Type="nvarchar(max)" />
+    <Property Name="tQty" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="tRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="tValue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="cgstP" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="cgstA" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="scstP" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="sgstA" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="total" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="grandTotal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="updatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblInvoice">
+    <Key>
+      <PropertyRef Name="invSlno" />
+    </Key>
+    <Property Name="invSlno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="companyName" Type="int" Nullable="false" />
+    <Property Name="dateOfInvoice" Type="date" />
+    <Property Name="agreementDate" Type="date" />
+    <Property Name="serialNoOfInvoice" Type="varchar" MaxLength="50" />
+    <Property Name="projectManager" Type="nvarchar" MaxLength="250" />
+    <Property Name="panNo" Type="nvarchar" MaxLength="250" />
+    <Property Name="projectName" Type="nvarchar" MaxLength="250" />
+    <Property Name="billTo" Type="nvarchar(max)" />
+    <Property Name="billToGSTIN" Type="nvarchar" MaxLength="250" />
+    <Property Name="shipTo" Type="nvarchar(max)" />
+    <Property Name="shipToGSTIN" Type="nvarchar" MaxLength="250" />
+    <Property Name="TotalInvoice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="updatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblReceiptDetails">
+    <Key>
+      <PropertyRef Name="rsp_id" />
+    </Key>
+    <Property Name="rsp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="refNo" Type="int" />
+    <Property Name="receiptDate" Type="datetime" />
+    <Property Name="companyName" Type="int" Nullable="false" />
+    <Property Name="rsp_name" Type="varchar" MaxLength="450" />
+    <Property Name="name_addr" Type="nvarchar(max)" />
+    <Property Name="rsp_addrOfP" Type="nvarchar(max)" />
+    <Property Name="rsp_addrOfD" Type="nvarchar(max)" />
+    <Property Name="rsp_gstin" Type="int" />
+    <Property Name="rsp_grandTotal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="updatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblReceiptTransaction">
+    <Key>
+      <PropertyRef Name="trsp_id" />
+    </Key>
+    <Property Name="trsp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="refNo" Type="int" />
+    <Property Name="trsp_goodsId" Type="varchar" MaxLength="50" />
+    <Property Name="trsp_goodsName" Type="nvarchar(max)" />
+    <Property Name="trsp_hsn" Type="varchar" MaxLength="50" />
+    <Property Name="trsp_qty" Type="int" />
+    <Property Name="trsp_price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="trsp_valueOfGoods" Type="nvarchar(max)" />
+    <Property Name="trsp_cgstP" Type="int" />
+    <Property Name="trsp_cgstA" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="trsp_sgstP" Type="int" />
+    <Property Name="trsp_sgstA" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="trsp_total" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="updatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblTanent">
+    <Key>
+      <PropertyRef Name="tanentId" />
+    </Key>
+    <Property Name="tanentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tanentName" Type="nvarchar" MaxLength="250" />
+    <Property Name="tanentaddr1" Type="nvarchar" MaxLength="250" />
+    <Property Name="tanentaddr2" Type="nvarchar" MaxLength="250" />
+    <Property Name="tanentaddr3" Type="nvarchar" MaxLength="250" />
+    <Property Name="tanentGST" Type="nvarchar" MaxLength="250" />
+    <Property Name="bName" Type="nvarchar" MaxLength="250" />
+    <Property Name="acNo" Type="nvarchar" MaxLength="250" />
+    <Property Name="ifsc" Type="nvarchar" MaxLength="250" />
+    <Property Name="type" Type="nvarchar" MaxLength="250" />
+    <Property Name="branch" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityContainer Name="cbtsplco_ommsuppliersModelStoreContainer">
+    <EntitySet Name="CounterMaster" EntityType="Self.CounterMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerMaster" EntityType="Self.CustomerMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GoodsMaster" EntityType="Self.GoodsMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoiceDetail" EntityType="Self.InvoiceDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ItemMaster" EntityType="Self.ItemMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ItemTransaction" EntityType="Self.ItemTransaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblBudget" EntityType="Self.tblBudget" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblBudgetMaster" EntityType="Self.tblBudgetMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblGoogsTrans" EntityType="Self.tblGoogsTrans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblInvoice" EntityType="Self.tblInvoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblReceiptDetails" EntityType="Self.tblReceiptDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblReceiptTransaction" EntityType="Self.tblReceiptTransaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTanent" EntityType="Self.tblTanent" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

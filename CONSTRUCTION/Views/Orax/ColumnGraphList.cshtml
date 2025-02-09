@@ -1,0 +1,207 @@
+﻿
+@{
+    ViewBag.Title = "Entry";
+    Layout = "~/Views/Shared/_LayoutOrax.cshtml"; //null; //
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Graph chart.js</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>*@
+    <script src="~/Scripts/jsLibrary/chartLibrary.js"></script>
+    <style>
+        #chart-container {
+            width: 70%;
+            height: 69vh;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-info card-outline">
+                            <div class="card-header">
+                                <h3 class="card-title">New Bar</h3>
+                            </div>
+                            <div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <select id="ddlGroup1" class="form-control form-control-sm"> <option value="">-- select one --</option> <option value="need">Need</option> <option value="want">Want</option> <option value="save">Save</option>  </select>
+                                                    </td>
+                                                    <td>
+                                                        <select id="ddlGroup2" class="form-control form-control-sm"> <option value="">-- select one --</option> <option value="beer-1.5k">beer-1.5k</option> <option value="emi">emi</option> <option value="essential-5k">essential-5k</option> <option value="extra-10k">extra-10k</option> <option value="food-5k" style="background-color:yellow;">food-5k</option> <option value="fromSaving-60k">fromSaving-60k</option> <option value="h-rent">h-rent</option> <option value="oil-4k">oil-4k</option> <option value="saving">saving</option> <option value="unplaned">unplaned</option> <option value="creditCard">Credit Card</option> <option value="mrg">mrg</option> <option value="goa">Goa</option> </select>
+                                                    </td>
+                                                    <td>
+                                                        <select id="ddlGroup3" class="form-control form-control-sm"> <option value="">-- select one --</option> <option value="repeat">Repeat</option><option value="carOil">Car Oil</option> <option value="bikeOil">Bike Oil</option> <option value="LIC">LIC</option><option value="stock">stock</option>  </select>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <div id="chart-container">
+                                                <canvas id="barChart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            let chartInstance; // Variable to store the chart instance
+
+            $('#ddlGroup1').change(function () {
+                $("#ddlGroup2  option:first").prop("selected", "selected");
+                $("#ddlGroup3  option:first").prop("selected", "selected");
+                loadColumnGraph();
+            });
+
+            $('#ddlGroup2').change(function () {
+                $("#ddlGroup1  option:first").prop("selected", "selected");
+                $("#ddlGroup3  option:first").prop("selected", "selected");
+                loadColumnGraph();
+            });
+
+            $('#ddlGroup3').change(function () {
+                $("#ddlGroup1  option:first").prop("selected", "selected");
+                $("#ddlGroup2  option:first").prop("selected", "selected");
+                loadColumnGraph();
+            });
+
+            function loadColumnGraph() {
+                let columnChatHeader = '';
+
+                let forGroup1 = $('select#ddlGroup1 option:selected').val();
+                let forGroup2 = $('select#ddlGroup2 option:selected').val();
+                let forGroup3 = $('select#ddlGroup3 option:selected').val();
+
+                if (forGroup2 != "" && forGroup1 != "" && forGroup3 != "") { return; }
+
+                if (forGroup1 != "") { columnChatHeader = forGroup1 }
+                if (forGroup2 != "") { columnChatHeader = forGroup2 }
+                if (forGroup3 != "") { columnChatHeader = forGroup3 }
+
+                let data = {
+                    forMonth: '',//
+                    group1: forGroup1,//20 30 50
+                    group2: forGroup2,// 1.5k
+                    group3: forGroup3//sip
+                }
+
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Orax/GetColumnChart',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(data),
+                    success: function (result) {
+                        if (chartInstance) {
+                            chartInstance.destroy(); // Destroy the existing chart
+                        }
+
+                        let _d1 = [];
+                        let _d2 = [];
+
+
+                        $.each(result.barGraphData, function (index, data) {
+                            _d1.push(data.label);
+                            _d2.push(data.y);
+                        });
+
+
+                        var ctx = $("#barChart");
+                        let data = {
+                            labels: _d1,
+                            datasets: [
+                              {
+                                  label: columnChatHeader,
+                                  data: _d2,
+                                  backgroundColor: "#673ab794",
+                                  borderColor: "#673ab7d1",
+                                  borderWidth: 1,
+                              },
+                            ],
+                        };
+                        let options = {
+                            plugins: {
+                                datalabels: { color: "#fff", anchor: "end", align: "start", formatter: (value) => value, },
+                            },
+                            responsive: true,
+                            scales: {
+                                x: { grid: { display: false, }, },
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: { display: true, }, // Hide default y-axis ticks
+                                    grid: { display: true, },
+                                },
+                            },
+                        };
+
+                        let config = {
+                            type: "bar",
+                            data: data,
+                            options: options,
+                            plugins: [
+                              {
+                                  id: "datalabels",
+                                  afterDatasetsDraw(chart) {
+                                      let ctx = chart.ctx;
+                                      chart.data.datasets.forEach((dataset, i) => {
+                                          let meta = chart.getDatasetMeta(i);
+                                          meta.data.forEach((bar, index) => {
+                                              let value = dataset.data[index];
+                                              ctx.save();
+                                              ctx.fillStyle = "#ffffff";
+                                              ctx.font = "bold 12px Arial";
+                                              ctx.textAlign = "center";
+                                              ctx.fillText(value, bar.x, bar.y + 20); // Adjust y position
+                                              ctx.restore();
+                                          });
+                                      });
+                                  },
+                              },
+                            ],
+                        };
+
+                        chartInstance = new Chart(ctx, config);
+
+                    },
+                    error: function (xhr) {
+                        alert('Error: ' + xhr.statusText);
+                    }
+                });
+            }
+
+
+
+
+        });
+    </script>
+</body>
+</html>

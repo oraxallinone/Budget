@@ -1,0 +1,62 @@
+﻿
+
+/*#tblRepeat tr:not(:first-child) td:not(:last-child) {
+      border-left:1px solid black;
+    border-bottom:1px solid black;
+}*/
+
+
+#tblRepeat {
+    border: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+    #tblRepeat td {
+        border-left: 1px solid black;
+        border-bottom: 1px solid black;
+        text-align: center;
+    }
+
+.header-bill {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-right {
+    text-align: right;
+}
+
+
+.p-height {
+    height: 1px;
+}
+
+.font-bold-size {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+
+
+.font-12-bold {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.font-bold-norm {
+    font-weight: bold;
+}
+
+.hc {
+    width: 18cm;
+}
+
+.w-top {
+    vertical-align: top;
+}

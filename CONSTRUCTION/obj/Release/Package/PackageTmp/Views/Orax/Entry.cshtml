@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Entry";
+    Layout = "~/Views/Shared/_LayoutOrax.cshtml"; //null; //
+}
+<link href="~/Content/application-css/entry.css" rel="stylesheet" />
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-info card-outline">
+                        <div>
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <div class="row row-height-main">
+
+                                            <div class="form-group col-md-12">
+                                                <table class="col-md-12">
+                                                    <tr class="row">
+
+                                                        <td class="col-md-8">
+                                                            <table class="width-100">
+                                                                <tr>
+                                                                    <td><select id="ddlYear" class="form-control form-control-sm month-width"><option value="0">---</option> <option value="2024">24</option> <option selected="selected" value="2025">25</option>  </select> </td>
+                                                                    <td><select id="ddlMonth" class="form-control form-control-sm month-width"><option>-- select --</option> <option value="all">all</option> <option value="1">January</option> <option value="2">February</option> <option value="3">March</option> <option value="4">April</option> <option value="5">May</option>  <option value="6">June</option> <option value="7">July</option>  <option value="8">August</option><option value="9">September</option> <option value="10">October</option> <option value="11">November</option> <option value="12">December</option>  </select> </td>
+                                                                    <td><input id="createdDate" type="date" class="form-control form-control-sm" /></td>
+                                                                    <td colspan="2"> <input id="inputPrice" type="number" placeholder="price" class="form-control form-control-sm" /></td>
+                                                                    <td>Details</td>
+                                                                    <td><input id="inputDetails" type="text" class="form-control form-control-sm" /></td>
+                                                                </tr>
+                                                            </table>
+
+                                                        </td>
+
+
+                                                        <td class="col-md-1">
+                                                            <input type="button" id="btnSubmit" value="Save" class="btn btn-sm btn-primary width-100" />
+                                                            <input type="hidden" id="hidelIdHolder" />
+                                                        </td>
+
+
+                                                        <td class="col-md-3">
+                                                            <table id="tbldashboardCalc">
+                                                                <tr>
+                                                                    <td>
+                                                                        <select id="ddlGroup1" class="form-control form-control-sm"> <option value="">-- select one --</option> <option value="need">Need</option> <option value="want">Want</option> <option value="save">Save</option>  </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select id="ddlGroup2" class="form-control form-control-sm"> <option value="">-- select one --</option> <option value="beer-1.5k">beer-1.5k</option> <option value="emi">emi</option> <option value="essential-5k">essential-5k</option> <option value="extra-10k">extra-10k</option> <option value="food-5k" style="background-color:yellow;">food-5k</option> <option value="fromSaving-60k">fromSaving-60k</option> <option value="h-rent">h-rent</option> <option value="oil-4k">oil-4k</option> <option value="saving">saving</option> <option value="unplaned">unplaned</option> <option value="creditCard">Credit Card</option> <option value="mrg">mrg</option> <option value="goa">Goa</option><option value="borrow">borrow</option> </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select id="ddlGroup3" class="form-control form-control-sm"> <option value="">-- select one --</option><option value="repeat">Repeat</option> <option value="carOil">Car Oil</option> <option value="bikeOil">Bike Oil</option> <option value="LIC">LIC</option><option value="stock">stock</option>  </select>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+
+
+
+
+                                                    </tr>
+                                                    <tr class="row">
+
+                                                        <td class="col-md-4 right-algn">
+                                                            <table class="tbl-heading-summery">
+                                                                <tr>
+                                                                    <td><span class="g-g total-fix"></span>  - <span class="r-r total-spend red-clr"></span> =  <span class="b-b total_remaining"></span> </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+
+                                                        <td class="col-md-4" style="text-align:right">
+                                                            <span id="totalSpan">0</span>
+                                                        </td>
+
+                                                        <td class="col-md-4" style="text-align:right">
+                                                            <span id="monthNeed">0</span>
+                                                            <span id="monthWant">0</span>
+                                                            <span id="monthSave">0</span>
+                                                        </td>
+
+                                                    </tr>
+                                                </table>
+
+                                            </div>
+
+                                            <div class="col-md-12 div-body-main">
+                                                <table class="tbl-custome" id="tblExpensive" border="1"></table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script src="~/Scripts/application-js/entry.js"></script>
+

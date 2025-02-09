@@ -1,0 +1,121 @@
+﻿@model IEnumerable<CONSTRUCTION.Models.InvoiceListViewModel>
+
+@{
+    ViewBag.Title = "GoodsList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<script src="~/Scripts/jquery-3.6.0.min.js"></script>*@
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <div class="col-4">
+                                <h3 class="card-title">Invoice List</h3>
+                            </div>
+                            <div class="offset-10 col-2 textRight">
+                                <a href="/FinalInvoice/CreateInvoice" class="btn btn-outline-dangerCustome1 btn-dangerCustome1 btn-xs">Add New Inoice</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <table width="100%" class="tableCust table-hover" style="border: 1px solid #3574a4b0">
+                                        <tr class="fontMenuHeader textCenter">
+                                            <td style="width:15%; text-align: left"> Invoice No </td>
+                                            <td style="width:25%; text-align: left"> Company Name </td>
+                                            <td style="width:8% ;"> Date Of Inv </td>
+                                            <td style="width:9% ;"> Agreement Dt </td>
+                                            <td style="width:10% ;"> Project Name </td>
+                                            <td style="width:15% ;"> Bill To </td>
+                                            <td style="width:10% ;"> Total Inv </td>
+                                            <td style="width:10% ;"> View </td>
+                                            <td style="width:10% ;"> Delete </td>
+                                        </tr>
+                                        @{
+                                            int snNo = 0;
+                                            foreach (var itm in @Model)
+                                            {
+                                                snNo = snNo + 1;
+                                                <tr class="fontMenuBody" style="border: 1px solid #3574a4b0;">
+                                                    <td class="textLeft">@itm.serialNoOfInvoice</td>
+                                                    @{if (itm.custName == "OMM SUPPLIER AND CONSTRUCTION")
+                                                        {
+                                                            <td class="textLeft"> @itm.custName </td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td class="textLeft" style="background-color: #17578730; border-radius: 6px;"> @itm.custName </td>
+                                                        }
+                                                    }
+                                                    <td class="textCenter">@Convert.ToDateTime(itm.dateOfInvoice).ToString("dd/MMM/yyyy")</td>
+                                                    <td class="textCenter">@Convert.ToDateTime(itm.agreementDate).ToString("dd/MMM/yyyy")</td>
+                                                    <td class="textCenter">@itm.projectName</td>
+                                                    <td class="textCenter">@itm.billTo</td>
+                                                    <td class="textCenter">@itm.TotalInvoice</td>
+                                                    <td class="textCenter">
+                                                        @Html.ActionLink("Details", "PrintInvoice", "FinalInvoice", routeValues: new
+                                                   {
+                                                       invNo = itm.serialNoOfInvoice, @class= "btn btn-info btn-sm"
+                                                   }, htmlAttributes: null)
+                                                    </td>
+                                                    <td class="textCenter">
+                                                        <input type="button" value="Delete" id="btnDeleteInvoice" class="btn btn-danger btn-sm" alt="@itm.serialNoOfInvoice" />
+                                                    </td>
+                                                </tr>
+                                                        }
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+            $(document).on("click", '#btnDeleteInvoice', function () {
+                let data = confirm('Do you want to delete this invoice??');
+                if (data == true) {
+                    let _serialNoOfInvoice = $(this).prop("alt");
+                    let DeleteInvViewModel = {
+                        serialNoOfInvoice: _serialNoOfInvoice,
+                    }
+                    $.ajax({
+                        url: '/FinalInvoice/DeleteInvoice',
+                        type: "POST",
+                        dataType: "json",
+                        contentType: 'application/json',
+                        data: JSON.stringify(DeleteInvViewModel),
+                        success: function (data) {
+                            if (data == 'deletedSuccessfully') {
+                                alert('Invoice deleted successfully');
+                                //swal("Invoice deleted successfully");
+                                location.reload();
+                            }
+                            else if (data == "notDeleted") {
+                                swal("Some error occurred");
+                            }
+                        }
+                    });
+                }
+            });
+
+ 
+
+
+        });
+        ///cmd
+
+
+</script>

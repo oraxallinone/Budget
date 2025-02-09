@@ -1,0 +1,85 @@
+﻿@model IEnumerable<CONSTRUCTION.Models.task_TaskDetails>
+
+@{
+    ViewBag.Title = "TrackShow";
+    Layout = "~/Views/Shared/_LayoutTrack.cshtml";
+}
+
+<style type="text/css">
+    .table {
+        width: 100%;
+        border: 2px solid #7e7e7e;
+        border-collapse: collapse;
+    }
+    .table th{
+        border: 2px solid #8d8d8d;
+    }
+    .table td{
+        padding-left: 5px;
+        border: 1px solid #b6b6b6;
+    }
+</style>
+<h2>TrackShow</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.taskName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.group1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.group2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.group3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.group4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.taskDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.taskName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.group1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.group2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.group3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.group4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.taskDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

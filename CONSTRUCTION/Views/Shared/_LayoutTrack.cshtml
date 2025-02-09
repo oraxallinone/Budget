@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+   
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //console.clear();
+            $(document).ajaxStart(function () {
+                $("#overlay").fadeIn(300);
+            });
+            $(document).ajaxStop(function () {
+                $("#overlay").fadeOut(300);
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+     
+ @RenderBody()
+</body>
+</html>
