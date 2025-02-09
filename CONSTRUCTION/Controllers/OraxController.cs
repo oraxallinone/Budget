@@ -18,8 +18,6 @@ namespace CONSTRUCTION.Controllers
         Bill_DBEntities db = new Bill_DBEntities();
         #region ----------------------    -------------
         #endregion ------------------------------------
-        
-
 
         #region ----------------------  entry  --------
         public ActionResult Entry()
@@ -30,49 +28,60 @@ namespace CONSTRUCTION.Controllers
         [HttpPost]
         public ActionResult GetAllExpensive(GetExpensiveViewModel data)
         {
-
-            var monthMaster = db.tblBudgetMasters.Where(x => x.month == data.forMonth && x.year == data.forYear).FirstOrDefault();
-            var fromDate = monthMaster.fromDate; //AllFromDate(data.forMonth);
-            var toDate = monthMaster.todate;//AllToDate(data.forMonth);
-
+            tblBudgetMaster budgetList = null;
             IEnumerable<tblBudget> allList = null;
-            if (data.group1 != null)
+            List<RenderExpensiveViewModel2> expensiveList = new List<RenderExpensiveViewModel2>();
+            try
             {
-                allList = db.tblBudgets.Where(m => m.createdDate > fromDate && m.createdDate < toDate && m.group1 == data.group1).OrderBy(d => d.createdDate).ToList();
+                budgetList = db.tblBudgetMasters.Where(x => x.month == data.forMonth && x.year == data.forYear).FirstOrDefault();
+                var fromDate = budgetList.fromDate;
+                var toDate = budgetList.todate;
+
+                if (data.group1 != null)
+                {
+                    allList = db.tblBudgets.Where(m => m.createdDate > fromDate && m.createdDate < toDate && m.group1 == data.group1).OrderBy(d => d.createdDate).ToList();
+                }
+                else if (data.group2 != null)
+                {
+                    allList = db.tblBudgets.Where(m => m.createdDate > fromDate && m.createdDate < toDate && m.group2 == data.group2).OrderBy(d => d.createdDate).ToList();
+                }
+                else if (data.group3 != null)
+                {
+                    allList = db.tblBudgets.Where(m => m.createdDate > fromDate && m.createdDate < toDate && m.group3 == data.group3).OrderBy(d => d.createdDate).ToList();
+                }
+                else
+                {
+                    allList = db.tblBudgets.Where(m => m.createdDate > fromDate && m.createdDate < toDate).OrderBy(d => d.createdDate).ToList();
+                }
+
+                foreach (var s in allList)
+                {
+                    RenderExpensiveViewModel2 item = new RenderExpensiveViewModel2();
+                    item.id = s.id.ToString();
+                    item.group1 = s.group1;
+                    item.group2 = s.group2;
+                    item.group3 = s.group3;
+                    item.details = s.details;
+                    item.price = s.price.ToString();
+                    item.createdDate = Convert.ToDateTime(s.createdDate ?? DateTime.Now).ToString("yyyy-MM-dd");
+
+                    expensiveList.Add(item);
+                }
+
+                var result = new { monthTransList = expensiveList, monthMaster = budgetList };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
             }
-            else if (data.group2 != null)
+            catch (Exception)
             {
-                allList = db.tblBudgets.Where(m => m.createdDate > fromDate && m.createdDate < toDate && m.group2 == data.group2).OrderBy(d => d.createdDate).ToList();
+                return Json("exception", JsonRequestBehavior.AllowGet);
+                throw;
             }
-            else if (data.group3 != null)
+            finally
             {
-                allList = db.tblBudgets.Where(m => m.createdDate > fromDate && m.createdDate < toDate && m.group3 == data.group3).OrderBy(d => d.createdDate).ToList();
+                budgetList = null;
+                allList = null;
             }
-            else
-            {
-                allList = db.tblBudgets.Where(m => m.createdDate > fromDate && m.createdDate < toDate).OrderBy(d => d.createdDate).ToList();
-            }
-
-
-            List<RenderExpensiveViewModel2> list1 = new List<RenderExpensiveViewModel2>();
-
-            foreach (var s in allList)
-            {
-                RenderExpensiveViewModel2 lst = new RenderExpensiveViewModel2();
-                lst.id = s.id.ToString();
-                lst.group1 = s.group1;
-                lst.group2 = s.group2;
-                lst.group3 = s.group3;
-                lst.details = s.details;
-                lst.price = s.price.ToString();
-                lst.createdDate = Convert.ToDateTime(s.createdDate ?? DateTime.Now).ToString("yyyy-MM-dd");
-
-                list1.Add(lst);
-            }
-
-            var result = new { monthTransList = list1, monthMaster = monthMaster };
-
-            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         #endregion ------------------------------------
@@ -87,144 +96,156 @@ namespace CONSTRUCTION.Controllers
         [HttpPost]
         public ActionResult GetAsBudgetRule(GetExpensiveViewModel data)
         {
+            tblBudgetMaster budgetMaster = null;
+            try
+            {
+                budgetMaster = db.tblBudgetMasters.Where(x => x.month == data.forMonth && x.year == data.forYear).FirstOrDefault();
+                var fromDate = budgetMaster.fromDate;
+                var toDate = budgetMaster.todate;
+                var monthMaster = db.tblBudgetMasters.Where(m => m.month == data.forMonth).FirstOrDefault();
+                var groupByBudgetRule = db.tblBudgets.Where(m => m.createdDate > fromDate && m.createdDate < toDate).GroupBy(b => b.group1)
+                                        .Select(g => new
+                                        {
+                                            label = g.Key,
+                                            y = g.Sum(b => b.price)
+                                        })
+                                        .ToList();
+                var result = new { monthMaster = monthMaster, groupByBudgetRule = groupByBudgetRule };
 
-            var getDate = db.tblBudgetMasters.Where(x => x.month == data.forMonth && x.year == data.forYear).FirstOrDefault();
-            var fromDate = getDate.fromDate; //AllFromDate(data.forMonth);
-            var toDate = getDate.todate;//AllToDate(data.forMonth);
-            //var fromDate = AllFromDate(data.forMonth);
-            //var toDate = AllToDate(data.forMonth);
-
-            var monthMaster = db.tblBudgetMasters.Where(m => m.month == data.forMonth).FirstOrDefault();
-
-            var groupByBudgetRule = db.tblBudgets.Where(m => m.createdDate > fromDate && m.createdDate < toDate).GroupBy(b => b.group1)
-                                    .Select(g => new
-                                    {
-                                        label = g.Key,
-                                        y = g.Sum(b => b.price)
-                                    })
-                                    .ToList();
-
-
-
-
-
-            var result = new { monthMaster = monthMaster, groupByBudgetRule = groupByBudgetRule };
-
-            return Json(result, JsonRequestBehavior.AllowGet);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json("exception", JsonRequestBehavior.AllowGet);
+            }
+            finally
+            {
+                budgetMaster = null;
+            }
         }
 
         [HttpPost]
         public ActionResult GetAllDataBudget(GetExpensiveViewModel data)
         {
-
-            var getDate = db.tblBudgetMasters.Where(x => x.month == data.forMonth && x.year == data.forYear).FirstOrDefault();
-            var fromDate = getDate.fromDate; //AllFromDate(data.forMonth);
-            var toDate = getDate.todate;//AllToDate(data.forMonth);
-            //var fromDate = AllFromDate(data.forMonth);
-            //var toDate = AllToDate(data.forMonth);
-
-
-
-            var groupByAmt = db.tblBudgets.Where(m => m.createdDate >= fromDate && m.createdDate <= toDate).GroupBy(b => b.group2)
-                                    .Select(g => new
-                                    {
-                                        label = g.Key,
-                                        y = g.Sum(b => b.price)
-                                    })
-                                    .ToList();
-            return Json(groupByAmt, JsonRequestBehavior.AllowGet);
+            tblBudgetMaster budgetMaster = null;
+            try
+            {
+                budgetMaster = db.tblBudgetMasters.Where(x => x.month == data.forMonth && x.year == data.forYear).FirstOrDefault();
+                var fromDate = budgetMaster.fromDate; 
+                var toDate = budgetMaster.todate;
+                var groupByAmt = db.tblBudgets.Where(m => m.createdDate >= fromDate && m.createdDate <= toDate).GroupBy(b => b.group2)
+                                        .Select(g => new
+                                        {
+                                            label = g.Key,
+                                            y = g.Sum(b => b.price)
+                                        })
+                                        .ToList();
+                return Json(groupByAmt, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json("exception", JsonRequestBehavior.AllowGet);
+            }
+            finally
+            {
+                budgetMaster = null;
+            }
         }
-
 
         public ActionResult GraphColumn()
         {
-
-
             return View();
         }
-        #endregion ------------------------------------
 
-
-
-        [HttpPost]//where data comes
+        [HttpPost]
         public ActionResult GetColumnChart(GetExpensiveViewModel data)
         {
-
-            var monthMstr = db.tblBudgetMasters.Where(v => v.month != "all").ToList().OrderBy(m => m.todate);
-
-
+            //tblBudgetMaster budgetMaster = null;
+            IEnumerable<tblBudgetMaster> budgetMasters = null;
             List<BarGraph> barGraphData = new List<BarGraph>();
-            var index = 0;
-
             IEnumerable<BarGraphdbArrange> datas = null;
 
-            foreach (var ss in monthMstr)
+            try
             {
-                if (data.group1 != null)
-                {
-                    datas = db.tblBudgets
-                    .Where(b => b.createdDate > ss.fromDate && b.createdDate < ss.todate && b.group1 == data.group1)
-                    .GroupBy(c => c.group1)
-                    .Select(g => new BarGraphdbArrange { y = g.Sum(c => c.price), label = ss.month })
-                    .ToList();
-                }
-                if (data.group2 != null)
-                {
-                    datas = db.tblBudgets
-                    .Where(b => b.createdDate > ss.fromDate && b.createdDate < ss.todate && b.group2 == data.group2)
-                    .GroupBy(c => c.group2)
-                    .Select(g => new BarGraphdbArrange { y = g.Sum(c => c.price), label = ss.month })
-                    .ToList();
-                }
-                if (data.group3 != null)
-                {
-                    datas = db.tblBudgets
-                    .Where(b => b.createdDate > ss.fromDate && b.createdDate < ss.todate && b.group3 == data.group3)
-                    .GroupBy(c => c.group3)
-                    .Select(g => new BarGraphdbArrange { y = g.Sum(c => (c.price == null ? 0m : c.price)), label = ss.month })
-                    .ToList();
-                }
+                budgetMasters = db.tblBudgetMasters.Where(v => v.month != "all").ToList().OrderBy(m => m.todate);
+                var index = 0;
 
-                index = index + 1;
+                foreach (var ss in budgetMasters)
+                {
+                    index = index + 1;
 
-                if (datas.Count() == 0)
-                {
-                    BarGraph dat = new BarGraph();
-                    dat.x = index;
-                    dat.y = 0;
-                    dat.label = ss.monthName + "-" + "0";
-                    barGraphData.Add(dat);
-                }
-                else
-                {
-                    int? intValue1 = datas.FirstOrDefault().y.HasValue ? (int?)Convert.ToInt32(datas.FirstOrDefault().y.Value) : null;
-                    int intValue2 = 0;
-                    if (intValue1 != null)
+                    if (data.group1 != null)
                     {
-                        intValue2 = intValue1 ?? 0;
+                        datas = db.tblBudgets
+                        .Where(b => b.createdDate > ss.fromDate && b.createdDate < ss.todate && b.group1 == data.group1)
+                        .GroupBy(c => c.group1)
+                        .Select(g => new BarGraphdbArrange { y = g.Sum(c => c.price), label = ss.month })
+                        .ToList();
+                    }
+                    if (data.group2 != null)
+                    {
+                        datas = db.tblBudgets
+                        .Where(b => b.createdDate > ss.fromDate && b.createdDate < ss.todate && b.group2 == data.group2)
+                        .GroupBy(c => c.group2)
+                        .Select(g => new BarGraphdbArrange { y = g.Sum(c => c.price), label = ss.month })
+                        .ToList();
+                    }
+                    if (data.group3 != null)
+                    {
+                        datas = db.tblBudgets
+                        .Where(b => b.createdDate > ss.fromDate && b.createdDate < ss.todate && b.group3 == data.group3)
+                        .GroupBy(c => c.group3)
+                        .Select(g => new BarGraphdbArrange { y = g.Sum(c => (c.price == null ? 0m : c.price)), label = ss.month })
+                        .ToList();
                     }
 
-                    BarGraph dat = new BarGraph();
-                    dat.x = index;
-                    dat.y = intValue2;
-                    dat.label = MonthName(Convert.ToInt32(datas.FirstOrDefault().label)) + "-" + ((int)datas.FirstOrDefault().y).ToString();
-                    barGraphData.Add(dat);
+                    if (datas.Count() == 0)
+                    {
+                        BarGraph dat = new BarGraph();
+                        dat.x = index;
+                        dat.y = 0;
+                        dat.label = ss.monthName + "-" + "0";
+                        barGraphData.Add(dat);
+                    }
+                    else
+                    {
+                        int? intValue1 = datas.FirstOrDefault().y.HasValue ? (int?)Convert.ToInt32(datas.FirstOrDefault().y.Value) : null;
+                        int intValue2 = 0;
+                        if (intValue1 != null)
+                        {
+                            intValue2 = intValue1 ?? 0;
+                        }
+
+                        BarGraph dat = new BarGraph();
+                        dat.x = index;
+                        dat.y = intValue2;
+                        dat.label = MonthName(Convert.ToInt32(datas.FirstOrDefault().label)) + "-" + ((int)datas.FirstOrDefault().y).ToString();
+                        barGraphData.Add(dat);
+                    }
                 }
+                var result = new { monthMstr = budgetMasters, barGraphData = barGraphData };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
             }
-
-
-
-            var result = new { monthMstr = monthMstr, barGraphData = barGraphData };
-
-
-            return Json(result, JsonRequestBehavior.AllowGet);
+            catch (Exception)
+            {
+                return Json("exception", JsonRequestBehavior.AllowGet);
+            }
+            finally
+            {
+                budgetMasters = null;
+                barGraphData = null;
+                datas = null;
+            }
         }
 
         public ActionResult ColumnGraphList()
         {
             return View();
         }
+        #endregion ------------------------------------
 
+        #region ----------------------  common  --------
         public string MonthName(int i)
         {
             string monthName = "";
@@ -270,12 +291,8 @@ namespace CONSTRUCTION.Controllers
             return monthName;
         }
 
-        #region ----------------------  common  --------
+
         #endregion ------------------------------------
-
-
-
-
 
 
         [HttpPost]
@@ -322,7 +339,6 @@ namespace CONSTRUCTION.Controllers
             return Json("success");
         }
 
-
         [HttpPost]
         public ActionResult GetExpensive(CreateExpensiveViewModel data)
         {
@@ -339,7 +355,6 @@ namespace CONSTRUCTION.Controllers
 
             return Json(newData);
         }
-
 
         [HttpPost]
         public ActionResult UpdateExpensive(CreateExpensiveViewModel data)
@@ -364,9 +379,6 @@ namespace CONSTRUCTION.Controllers
             return Json("success");
         }
 
-
-
-
         [HttpPost]
         public ActionResult UpdateGroup1(CreateExpensiveViewModel data)
         {
@@ -376,7 +388,6 @@ namespace CONSTRUCTION.Controllers
             db.SaveChanges();
             return Json("success");
         }
-
 
         [HttpPost]
         public ActionResult UpdateGroup2(CreateExpensiveViewModel data)
@@ -396,7 +407,6 @@ namespace CONSTRUCTION.Controllers
             return Json("success");
         }
 
-
         [HttpPost]
         public ActionResult removeRecord(CreateExpensiveViewModel data)
         {
@@ -404,49 +414,6 @@ namespace CONSTRUCTION.Controllers
             db.tblBudgets.Remove(obj);
             db.SaveChanges();
             return Json("success");
-        }
-
-
-        private DateTime AllFromDate(string month)
-        {
-            if (month == "all")
-            {
-                return Convert.ToDateTime("2024-05-27");
-            }
-            if (month == "7")
-            {
-                return Convert.ToDateTime("2024-06-27");
-            }
-            if (month == "8")
-            {
-                return Convert.ToDateTime("2024-07-30");
-            }
-            if (month == "9")
-            {
-                return Convert.ToDateTime("2024-08-30");
-            }
-            return DateTime.Now;
-        }
-
-        private DateTime AllToDate(string month)
-        {
-            if (month == "all")
-            {
-                return Convert.ToDateTime("2027-05-27");
-            }
-            if (month == "7")
-            {
-                return Convert.ToDateTime("2024-07-31");
-            }
-            if (month == "8")
-            {
-                return Convert.ToDateTime("2024-08-30");
-            }
-            if (month == "9")
-            {
-                return Convert.ToDateTime("2024-10-01");
-            }
-            return DateTime.Now;
         }
 
 
@@ -513,7 +480,6 @@ namespace CONSTRUCTION.Controllers
             return RedirectToAction("SalaryList");
         }
 
-
         private void calculateAllMonth()
         {
             var monthTotalIncome = db.tblBudgetMasters.Where(x => x.month != "all").Sum(x => x.salary);
@@ -528,8 +494,6 @@ namespace CONSTRUCTION.Controllers
             db.SaveChanges();
         }
         #endregion ----------------------------------------------------------
-
-
 
         #region ----------------------  Mobile-----------
         public ActionResult MobileEntry()
@@ -577,11 +541,6 @@ namespace CONSTRUCTION.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-
-
-
-
-
         private IEnumerable<RenderExpensiveViewModel2> ConvertDataTableToList(DataTable dataTable)
         {
             foreach (DataRow row in dataTable.Rows)
@@ -610,10 +569,7 @@ namespace CONSTRUCTION.Controllers
 
         }
 
-
-
         #endregion ------------------------------------
-
 
         #region ----------------------Test-------------
         public ActionResult TreeView()
@@ -632,8 +588,6 @@ namespace CONSTRUCTION.Controllers
         {
             return View();
         }
-
-
         #endregion ------------------------------------
 
         #region ----------------------track------------
@@ -651,8 +605,6 @@ namespace CONSTRUCTION.Controllers
         {
             return View();
         }
-
-
         #endregion ------------------------------------
     }
 }
