@@ -89,20 +89,6 @@
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
   </EntityType>
-  <EntityType Name="SatyaTest">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="satyatest4">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="Int32" />
-  </EntityType>
   <EntityType Name="tblGoogsTran">
     <Key>
       <PropertyRef Name="tGoodslno" />
@@ -206,8 +192,6 @@
     <EntitySet Name="InvoiceDetails" EntityType="Self.InvoiceDetail" />
     <EntitySet Name="ItemMasters" EntityType="Self.ItemMaster" />
     <EntitySet Name="ItemTransactions" EntityType="Self.ItemTransaction" />
-    <EntitySet Name="SatyaTests" EntityType="Self.SatyaTest" />
-    <EntitySet Name="satyatest4" EntityType="Self.satyatest4" />
     <EntitySet Name="tblGoogsTrans" EntityType="Self.tblGoogsTran" />
     <EntitySet Name="tblInvoices" EntityType="Self.tblInvoice" />
     <EntitySet Name="tblReceiptDetails" EntityType="Self.tblReceiptDetail" />
@@ -215,6 +199,7 @@
     <EntitySet Name="tblTanents" EntityType="Self.tblTanent" />
     <EntitySet Name="tblBudgets" EntityType="cbtsplco_ommsuppliersModel.tblBudget" />
     <EntitySet Name="tblBudgetMasters" EntityType="cbtsplco_ommsuppliersModel.tblBudgetMaster" />
+    <EntitySet Name="task_TaskDetails" EntityType="cbtsplco_ommsuppliersModel.task_TaskDetails" />
   </EntityContainer>
   <EntityType Name="tblBudget">
     <Key>
@@ -245,5 +230,18 @@
     <Property Name="montOrder" Type="Int32" />
     <Property Name="year" Type="Int32" />
     <Property Name="salaryDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="task_TaskDetails">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="taskName" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="group1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="group2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="group3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="group4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="taskDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
 </Schema>

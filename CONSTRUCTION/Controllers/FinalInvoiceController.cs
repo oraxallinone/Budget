@@ -184,9 +184,12 @@ namespace CONSTRUCTION.Controllers
                 obj.branch = res.branch;
                 obj.transactionData = listResult;
 
-
                 int v2 = obj.TotalInvoice == null ? default(int) : Convert.ToInt32(obj.TotalInvoice);
-                obj.totalInfigure = NumberToWord.NumberToWords(v2);
+                double d = v2;
+                int itt = (int)d;
+                //string decimalPart = d.ToString().Split('.')[1];
+                string text = NumberToWord.NumberToText(itt, true);//+ " Point" + Se2.DecimalToText(decimalPart);
+                obj.totalInfigure = text;
 
                 return View(obj);
             }
@@ -368,7 +371,9 @@ namespace CONSTRUCTION.Controllers
                                branch = t.branch
                            }).ToList().FirstOrDefault();
 
-                res.invoiceAmmountinWords = NumberToWord.NumberToWords(res.grandTotal == null ? default(int) : Convert.ToInt32(res.grandTotal));
+                int zz = res.grandTotal == null ? default(int) : Convert.ToInt32(res.grandTotal);
+                bool isActive = true;
+                res.invoiceAmmountinWords = NumberToWord.NumberToText(zz, isActive);
 
 
 

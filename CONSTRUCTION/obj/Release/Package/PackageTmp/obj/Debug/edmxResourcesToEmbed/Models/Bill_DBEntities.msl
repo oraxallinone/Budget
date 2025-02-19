@@ -96,22 +96,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SatyaTests">
-      <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.SatyaTest">
-        <MappingFragment StoreEntitySet="SatyaTest">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="satyatest4">
-      <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.satyatest4">
-        <MappingFragment StoreEntitySet="satyatest4">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tblGoogsTrans">
       <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblGoogsTran">
         <MappingFragment StoreEntitySet="tblGoogsTrans">
@@ -241,6 +225,20 @@
           <ScalarProperty Name="fromDate" ColumnName="fromDate" />
           <ScalarProperty Name="salary" ColumnName="salary" />
           <ScalarProperty Name="month" ColumnName="month" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="task_TaskDetails">
+      <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.task_TaskDetails">
+        <MappingFragment StoreEntitySet="task_TaskDetails">
+          <ScalarProperty Name="taskDate" ColumnName="taskDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="group4" ColumnName="group4" />
+          <ScalarProperty Name="group3" ColumnName="group3" />
+          <ScalarProperty Name="group2" ColumnName="group2" />
+          <ScalarProperty Name="group1" ColumnName="group1" />
+          <ScalarProperty Name="taskName" ColumnName="taskName" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

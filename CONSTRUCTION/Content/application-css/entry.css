@@ -74,28 +74,28 @@
 
 .box-save {
     width: 100px;
-    border: 2px solid #00800087;
+    border: 0px solid #00800087;
     color: white;
     background-color: #00800087;
 }
 
 .box-want {
      width: 100px;
-    border: 2px solid #ff0000d1;
+    border: 0px solid #ff0000d1;
     color: white;
     background-color: #ff0000d1;
 }
 
 .box-need {
     width: 100px;
-    border: 2px solid #ff830766;
+    border: 0px solid #ff830766;
     color: black;
     background-color: #ff830766;
 }
 
 .box-non {
     width: 100px;
-    border: 2px solid white;
+    border: 0px solid white;
     color: white;
     background-color: #ffffff1a;
 }
@@ -103,28 +103,28 @@
 
 .box-assigned {
     width: 120px;
-    border: 1px solid black;
+    border: 0px solid black;
     color: black;
     background-color: #83848638;
 }
 
 .box-assigned-3 {
     width: 100px;
-    border: 1px solid black;
+    border: 0px solid black;
     color: black;
     background-color:rgba(216, 220, 149, 0.56);
 }
 
 .box-assigned-repeat {
     width: 100px;
-    border: 1px solid black;
+    border: 0px solid black;
     color: white;
     background-color:  #9c27b0;
 }
 
 .box-non-3 {
     width: 100px;
-    border: 1px solid black;
+    border: 0px solid black;
     color: #dae4ec;
 }
 

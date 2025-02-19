@@ -72,9 +72,9 @@ namespace CONSTRUCTION.Controllers
 
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return Json("exception", JsonRequestBehavior.AllowGet);
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
                 throw;
             }
             finally
@@ -82,6 +82,11 @@ namespace CONSTRUCTION.Controllers
                 budgetList = null;
                 allList = null;
             }
+        }
+
+        public ActionResult MobileUpdate()
+        {
+            return View();
         }
 
         #endregion ------------------------------------
@@ -114,9 +119,9 @@ namespace CONSTRUCTION.Controllers
 
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return Json("exception", JsonRequestBehavior.AllowGet);
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
             finally
             {
@@ -142,9 +147,9 @@ namespace CONSTRUCTION.Controllers
                                         .ToList();
                 return Json(groupByAmt, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return Json("exception", JsonRequestBehavior.AllowGet);
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
             finally
             {
@@ -227,9 +232,9 @@ namespace CONSTRUCTION.Controllers
 
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return Json("exception", JsonRequestBehavior.AllowGet);
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
             finally
             {
@@ -239,12 +244,11 @@ namespace CONSTRUCTION.Controllers
             }
         }
 
-        public ActionResult ColumnGraphList()
+        public ActionResult MobileGraph()
         {
             return View();
         }
         #endregion ------------------------------------
-
         #region ----------------------  common  --------
         public string MonthName(int i)
         {

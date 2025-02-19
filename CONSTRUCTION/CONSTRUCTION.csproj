@@ -320,6 +320,7 @@
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\application-js\common.js" />
+    <Content Include="Scripts\application-js\MobileUpdate.js" />
     <Content Include="Scripts\application-js\entry.js" />
     <Content Include="Scripts\application-js\graph.js" />
     <Content Include="Scripts\application-js\graphColumn.js" />
@@ -440,12 +441,13 @@
     <Content Include="Views\Orax\TreeView2.cshtml" />
     <Content Include="Views\Orax\TreeViewTest.cshtml" />
     <Content Include="Views\Orax\KendoUI.cshtml" />
-    <Content Include="Views\Orax\ColumnGraphList.cshtml" />
+    <Content Include="Views\Orax\MobileGraph.cshtml" />
     <Content Include="Views\Shared\_LayoutOrax.cshtml" />
     <Content Include="Views\Shared\_LayoutTrack.cshtml" />
     <Content Include="Views\Orax\TrackShow.cshtml" />
     <Content Include="Views\Orax\TrackCreate.cshtml" />
     <Content Include="Views\Orax\TaskShow.cshtml" />
+    <Content Include="Views\Orax\MobileUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
