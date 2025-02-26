@@ -157,6 +157,16 @@
           <Property Name="createdDate" Type="datetime" />
           <Property Name="updatedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="tblGroupMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="groupName" Type="varchar" MaxLength="50" />
+          <Property Name="haveFixPrice" Type="bit" />
+          <Property Name="priceGroup" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsShow" Type="bit" />
+        </EntityType>
         <EntityType Name="tblInvoice">
           <Key>
             <PropertyRef Name="invSlno" />
@@ -244,6 +254,7 @@
           <EntitySet Name="tblBudget" EntityType="Self.tblBudget" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblBudgetMaster" EntityType="Self.tblBudgetMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGoogsTrans" EntityType="Self.tblGoogsTrans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGroupMaster" EntityType="Self.tblGroupMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblInvoice" EntityType="Self.tblInvoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblReceiptDetails" EntityType="Self.tblReceiptDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblReceiptTransaction" EntityType="Self.tblReceiptTransaction" Schema="dbo" store:Type="Tables" />
@@ -453,6 +464,7 @@
           <EntitySet Name="tblBudgets" EntityType="cbtsplco_ommsuppliersModel.tblBudget" />
           <EntitySet Name="tblBudgetMasters" EntityType="cbtsplco_ommsuppliersModel.tblBudgetMaster" />
           <EntitySet Name="task_TaskDetails" EntityType="cbtsplco_ommsuppliersModel.task_TaskDetails" />
+          <EntitySet Name="tblGroupMasters" EntityType="cbtsplco_ommsuppliersModel.tblGroupMaster" />
         </EntityContainer>
         <EntityType Name="tblBudget">
           <Key>
@@ -496,6 +508,16 @@
           <Property Name="group4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="isActive" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="taskDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblGroupMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="groupName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="haveFixPrice" Type="Boolean" />
+          <Property Name="priceGroup" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsShow" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -741,6 +763,17 @@
                 <ScalarProperty Name="group2" ColumnName="group2" />
                 <ScalarProperty Name="group1" ColumnName="group1" />
                 <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGroupMasters">
+            <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblGroupMaster">
+              <MappingFragment StoreEntitySet="tblGroupMaster">
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="priceGroup" ColumnName="priceGroup" />
+                <ScalarProperty Name="haveFixPrice" ColumnName="haveFixPrice" />
+                <ScalarProperty Name="groupName" ColumnName="groupName" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

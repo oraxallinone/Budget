@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewBag.Title = "GroupList";
+    Layout = "~/Views/Shared/_LayoutOrax.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-info card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title">Group List</h3>
+                        </div>
+                        <div>
+                            <div class="card-body">
+                                <div class="container">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add New</button>
+                                </div>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="myModalLabel">Add New Group</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <div class="mb-3">
+                                                    <label for="txt_groupName" class="form-label">Group Name</label>
+                                                    <input type="text" class="form-control" id="txtGroupName" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="chkHaveFixPrice" class="form-label">Have Fix Price?</label>
+                                                    <input type="checkbox" class="form-control" id="chkHaveFixPrice" />
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="txtPrice" class="form-label">Price</label>
+                                                    <input type="text" class="form-control" id="txtPrice" value="0" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="chkIsShow" class="form-label">IsShow?</label>
+                                                    <input type="checkbox"  class="form-control" id="chkIsShow"  />
+                                                </div>
+
+                                                <input type="hidden" id="hidelId" value="0"/>
+                                                <button id="btnSaveGroup" type="button" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="container">
+                                    <table id="tblGroupList" style="width:100%;"border="1">
+                                        <thead>
+                                            <tr>
+                                                <td>id</td><td>group name</td> <td>isFixed</td><td>amt</td><td>isShown</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tblGroupBody">
+                                            <tr><td></td> <td></td>  <td></td> <td></td> <td></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        listGroup();
+
+        $("#btnSaveGroup").click(function () {
+            debugger
+            saveGroup();
+            // Perform any necessary validation or AJAX operations here
+            //$('#myModalLabel').html('Add New Group');
+
+
+
+
+
+
+            // Close the modal
+            //$("#myModal").modal('hide');
+        });
+
+        // Alternatively, close the modal when the close button is clicked
+        $(".close, .btn-secondary").click(function () {
+            $("#myModal").modal('hide');
+        });
+
+
+
+
+        function saveGroup() {
+            let hidelId = $('#hidelId').val();
+            let groupName = $('#txtGroupName').val();
+            let haveFixPrice = $('#chkHaveFixPrice').is(":checked");
+            let priceGroup = $('#txtPrice').val();
+            let IsShow = $('#chkIsShow').is(":checked");
+
+            
+            let GroupViewModel = {
+                hidelId: hidelId,
+                groupName: groupName,
+                haveFixPrice: haveFixPrice,
+                priceGroup: priceGroup,
+                IsShow: IsShow
+            }
+
+
+            $.ajax({
+                type: "POST",
+                url: '/Orax/GroupSave',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(GroupViewModel),
+                success: function (result) {
+                    if (result == "save") {
+                        alert("saved");
+                    }
+                    else if (result == "update") {
+                        alert("updated");
+                    }
+                },
+                error: function (xhr) {
+                    alert('Error: ' + xhr.statusText);
+                }
+            });
+        }
+
+
+
+        function listGroup() {
+            $.ajax({
+                type: "POST",
+                url: '/Orax/ListGroup',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    debugger
+                    $('#tblGroupBody').empty();
+                    
+
+
+                    var tblRows = "";
+                    $.each(result, function (a, b) {
+                        debugger
+                        var tblRow = '<tr><td>'
+                            + b.id + '</td><td>'
+                            + b.groupName + '</td><td>'
+                            + b.haveFixPrice + '</td><td>'
+                            + b.priceGroup + '</td><td>'
+                            + b.IsShow + '</td><td> <a id="btnView" class="' + b.id + '" > <i class="fa-solid fa-eye"></i></a></td></tr>';
+
+                        tblRows = tblRows + tblRow;
+                    });
+
+                    $("#tblGroupBody").append(tblRows);
+
+                   
+                },
+                error: function (xhr) {
+                    alert('Error: ' + xhr.statusText);
+                }
+            });
+        }
+
+    });
+</script>

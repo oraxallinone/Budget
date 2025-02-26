@@ -243,5 +243,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tblGroupMasters">
+      <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblGroupMaster">
+        <MappingFragment StoreEntitySet="tblGroupMaster">
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+          <ScalarProperty Name="priceGroup" ColumnName="priceGroup" />
+          <ScalarProperty Name="haveFixPrice" ColumnName="haveFixPrice" />
+          <ScalarProperty Name="groupName" ColumnName="groupName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

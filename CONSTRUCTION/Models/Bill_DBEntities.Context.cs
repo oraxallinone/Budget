@@ -39,5 +39,6 @@ namespace CONSTRUCTION.Models
         public virtual DbSet<tblBudget> tblBudgets { get; set; }
         public virtual DbSet<tblBudgetMaster> tblBudgetMasters { get; set; }
         public virtual DbSet<task_TaskDetails> task_TaskDetails { get; set; }
+        public virtual DbSet<tblGroupMaster> tblGroupMasters { get; set; }
     }
 }

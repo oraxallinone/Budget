@@ -429,6 +429,16 @@ namespace CONSTRUCTION.Models
         public Nullable<System.DateTime> createdDate { get; set; }
     }
 
+    public class GroupViewModel
+    {
+        public int hidelId { get; set; }
+        public string groupName { get; set; }
+        public bool haveFixPrice { get; set; }
+        public decimal priceGroup { get; set; }
+        public bool IsShow { get; set; }
+    }
+
+
     public class GetExpensiveViewModel
     {
         public int forYear { get; set; }

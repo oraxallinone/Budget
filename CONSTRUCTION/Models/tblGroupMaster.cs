@@ -12,15 +12,12 @@ namespace CONSTRUCTION.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class task_TaskDetails
+    public partial class tblGroupMaster
     {
         public int id { get; set; }
-        public string taskName { get; set; }
-        public string group1 { get; set; }
-        public string group2 { get; set; }
-        public string group3 { get; set; }
-        public string group4 { get; set; }
-        public string isActive { get; set; }
-        public System.DateTime taskDate { get; set; }
+        public string groupName { get; set; }
+        public Nullable<bool> haveFixPrice { get; set; }
+        public Nullable<decimal> priceGroup { get; set; }
+        public Nullable<bool> IsShow { get; set; }
     }
 }

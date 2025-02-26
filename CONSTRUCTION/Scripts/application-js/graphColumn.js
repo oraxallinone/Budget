@@ -1,4 +1,4 @@
-﻿/// <reference path="graph.js" />
+﻿/// <reference path="graph.js" /> dataPoints: result.barGraphData
 
 
 $(document).ready(function () {
@@ -40,13 +40,15 @@ $(document).ready(function () {
                             legend: { verticalAlign: "bottom", horizontalAlign: "center" },
                             data: [{
                                 color: "#B0D0B0",
-                                indexLabelPlacement: "inside",//Try Changing to outside inside
+                                indexLabelPlacement: "inside", // Ensure labels appear inside
                                 indexLabelOrientation: "horizontal",
+                                indexLabelFontColor: "black", // Set text color
+                                indexLabelFontWeight: "bold", // Make text bold
+                                indexLabelFontSize: 14, // Adjust label font size
                                 type: "column",
                                 showInLegend: true,
                                 legendMarkerType: "none",
-                                //legendText: "MMbbl = one million barrels",
-                                dataPoints: result.barGraphData
+                                dataPoints: result.barGraphData.map(point => ({ ...point, indexLabel: point.label })),
                             }]
                         });
                     chart.render();

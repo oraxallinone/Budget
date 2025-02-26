@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\SOFTWARE\SwarnaMam1\15-construction\CONSTRUCTION\CONSTRUCTION\CONSTRUCTION\Models\Bill_DBEntities.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\SOFTWARE\BudgetProject\CONSTRUCTION\Models\Bill_DBEntities.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

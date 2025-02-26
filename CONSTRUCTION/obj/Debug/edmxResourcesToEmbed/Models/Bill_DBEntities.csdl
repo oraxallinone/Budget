@@ -200,6 +200,7 @@
     <EntitySet Name="tblBudgets" EntityType="cbtsplco_ommsuppliersModel.tblBudget" />
     <EntitySet Name="tblBudgetMasters" EntityType="cbtsplco_ommsuppliersModel.tblBudgetMaster" />
     <EntitySet Name="task_TaskDetails" EntityType="cbtsplco_ommsuppliersModel.task_TaskDetails" />
+    <EntitySet Name="tblGroupMasters" EntityType="cbtsplco_ommsuppliersModel.tblGroupMaster" />
   </EntityContainer>
   <EntityType Name="tblBudget">
     <Key>
@@ -243,5 +244,15 @@
     <Property Name="group4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="isActive" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="taskDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblGroupMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="groupName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="haveFixPrice" Type="Boolean" />
+    <Property Name="priceGroup" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsShow" Type="Boolean" />
   </EntityType>
 </Schema>

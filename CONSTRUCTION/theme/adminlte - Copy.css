@@ -33875,7 +33875,6 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   min-height: 80px;
   padding: .5rem;
   position: relative;
-   border: 2px solid #9d92b1;
   width: 100%;
 }
 

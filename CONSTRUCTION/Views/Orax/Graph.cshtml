@@ -5,9 +5,14 @@
 }
 
 
-<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+@*<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>*@
 <script type="text/javascript" src="https://cdn.canvasjs.com/jquery.canvasjs.min.js"></script>
 
+<style>
+    .to-upper{
+        text-transform: uppercase;
+    }
+</style>
 
 <div class="content-wrapper">
     <section class="content">
@@ -34,7 +39,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="row" style="height: 460px;">
+                                <div class="row" >
                                     <div class="form-group col-md-6">
                                         <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                                     </div>
@@ -42,6 +47,28 @@
                                         <div id="chartContainerThree" style="height: 370px; width: 100%;"></div>
                                     </div>
                                 </div>
+
+
+                                <div class="row" id="divrenderCard">
+                                    
+                                    @*<div class="col-md-3 col-sm-6 col-12">
+                                        <div class="info-box">
+                                            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">BEER</span>
+                                                <table>
+                                                    <tr> <td>Budget</td><td>Spend</td><td>Remaining</td> </tr>
+                                                    <tr> 
+                                                        <td><span class="info-box-number">1,410</span></td> 
+                                                        <td><span class="info-box-number">1,410</span></td> 
+                                                        <td><span class="info-box-number">1,410</span></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                </div>
+
                                 <div class="card-footer">
                                     <style type="text/css">
                                         .r-r {
@@ -77,5 +104,35 @@
     document.getElementById('day').innerHTML = dayName;
 
 </script>*@
+
+
+
+@*<div class="col-md-3 col-sm-6 col-12">
+    <div class="info-box">
+        <span class="info-box-icon bg-info"><i class="far fa-flag"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">Bookmarks</span>
+            <span class="info-box-number">410</span>
+        </div>
+    </div>
+</div>
+<div class="col-md-3 col-sm-6 col-12">
+    <div class="info-box">
+        <span class="info-box-icon bg-info"><i class="far fa-copy"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">Uploads</span>
+            <span class="info-box-number">13,648</span>
+        </div>
+    </div>
+</div>
+<div class="col-md-3 col-sm-6 col-12">
+    <div class="info-box">
+        <span class="info-box-icon bg-info"><i class="far fa-star"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">Likes</span>
+            <span class="info-box-number">93,139</span>
+        </div>
+    </div>
+</div>*@
 
 <script src="~/Scripts/application-js/graph.js"></script>

@@ -611,5 +611,49 @@ namespace CONSTRUCTION.Controllers
             return View();
         }
         #endregion ------------------------------------
+
+
+
+
+        #region ---------------------- Group Master----
+        public ActionResult GroupList()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ListGroup()
+        {
+            return Json(db.tblGroupMasters.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult GroupSave(GroupViewModel data)
+        {
+            if (Convert.ToInt32(data.hidelId) == 0)
+            {
+                tblGroupMaster obj = new tblGroupMaster();
+                //obj.id = data.hidelId;
+                obj.groupName = data.groupName;
+                obj.haveFixPrice = data.haveFixPrice;
+                obj.priceGroup = data.priceGroup;
+                obj.IsShow = data.IsShow;
+                db.tblGroupMasters.Add(obj);
+                db.SaveChanges();
+                return Json("save");
+            }
+            else
+            {
+                tblGroupMaster obj = db.tblGroupMasters.FirstOrDefault(x => x.id == data.hidelId);
+                obj.groupName = data.groupName;
+                obj.haveFixPrice = data.haveFixPrice;
+                obj.priceGroup = data.priceGroup;
+                obj.IsShow = data.IsShow;
+                db.SaveChanges();
+                return Json("update");
+            }
+
+        }
+        #endregion ------------------------------------
     }
 }

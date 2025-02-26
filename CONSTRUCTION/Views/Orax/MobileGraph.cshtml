@@ -11,13 +11,12 @@
     <meta name="viewport" content="width=device-width" />
     <title>Graph chart.js</title>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>*@
     @*<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>*@
     <script src="~/Scripts/jsLibrary/chartLibrary.js"></script>
     <style>
         #chart-container {
             width: 70%;
-            height: 69vh;
             margin: auto;
         }
     </style>
@@ -53,12 +52,33 @@
                                         </div>
                                     </div>
                                     <div class="row">
+
+                                        <div class="col-md-12 col-sm-12 col-12">
+                                            <div class="info-box">
+                                                <span class="info-box-icon bg-info"><i class="far fa-flag"></i></span>
+                                                <div class="info-box-content">
+                                                    <table>
+                                                        <tr id="trForTdAvrage"> </tr>
+                                                        <tr id="trFor_Month"> </tr>
+                                                        <tr id="trForTdSpeand"> </tr>
+                                                        <tr id="trForTdTotal"> </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group col-md-12">
                                             <div id="chart-container">
                                                 <canvas id="barChart"></canvas>
                                             </div>
                                         </div>
                                     </div>
+
+                                    
                                 </div>
                             </div>
                         </div>
@@ -124,15 +144,46 @@
                         if (chartInstance) {
                             chartInstance.destroy(); // Destroy the existing chart
                         }
+                        //clear
+                        $('#trFor_Month').empty();
+                        $('#trForTdSpeand').empty();
+                        $('#trForTdTotal').empty();
+                        $('#trForTdAvrage').empty();
+                        //clear
+
 
                         let _d1 = [];
                         let _d2 = [];
+                        let _tdForTdMonth = '<td>Month</td>'
+                        let _tdForTdSpeand = '<td>Speand</td>'
+                        let _trForTdTotal = '<td>Total</td>'
+                        let _total = 0;
+                        let _trForTdAvrage = '<td>Avrage</td>'
 
 
                         $.each(result.barGraphData, function (index, data) {
+                            debugger
                             _d1.push(data.label);
                             _d2.push(data.y);
+
+                            _tdForTdMonth = _tdForTdMonth + '<td>' + data.label.split('-')[0] + '</td>';
+                            _tdForTdSpeand = _tdForTdSpeand + '<td>' + data.y + '</td>';
+                            _total = parseInt(_total) + parseInt(data.y);
+                            _trForTdTotal = _trForTdTotal + '<td>' + _total + '</td>';
+                            var crntAvg = parseInt( _total / (parseInt(index)+1));
+                            _trForTdAvrage = _trForTdAvrage + '<td>  <u>' + crntAvg + '</u> </td>';
+                            
                         });
+                        debugger
+
+                        $('#trFor_Month').append(_tdForTdMonth);
+                        $('#trForTdSpeand').append(_tdForTdSpeand);
+                        $('#trForTdTotal').append(_trForTdTotal);
+                        $('#trForTdAvrage').append(_trForTdAvrage);
+
+
+
+                        
 
 
                         var ctx = $("#barChart");

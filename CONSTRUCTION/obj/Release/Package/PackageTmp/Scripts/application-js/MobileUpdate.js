@@ -67,7 +67,7 @@ $(document).ready(function () {
                         + '<td class="col4 box-default2">' + b.group2 + '</td>'
                         + '<td style="width:66px;"><select id="' + b.id + '_" class="form-control wd-select1 form-control-sm group2"> <option value="">---</option> <option value="beer-1.5k">beer-1.5k</option> <option value="emi">emi</option> <option value="essential-5k">essential-5k</option> <option value="extra-10k">extra-10k</option> <option value="food-5k" style="background-color:yellow;">food-5k</option> <option value="fromSaving-60k">fromSaving-60k</option> <option value="h-rent">h-rent</option> <option value="oil-4k">oil-4k</option> <option value="saving">saving</option> <option value="unplaned">unplaned</option><option value="creditCard">Credit Card</option> <option value="mrg">mrg</option>  <option value="goa">Goa</option> <option value="borrow">borrow</option> </select></td>'
                         + ' <td> ' +
-                        '<table style="width:100%;"><tr>'
+                        '<table style="width:100%;margin: -3px;"><tr>'
                         + '<td class="box-default">' + b.group1 + '</td>'
                         + '<td style="width:66px;"><select id="' + b.id + '" class="form-control wd-select2 form-control-sm group1"> <option value="">---</option> <option value="need">Need</option> <option value="want">Want</option> <option value="save">Save</option> </select></td>'
 
@@ -138,6 +138,7 @@ $(document).ready(function () {
 
 
     $(document).on('change', '.group1', function () {
+        debugger
         var id = $(this).attr('id');
 
         let CreateExpensiveViewModel = {
@@ -146,7 +147,7 @@ $(document).ready(function () {
             group2: '',
             details: '',
             price: 0,
-            createdDate: new Date(createdDate)
+            createdDate: null
         }
         $.ajax({
             url: '/Orax/UpdateGroup1',
@@ -157,8 +158,6 @@ $(document).ready(function () {
             success: function (data) {
                 if (data == 'success') {
                     getList();
-
-
                 }
             },
             error: function (xhr) {
@@ -170,6 +169,7 @@ $(document).ready(function () {
 
 
     $(document).on('change', '.group2', function () {
+        debugger
         var id = $(this).attr('id');
         id3 = id.split('_');
 
@@ -179,7 +179,7 @@ $(document).ready(function () {
             group2: $(this).find(":selected").val(),
             details: '',
             price: 0,
-            createdDate: new Date(createdDate)
+            createdDate: null
         }
         $.ajax({
             url: '/Orax/UpdateGroup2',
@@ -200,6 +200,7 @@ $(document).ready(function () {
     });
 
     $(document).on('change', '.group3', function () {
+        debugger
         var id = $(this).attr('id');
         id3 = id.split('_');
         let CreateExpensiveViewModel = {
@@ -209,7 +210,7 @@ $(document).ready(function () {
             group3: $(this).find(":selected").val(),
             details: '',
             price: 0,
-            createdDate: new Date(createdDate)
+            createdDate: null
         }
         $.ajax({
             url: '/Orax/UpdateGroup3',

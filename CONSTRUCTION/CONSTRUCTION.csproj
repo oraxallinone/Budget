@@ -267,6 +267,9 @@
     <Compile Include="Models\tblGoogsTran.cs">
       <DependentUpon>Bill_DBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tblGroupMaster.cs">
+      <DependentUpon>Bill_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tblInvoice.cs">
       <DependentUpon>Bill_DBEntities.tt</DependentUpon>
     </Compile>
@@ -297,6 +300,7 @@
     <Content Include="Content\application-css\loginscreen.css" />
     <Content Include="Content\application-css\logo.png" />
     <Content Include="Content\application-css\print.css" />
+    <Content Include="Content\application-css\barGraph.png" />
     <Content Include="Content\ommSailogo.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -365,6 +369,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="theme\adminlte - Copy.css" />
     <Content Include="theme\adminlte.css" />
     <Content Include="theme\adminlte.min.css" />
     <Content Include="theme\adminlte.min.js" />
@@ -448,6 +453,8 @@
     <Content Include="Views\Orax\TrackCreate.cshtml" />
     <Content Include="Views\Orax\TaskShow.cshtml" />
     <Content Include="Views\Orax\MobileUpdate.cshtml" />
+    <Content Include="Views\Shared\_LayoutOrax - Copy.cshtml" />
+    <Content Include="Views\Orax\GroupList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

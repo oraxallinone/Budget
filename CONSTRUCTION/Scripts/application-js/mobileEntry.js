@@ -13,8 +13,11 @@
     $('#ddlMonth').prop('selectedIndex', _month);
     $('#createdDate').val(_todayDate)
 
-    
-
+    debugger
+    let monthSelected = $('select#ddlMonth option:selected').val();
+    if (monthSelected != "-- select --") {
+        getList();
+    }
 
 
 
