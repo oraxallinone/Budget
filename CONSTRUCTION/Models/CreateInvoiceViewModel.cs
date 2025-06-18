@@ -436,6 +436,7 @@ namespace CONSTRUCTION.Models
         public bool haveFixPrice { get; set; }
         public decimal priceGroup { get; set; }
         public bool IsShow { get; set; }
+        public string btnText { get; set; }
     }
 
 

@@ -19,5 +19,6 @@ namespace CONSTRUCTION.Models
         public Nullable<bool> haveFixPrice { get; set; }
         public Nullable<decimal> priceGroup { get; set; }
         public Nullable<bool> IsShow { get; set; }
+        public Nullable<int> group2int { get; set; }
     }
 }

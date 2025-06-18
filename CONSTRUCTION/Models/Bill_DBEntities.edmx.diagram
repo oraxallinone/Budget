@@ -5,21 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0e6cd9abf9664a17b7d937764feb6ccb" Name="Diagram1">
-        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.CounterMaster" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.CustomerMaster" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.GoodsMaster" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.InvoiceDetail" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.ItemMaster" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.ItemTransaction" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblGoogsTran" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblInvoice" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblReceiptDetail" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblReceiptTransaction" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblTanent" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblBudget" Width="1.5" PointX="9.375" PointY="10.75" />
-        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblBudgetMaster" Width="1.5" PointX="11.375" PointY="0.75" />
-        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.task_TaskDetails" Width="1.5" PointX="11.375" PointY="5.75" />
-        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblGroupMaster" Width="1.5" PointX="5.375" PointY="11.75" />
+        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.CounterMaster" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.CustomerMaster" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.GoodsMaster" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.InvoiceDetail" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.ItemMaster" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.ItemTransaction" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblBudget" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblBudgetMaster" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblGoogsTran" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblGroupMaster" Width="1.5" PointX="8.75" PointY="5.75" />
+        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblInvoice" Width="1.5" PointX="8.75" PointY="8.75" />
+        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblReceiptDetail" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblReceiptTransaction" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="cbtsplco_ommsuppliersModel.tblTanent" Width="1.5" PointX="4.75" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

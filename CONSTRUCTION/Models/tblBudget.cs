@@ -17,10 +17,11 @@ namespace CONSTRUCTION.Models
         public int id { get; set; }
         public string group1 { get; set; }
         public string group2 { get; set; }
+        public string group3 { get; set; }
+        public string group4 { get; set; }
         public string details { get; set; }
         public Nullable<decimal> price { get; set; }
         public Nullable<System.DateTime> createdDate { get; set; }
-        public string group3 { get; set; }
-        public string group4 { get; set; }
+        public Nullable<int> group2int { get; set; }
     }
 }

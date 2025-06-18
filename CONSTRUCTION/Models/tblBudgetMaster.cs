@@ -16,15 +16,15 @@ namespace CONSTRUCTION.Models
     {
         public int id { get; set; }
         public string month { get; set; }
-        public Nullable<decimal> salary { get; set; }
-        public Nullable<System.DateTime> fromDate { get; set; }
-        public Nullable<System.DateTime> todate { get; set; }
-        public Nullable<decimal> need { get; set; }
-        public Nullable<decimal> want { get; set; }
-        public Nullable<decimal> saving { get; set; }
         public string monthName { get; set; }
         public Nullable<int> montOrder { get; set; }
         public Nullable<int> year { get; set; }
+        public Nullable<decimal> salary { get; set; }
+        public Nullable<System.DateTime> fromDate { get; set; }
+        public Nullable<System.DateTime> todate { get; set; }
         public Nullable<System.DateTime> salaryDate { get; set; }
+        public Nullable<decimal> need { get; set; }
+        public Nullable<decimal> want { get; set; }
+        public Nullable<decimal> saving { get; set; }
     }
 }

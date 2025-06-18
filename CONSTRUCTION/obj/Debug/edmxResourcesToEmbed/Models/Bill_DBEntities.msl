@@ -4,207 +4,107 @@
     <EntitySetMapping Name="CounterMasters">
       <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.CounterMaster">
         <MappingFragment StoreEntitySet="CounterMaster">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="counterName" ColumnName="counterName" />
           <ScalarProperty Name="counterValue" ColumnName="counterValue" />
+          <ScalarProperty Name="counterName" ColumnName="counterName" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CustomerMasters">
       <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.CustomerMaster">
         <MappingFragment StoreEntitySet="CustomerMaster">
-          <ScalarProperty Name="custId" ColumnName="custId" />
-          <ScalarProperty Name="custName" ColumnName="custName" />
-          <ScalarProperty Name="addr1" ColumnName="addr1" />
-          <ScalarProperty Name="addr2" ColumnName="addr2" />
-          <ScalarProperty Name="addr3" ColumnName="addr3" />
-          <ScalarProperty Name="gstIn" ColumnName="gstIn" />
-          <ScalarProperty Name="gstType" ColumnName="gstType" />
-          <ScalarProperty Name="isActive" ColumnName="isActive" />
-          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
           <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="gstType" ColumnName="gstType" />
+          <ScalarProperty Name="gstIn" ColumnName="gstIn" />
+          <ScalarProperty Name="addr3" ColumnName="addr3" />
+          <ScalarProperty Name="addr2" ColumnName="addr2" />
+          <ScalarProperty Name="addr1" ColumnName="addr1" />
+          <ScalarProperty Name="custName" ColumnName="custName" />
+          <ScalarProperty Name="custId" ColumnName="custId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="GoodsMasters">
       <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.GoodsMaster">
         <MappingFragment StoreEntitySet="GoodsMaster">
-          <ScalarProperty Name="goodsId" ColumnName="goodsId" />
-          <ScalarProperty Name="descriptionOfGoods" ColumnName="descriptionOfGoods" />
-          <ScalarProperty Name="hsn" ColumnName="hsn" />
-          <ScalarProperty Name="rate" ColumnName="rate" />
-          <ScalarProperty Name="cgst_p" ColumnName="cgst_p" />
-          <ScalarProperty Name="sgst_p" ColumnName="sgst_p" />
-          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
           <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="sgst_p" ColumnName="sgst_p" />
+          <ScalarProperty Name="cgst_p" ColumnName="cgst_p" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="hsn" ColumnName="hsn" />
+          <ScalarProperty Name="descriptionOfGoods" ColumnName="descriptionOfGoods" />
+          <ScalarProperty Name="goodsId" ColumnName="goodsId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="InvoiceDetails">
       <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.InvoiceDetail">
         <MappingFragment StoreEntitySet="InvoiceDetail">
-          <ScalarProperty Name="IId" ColumnName="IId" />
-          <ScalarProperty Name="INo" ColumnName="INo" />
-          <ScalarProperty Name="IDraftNo" ColumnName="IDraftNo" />
-          <ScalarProperty Name="IDate" ColumnName="IDate" />
-          <ScalarProperty Name="ICustId" ColumnName="ICustId" />
-          <ScalarProperty Name="IinvoiceStatus" ColumnName="IinvoiceStatus" />
-          <ScalarProperty Name="TotalValue" ColumnName="TotalValue" />
-          <ScalarProperty Name="TotalGST" ColumnName="TotalGST" />
-          <ScalarProperty Name="TotalTotal" ColumnName="TotalTotal" />
-          <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
+          <ScalarProperty Name="TotalTotal" ColumnName="TotalTotal" />
+          <ScalarProperty Name="TotalGST" ColumnName="TotalGST" />
+          <ScalarProperty Name="TotalValue" ColumnName="TotalValue" />
+          <ScalarProperty Name="IinvoiceStatus" ColumnName="IinvoiceStatus" />
+          <ScalarProperty Name="ICustId" ColumnName="ICustId" />
+          <ScalarProperty Name="IDate" ColumnName="IDate" />
+          <ScalarProperty Name="IDraftNo" ColumnName="IDraftNo" />
+          <ScalarProperty Name="INo" ColumnName="INo" />
+          <ScalarProperty Name="IId" ColumnName="IId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ItemMasters">
       <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.ItemMaster">
         <MappingFragment StoreEntitySet="ItemMaster">
-          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
-          <ScalarProperty Name="ItemDetails" ColumnName="ItemDetails" />
-          <ScalarProperty Name="HSN" ColumnName="HSN" />
-          <ScalarProperty Name="Rate" ColumnName="Rate" />
-          <ScalarProperty Name="Gst" ColumnName="Gst" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Gst" ColumnName="Gst" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="HSN" ColumnName="HSN" />
+          <ScalarProperty Name="ItemDetails" ColumnName="ItemDetails" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ItemTransactions">
       <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.ItemTransaction">
         <MappingFragment StoreEntitySet="ItemTransaction">
-          <ScalarProperty Name="IdT" ColumnName="IdT" />
-          <ScalarProperty Name="InvoiceNoT" ColumnName="InvoiceNoT" />
-          <ScalarProperty Name="DraftNoT" ColumnName="DraftNoT" />
-          <ScalarProperty Name="ItemCodeT" ColumnName="ItemCodeT" />
-          <ScalarProperty Name="ItemDetails" ColumnName="ItemDetails" />
-          <ScalarProperty Name="HSN" ColumnName="HSN" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="Rate" ColumnName="Rate" />
-          <ScalarProperty Name="Value" ColumnName="Value" />
-          <ScalarProperty Name="GstRate" ColumnName="GstRate" />
-          <ScalarProperty Name="GstValue" ColumnName="GstValue" />
-          <ScalarProperty Name="Total" ColumnName="Total" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblGoogsTrans">
-      <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblGoogsTran">
-        <MappingFragment StoreEntitySet="tblGoogsTrans">
-          <ScalarProperty Name="tGoodslno" ColumnName="tGoodslno" />
-          <ScalarProperty Name="tInvoiceNo" ColumnName="tInvoiceNo" />
-          <ScalarProperty Name="tGoodsDesc" ColumnName="tGoodsDesc" />
-          <ScalarProperty Name="tQty" ColumnName="tQty" />
-          <ScalarProperty Name="tRate" ColumnName="tRate" />
-          <ScalarProperty Name="tValue" ColumnName="tValue" />
-          <ScalarProperty Name="cgstP" ColumnName="cgstP" />
-          <ScalarProperty Name="cgstA" ColumnName="cgstA" />
-          <ScalarProperty Name="scstP" ColumnName="scstP" />
-          <ScalarProperty Name="sgstA" ColumnName="sgstA" />
-          <ScalarProperty Name="total" ColumnName="total" />
-          <ScalarProperty Name="grandTotal" ColumnName="grandTotal" />
-          <ScalarProperty Name="isActive" ColumnName="isActive" />
-          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblInvoices">
-      <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblInvoice">
-        <MappingFragment StoreEntitySet="tblInvoice">
-          <ScalarProperty Name="invSlno" ColumnName="invSlno" />
-          <ScalarProperty Name="companyName" ColumnName="companyName" />
-          <ScalarProperty Name="dateOfInvoice" ColumnName="dateOfInvoice" />
-          <ScalarProperty Name="agreementDate" ColumnName="agreementDate" />
-          <ScalarProperty Name="serialNoOfInvoice" ColumnName="serialNoOfInvoice" />
-          <ScalarProperty Name="projectManager" ColumnName="projectManager" />
-          <ScalarProperty Name="panNo" ColumnName="panNo" />
-          <ScalarProperty Name="projectName" ColumnName="projectName" />
-          <ScalarProperty Name="billTo" ColumnName="billTo" />
-          <ScalarProperty Name="billToGSTIN" ColumnName="billToGSTIN" />
-          <ScalarProperty Name="shipTo" ColumnName="shipTo" />
-          <ScalarProperty Name="shipToGSTIN" ColumnName="shipToGSTIN" />
-          <ScalarProperty Name="TotalInvoice" ColumnName="TotalInvoice" />
-          <ScalarProperty Name="isActive" ColumnName="isActive" />
-          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblReceiptDetails">
-      <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblReceiptDetail">
-        <MappingFragment StoreEntitySet="tblReceiptDetails">
-          <ScalarProperty Name="rsp_id" ColumnName="rsp_id" />
-          <ScalarProperty Name="refNo" ColumnName="refNo" />
-          <ScalarProperty Name="receiptDate" ColumnName="receiptDate" />
-          <ScalarProperty Name="companyName" ColumnName="companyName" />
-          <ScalarProperty Name="rsp_name" ColumnName="rsp_name" />
-          <ScalarProperty Name="name_addr" ColumnName="name_addr" />
-          <ScalarProperty Name="rsp_addrOfP" ColumnName="rsp_addrOfP" />
-          <ScalarProperty Name="rsp_addrOfD" ColumnName="rsp_addrOfD" />
-          <ScalarProperty Name="rsp_gstin" ColumnName="rsp_gstin" />
-          <ScalarProperty Name="rsp_grandTotal" ColumnName="rsp_grandTotal" />
-          <ScalarProperty Name="isActive" ColumnName="isActive" />
-          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblReceiptTransactions">
-      <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblReceiptTransaction">
-        <MappingFragment StoreEntitySet="tblReceiptTransaction">
-          <ScalarProperty Name="trsp_id" ColumnName="trsp_id" />
-          <ScalarProperty Name="refNo" ColumnName="refNo" />
-          <ScalarProperty Name="trsp_goodsId" ColumnName="trsp_goodsId" />
-          <ScalarProperty Name="trsp_goodsName" ColumnName="trsp_goodsName" />
-          <ScalarProperty Name="trsp_hsn" ColumnName="trsp_hsn" />
-          <ScalarProperty Name="trsp_qty" ColumnName="trsp_qty" />
-          <ScalarProperty Name="trsp_price" ColumnName="trsp_price" />
-          <ScalarProperty Name="trsp_valueOfGoods" ColumnName="trsp_valueOfGoods" />
-          <ScalarProperty Name="trsp_cgstP" ColumnName="trsp_cgstP" />
-          <ScalarProperty Name="trsp_cgstA" ColumnName="trsp_cgstA" />
-          <ScalarProperty Name="trsp_sgstP" ColumnName="trsp_sgstP" />
-          <ScalarProperty Name="trsp_sgstA" ColumnName="trsp_sgstA" />
-          <ScalarProperty Name="trsp_total" ColumnName="trsp_total" />
-          <ScalarProperty Name="isActive" ColumnName="isActive" />
-          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblTanents">
-      <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblTanent">
-        <MappingFragment StoreEntitySet="tblTanent">
-          <ScalarProperty Name="tanentId" ColumnName="tanentId" />
-          <ScalarProperty Name="tanentName" ColumnName="tanentName" />
-          <ScalarProperty Name="tanentaddr1" ColumnName="tanentaddr1" />
-          <ScalarProperty Name="tanentaddr2" ColumnName="tanentaddr2" />
-          <ScalarProperty Name="tanentaddr3" ColumnName="tanentaddr3" />
-          <ScalarProperty Name="tanentGST" ColumnName="tanentGST" />
-          <ScalarProperty Name="bName" ColumnName="bName" />
-          <ScalarProperty Name="acNo" ColumnName="acNo" />
-          <ScalarProperty Name="ifsc" ColumnName="ifsc" />
-          <ScalarProperty Name="type" ColumnName="type" />
-          <ScalarProperty Name="branch" ColumnName="branch" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="GstValue" ColumnName="GstValue" />
+          <ScalarProperty Name="GstRate" ColumnName="GstRate" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="HSN" ColumnName="HSN" />
+          <ScalarProperty Name="ItemDetails" ColumnName="ItemDetails" />
+          <ScalarProperty Name="ItemCodeT" ColumnName="ItemCodeT" />
+          <ScalarProperty Name="DraftNoT" ColumnName="DraftNoT" />
+          <ScalarProperty Name="InvoiceNoT" ColumnName="InvoiceNoT" />
+          <ScalarProperty Name="IdT" ColumnName="IdT" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblBudgets">
       <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblBudget">
         <MappingFragment StoreEntitySet="tblBudget">
-          <ScalarProperty Name="group4" ColumnName="group4" />
-          <ScalarProperty Name="group3" ColumnName="group3" />
+          <ScalarProperty Name="group2int" ColumnName="group2int" />
           <ScalarProperty Name="createdDate" ColumnName="createdDate" />
           <ScalarProperty Name="price" ColumnName="price" />
           <ScalarProperty Name="details" ColumnName="details" />
+          <ScalarProperty Name="group4" ColumnName="group4" />
+          <ScalarProperty Name="group3" ColumnName="group3" />
           <ScalarProperty Name="group2" ColumnName="group2" />
           <ScalarProperty Name="group1" ColumnName="group1" />
           <ScalarProperty Name="id" ColumnName="id" />
@@ -214,43 +114,131 @@
     <EntitySetMapping Name="tblBudgetMasters">
       <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblBudgetMaster">
         <MappingFragment StoreEntitySet="tblBudgetMaster">
-          <ScalarProperty Name="salaryDate" ColumnName="salaryDate" />
-          <ScalarProperty Name="year" ColumnName="year" />
-          <ScalarProperty Name="montOrder" ColumnName="montOrder" />
-          <ScalarProperty Name="monthName" ColumnName="monthName" />
           <ScalarProperty Name="saving" ColumnName="saving" />
           <ScalarProperty Name="want" ColumnName="want" />
           <ScalarProperty Name="need" ColumnName="need" />
+          <ScalarProperty Name="salaryDate" ColumnName="salaryDate" />
           <ScalarProperty Name="todate" ColumnName="todate" />
           <ScalarProperty Name="fromDate" ColumnName="fromDate" />
           <ScalarProperty Name="salary" ColumnName="salary" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="montOrder" ColumnName="montOrder" />
+          <ScalarProperty Name="monthName" ColumnName="monthName" />
           <ScalarProperty Name="month" ColumnName="month" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="task_TaskDetails">
-      <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.task_TaskDetails">
-        <MappingFragment StoreEntitySet="task_TaskDetails">
-          <ScalarProperty Name="taskDate" ColumnName="taskDate" />
+    <EntitySetMapping Name="tblGoogsTrans">
+      <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblGoogsTran">
+        <MappingFragment StoreEntitySet="tblGoogsTrans">
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
           <ScalarProperty Name="isActive" ColumnName="isActive" />
-          <ScalarProperty Name="group4" ColumnName="group4" />
-          <ScalarProperty Name="group3" ColumnName="group3" />
-          <ScalarProperty Name="group2" ColumnName="group2" />
-          <ScalarProperty Name="group1" ColumnName="group1" />
-          <ScalarProperty Name="taskName" ColumnName="taskName" />
-          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="grandTotal" ColumnName="grandTotal" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="sgstA" ColumnName="sgstA" />
+          <ScalarProperty Name="scstP" ColumnName="scstP" />
+          <ScalarProperty Name="cgstA" ColumnName="cgstA" />
+          <ScalarProperty Name="cgstP" ColumnName="cgstP" />
+          <ScalarProperty Name="tValue" ColumnName="tValue" />
+          <ScalarProperty Name="tRate" ColumnName="tRate" />
+          <ScalarProperty Name="tQty" ColumnName="tQty" />
+          <ScalarProperty Name="tGoodsDesc" ColumnName="tGoodsDesc" />
+          <ScalarProperty Name="tInvoiceNo" ColumnName="tInvoiceNo" />
+          <ScalarProperty Name="tGoodslno" ColumnName="tGoodslno" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblGroupMasters">
       <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblGroupMaster">
         <MappingFragment StoreEntitySet="tblGroupMaster">
+          <ScalarProperty Name="group2int" ColumnName="group2int" />
           <ScalarProperty Name="IsShow" ColumnName="IsShow" />
           <ScalarProperty Name="priceGroup" ColumnName="priceGroup" />
           <ScalarProperty Name="haveFixPrice" ColumnName="haveFixPrice" />
           <ScalarProperty Name="groupName" ColumnName="groupName" />
           <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblInvoices">
+      <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblInvoice">
+        <MappingFragment StoreEntitySet="tblInvoice">
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="TotalInvoice" ColumnName="TotalInvoice" />
+          <ScalarProperty Name="shipToGSTIN" ColumnName="shipToGSTIN" />
+          <ScalarProperty Name="shipTo" ColumnName="shipTo" />
+          <ScalarProperty Name="billToGSTIN" ColumnName="billToGSTIN" />
+          <ScalarProperty Name="billTo" ColumnName="billTo" />
+          <ScalarProperty Name="projectName" ColumnName="projectName" />
+          <ScalarProperty Name="panNo" ColumnName="panNo" />
+          <ScalarProperty Name="projectManager" ColumnName="projectManager" />
+          <ScalarProperty Name="serialNoOfInvoice" ColumnName="serialNoOfInvoice" />
+          <ScalarProperty Name="agreementDate" ColumnName="agreementDate" />
+          <ScalarProperty Name="dateOfInvoice" ColumnName="dateOfInvoice" />
+          <ScalarProperty Name="companyName" ColumnName="companyName" />
+          <ScalarProperty Name="invSlno" ColumnName="invSlno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblReceiptDetails">
+      <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblReceiptDetail">
+        <MappingFragment StoreEntitySet="tblReceiptDetails">
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="rsp_grandTotal" ColumnName="rsp_grandTotal" />
+          <ScalarProperty Name="rsp_gstin" ColumnName="rsp_gstin" />
+          <ScalarProperty Name="rsp_addrOfD" ColumnName="rsp_addrOfD" />
+          <ScalarProperty Name="rsp_addrOfP" ColumnName="rsp_addrOfP" />
+          <ScalarProperty Name="name_addr" ColumnName="name_addr" />
+          <ScalarProperty Name="rsp_name" ColumnName="rsp_name" />
+          <ScalarProperty Name="companyName" ColumnName="companyName" />
+          <ScalarProperty Name="receiptDate" ColumnName="receiptDate" />
+          <ScalarProperty Name="refNo" ColumnName="refNo" />
+          <ScalarProperty Name="rsp_id" ColumnName="rsp_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblReceiptTransactions">
+      <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblReceiptTransaction">
+        <MappingFragment StoreEntitySet="tblReceiptTransaction">
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="trsp_total" ColumnName="trsp_total" />
+          <ScalarProperty Name="trsp_sgstA" ColumnName="trsp_sgstA" />
+          <ScalarProperty Name="trsp_sgstP" ColumnName="trsp_sgstP" />
+          <ScalarProperty Name="trsp_cgstA" ColumnName="trsp_cgstA" />
+          <ScalarProperty Name="trsp_cgstP" ColumnName="trsp_cgstP" />
+          <ScalarProperty Name="trsp_valueOfGoods" ColumnName="trsp_valueOfGoods" />
+          <ScalarProperty Name="trsp_price" ColumnName="trsp_price" />
+          <ScalarProperty Name="trsp_qty" ColumnName="trsp_qty" />
+          <ScalarProperty Name="trsp_hsn" ColumnName="trsp_hsn" />
+          <ScalarProperty Name="trsp_goodsName" ColumnName="trsp_goodsName" />
+          <ScalarProperty Name="trsp_goodsId" ColumnName="trsp_goodsId" />
+          <ScalarProperty Name="refNo" ColumnName="refNo" />
+          <ScalarProperty Name="trsp_id" ColumnName="trsp_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTanents">
+      <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblTanent">
+        <MappingFragment StoreEntitySet="tblTanent">
+          <ScalarProperty Name="branch" ColumnName="branch" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="ifsc" ColumnName="ifsc" />
+          <ScalarProperty Name="acNo" ColumnName="acNo" />
+          <ScalarProperty Name="bName" ColumnName="bName" />
+          <ScalarProperty Name="tanentGST" ColumnName="tanentGST" />
+          <ScalarProperty Name="tanentaddr3" ColumnName="tanentaddr3" />
+          <ScalarProperty Name="tanentaddr2" ColumnName="tanentaddr2" />
+          <ScalarProperty Name="tanentaddr1" ColumnName="tanentaddr1" />
+          <ScalarProperty Name="tanentName" ColumnName="tanentName" />
+          <ScalarProperty Name="tanentId" ColumnName="tanentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

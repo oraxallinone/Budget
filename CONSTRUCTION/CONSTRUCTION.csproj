@@ -254,9 +254,6 @@
     <Compile Include="Models\NumberToWord.cs" />
     <Compile Include="Models\SatyaDBClass.cs" />
     <Compile Include="Models\TanentDetails.cs" />
-    <Compile Include="Models\task_TaskDetails.cs">
-      <DependentUpon>Bill_DBEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tblBudget.cs">
       <DependentUpon>Bill_DBEntities.tt</DependentUpon>
     </Compile>

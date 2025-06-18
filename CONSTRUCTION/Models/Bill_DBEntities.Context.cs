@@ -31,14 +31,13 @@ namespace CONSTRUCTION.Models
         public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
         public virtual DbSet<ItemMaster> ItemMasters { get; set; }
         public virtual DbSet<ItemTransaction> ItemTransactions { get; set; }
+        public virtual DbSet<tblBudget> tblBudgets { get; set; }
+        public virtual DbSet<tblBudgetMaster> tblBudgetMasters { get; set; }
         public virtual DbSet<tblGoogsTran> tblGoogsTrans { get; set; }
+        public virtual DbSet<tblGroupMaster> tblGroupMasters { get; set; }
         public virtual DbSet<tblInvoice> tblInvoices { get; set; }
         public virtual DbSet<tblReceiptDetail> tblReceiptDetails { get; set; }
         public virtual DbSet<tblReceiptTransaction> tblReceiptTransactions { get; set; }
         public virtual DbSet<tblTanent> tblTanents { get; set; }
-        public virtual DbSet<tblBudget> tblBudgets { get; set; }
-        public virtual DbSet<tblBudgetMaster> tblBudgetMasters { get; set; }
-        public virtual DbSet<task_TaskDetails> task_TaskDetails { get; set; }
-        public virtual DbSet<tblGroupMaster> tblGroupMasters { get; set; }
     }
 }

@@ -598,7 +598,8 @@ namespace CONSTRUCTION.Controllers
         #region ----------------------track------------
         public ActionResult TrackShow()
         {
-            return View(db.task_TaskDetails.ToList());
+            //db.task_TaskDetails.ToList()
+            return View();
         }
 
         public ActionResult TrackCreate()
@@ -630,19 +631,28 @@ namespace CONSTRUCTION.Controllers
         [HttpPost]
         public ActionResult GroupSave(GroupViewModel data)
         {
-            if (Convert.ToInt32(data.hidelId) == 0)
+            if (Convert.ToInt32(data.hidelId) == 0 && data.btnText == "Save")
             {
+                int dbCount = db.CounterMasters.Where(x => x.counterName == "group2id").FirstOrDefault().counterValue;
+                int newNo = BillSupport.increamentReferenceNO(dbCount);
+
                 tblGroupMaster obj = new tblGroupMaster();
-                //obj.id = data.hidelId;
                 obj.groupName = data.groupName;
                 obj.haveFixPrice = data.haveFixPrice;
                 obj.priceGroup = data.priceGroup;
                 obj.IsShow = data.IsShow;
+                obj.group2int = newNo;
                 db.tblGroupMasters.Add(obj);
                 db.SaveChanges();
+
+                CounterMaster cnt = db.CounterMasters.Where(x => x.counterName == "group2id").FirstOrDefault();
+                cnt.counterValue = newNo;
+                db.SaveChanges();
+
+
                 return Json("save");
             }
-            else
+            else if (data.btnText == "Update?")
             {
                 tblGroupMaster obj = db.tblGroupMasters.FirstOrDefault(x => x.id == data.hidelId);
                 obj.groupName = data.groupName;
@@ -652,7 +662,40 @@ namespace CONSTRUCTION.Controllers
                 db.SaveChanges();
                 return Json("update");
             }
+            else
+            {
+                return Json("not");
+            }
 
+        }
+
+
+        [HttpPost]
+        public ActionResult GroupGet(GroupViewModel data)
+        {
+            tblGroupMaster obj = db.tblGroupMasters.FirstOrDefault(x => x.id == data.hidelId);
+            return Json(obj);
+        }
+
+        [HttpPost]
+        public ActionResult GetDDLGroup2()
+        {
+            IEnumerable<tblGroupMaster> obj = db.tblGroupMasters.Where(x => x.IsShow == true).ToList();
+            return Json(obj);
+        }
+
+        [HttpPost]
+        public ActionResult GetDDLGroup2All()
+        {
+            IEnumerable<tblGroupMaster> obj = db.tblGroupMasters.ToList();
+            return Json(obj);
+        }
+
+        [HttpPost]
+        public ActionResult GetDDLGroup2OnlyActive()
+        {
+            IEnumerable<tblGroupMaster> obj = db.tblGroupMasters.Where(x => x.IsShow == true).ToList();
+            return Json(obj);
         }
         #endregion ------------------------------------
     }
