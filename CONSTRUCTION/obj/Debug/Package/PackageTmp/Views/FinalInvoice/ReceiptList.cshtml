@@ -1,0 +1,80 @@
+﻿@model IEnumerable<CONSTRUCTION.Models.ReceiptListViewModel>
+
+@{
+    ViewBag.Title = "Receipt List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <div class="col-4">
+                                <h3 class="card-title">Receipt List</h3>
+                            </div>
+                            <div class="offset-10 col-2 textRight">
+                                <a href="/FinalInvoice/CreateReceipt" class="btn btn-outline-dangerCustome1 btn-dangerCustome1 btn-xs">Add New Receipt</a>
+                            </div>
+
+                        </div>
+                        <div>
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <table width="100%" class="tableCust table-hover" style="border: 1px solid #3574a4b0">
+                                        <tr class="fontMenuHeader textCenter">
+                                            <td style="width:5%; text-align: left"> Ref Number </td>
+                                            <td style="width:15%; text-align: left"> Customer Name </td>
+
+                                            <td style="width:8% ;"> Receipt Date </td>
+                                            <td style="width:10% ;"> Company Name </td>
+                                            <td style="width:10% ;"> View </td>
+                                        </tr>
+                                        @{
+                                            int snNo = 0;
+                                            foreach (var itm in @Model)
+                                            {
+                                                snNo = snNo + 1;
+                                                <tr class="fontMenuBody" style="border: 1px solid #3574a4b0;">
+                                                    <td class="textCenter">@itm.refNo</td>
+                                                    <td class=""> @itm.custName </td>
+
+                                                    <td class="textCenter">@Convert.ToDateTime(itm.receiptDate).ToString("dd/MMM/yyyy")</td>
+                                                    
+                                                    
+                                                    @{if (itm.companyName == "OMM SUPPLIER AND CONSTRUCTION")
+                                                    {
+                                                        <td class="textLeft"> @itm.companyName </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="textLeft" style="background-color: #17578730; border-radius: 6px;"> @itm.companyName </td>
+                                                    }
+                                                    }
+
+
+
+
+                                                    <td class="textCenter">
+                                                        @Html.ActionLink("Details", "PrintReceipt", "FinalInvoice", routeValues: new
+                                                   {
+                                                       invNo = itm.refNo
+                                                   }, htmlAttributes: null)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

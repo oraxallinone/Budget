@@ -10,7 +10,7 @@
     <WebStackScaffolding_LayoutPageFile>~/Views/Shared/_LayoutOrax.cshtml</WebStackScaffolding_LayoutPageFile>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
-    <NameOfLastUsedPublishProfile>satMan</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>withDebug</NameOfLastUsedPublishProfile>
     <WebStackScaffolding_DbContextTypeFullName>CONSTRUCTION.Models.Bill_DBEntities</WebStackScaffolding_DbContextTypeFullName>
   </PropertyGroup>
   <ProjectExtensions>

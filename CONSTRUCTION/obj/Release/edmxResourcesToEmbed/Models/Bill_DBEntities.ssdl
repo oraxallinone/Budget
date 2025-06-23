@@ -139,6 +139,17 @@
     <Property Name="createdDate" Type="datetime" />
     <Property Name="updatedDate" Type="datetime" />
   </EntityType>
+  <EntityType Name="tblGroupMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="groupName" Type="varchar" MaxLength="50" />
+    <Property Name="haveFixPrice" Type="bit" />
+    <Property Name="priceGroup" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IsShow" Type="bit" />
+    <Property Name="group2int" Type="int" />
+  </EntityType>
   <EntityType Name="tblInvoice">
     <Key>
       <PropertyRef Name="invSlno" />
@@ -225,6 +236,7 @@
     <EntitySet Name="tblBudget" EntityType="Self.tblBudget" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblBudgetMaster" EntityType="Self.tblBudgetMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblGoogsTrans" EntityType="Self.tblGoogsTrans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblGroupMaster" EntityType="Self.tblGroupMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblInvoice" EntityType="Self.tblInvoice" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblReceiptDetails" EntityType="Self.tblReceiptDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblReceiptTransaction" EntityType="Self.tblReceiptTransaction" Schema="dbo" store:Type="Tables" />

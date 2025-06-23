@@ -1,5 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="cbtsplco_ommsuppliersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Bill_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CounterMasters" EntityType="cbtsplco_ommsuppliersModel.CounterMaster" />
+    <EntitySet Name="CustomerMasters" EntityType="cbtsplco_ommsuppliersModel.CustomerMaster" />
+    <EntitySet Name="GoodsMasters" EntityType="cbtsplco_ommsuppliersModel.GoodsMaster" />
+    <EntitySet Name="InvoiceDetails" EntityType="cbtsplco_ommsuppliersModel.InvoiceDetail" />
+    <EntitySet Name="ItemMasters" EntityType="cbtsplco_ommsuppliersModel.ItemMaster" />
+    <EntitySet Name="ItemTransactions" EntityType="cbtsplco_ommsuppliersModel.ItemTransaction" />
+    <EntitySet Name="tblBudgets" EntityType="cbtsplco_ommsuppliersModel.tblBudget" />
+    <EntitySet Name="tblBudgetMasters" EntityType="cbtsplco_ommsuppliersModel.tblBudgetMaster" />
+    <EntitySet Name="tblGoogsTrans" EntityType="cbtsplco_ommsuppliersModel.tblGoogsTran" />
+    <EntitySet Name="tblGroupMasters" EntityType="cbtsplco_ommsuppliersModel.tblGroupMaster" />
+    <EntitySet Name="tblInvoices" EntityType="cbtsplco_ommsuppliersModel.tblInvoice" />
+    <EntitySet Name="tblReceiptDetails" EntityType="cbtsplco_ommsuppliersModel.tblReceiptDetail" />
+    <EntitySet Name="tblReceiptTransactions" EntityType="cbtsplco_ommsuppliersModel.tblReceiptTransaction" />
+    <EntitySet Name="tblTanents" EntityType="cbtsplco_ommsuppliersModel.tblTanent" />
+  </EntityContainer>
   <EntityType Name="CounterMaster">
     <Key>
       <PropertyRef Name="id" />
@@ -47,10 +63,10 @@
     <Property Name="IDate" Type="DateTime" Precision="3" />
     <Property Name="ICustId" Type="Int32" Nullable="false" />
     <Property Name="IinvoiceStatus" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="TotalValue" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="TotalGST" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="TotalTotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="GrandTotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TotalValue" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="TotalGST" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="TotalTotal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="GrandTotal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
@@ -80,14 +96,44 @@
     <Property Name="ItemDetails" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="HSN" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="Quantity" Type="Int32" />
-    <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="Value" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="GstRate" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="GstValue" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="Total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Rate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="GstRate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="GstValue" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblBudget">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="group1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="group2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="group3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="group4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="createdDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblBudgetMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="monthName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="montOrder" Type="Int32" />
+    <Property Name="year" Type="Int32" />
+    <Property Name="salary" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="fromDate" Type="DateTime" Precision="3" />
+    <Property Name="todate" Type="DateTime" Precision="3" />
+    <Property Name="salaryDate" Type="DateTime" Precision="0" />
+    <Property Name="need" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="want" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="saving" Type="Decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="tblGoogsTran">
     <Key>
@@ -108,6 +154,17 @@
     <Property Name="isActive" Type="Boolean" />
     <Property Name="createdDate" Type="DateTime" Precision="3" />
     <Property Name="updatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblGroupMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="groupName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="haveFixPrice" Type="Boolean" />
+    <Property Name="priceGroup" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="group2int" Type="Int32" />
   </EntityType>
   <EntityType Name="tblInvoice">
     <Key>
@@ -184,64 +241,5 @@
     <Property Name="ifsc" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="type" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="branch" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityContainer Name="Bill_DBEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="CounterMasters" EntityType="Self.CounterMaster" />
-    <EntitySet Name="CustomerMasters" EntityType="Self.CustomerMaster" />
-    <EntitySet Name="GoodsMasters" EntityType="Self.GoodsMaster" />
-    <EntitySet Name="InvoiceDetails" EntityType="Self.InvoiceDetail" />
-    <EntitySet Name="ItemMasters" EntityType="Self.ItemMaster" />
-    <EntitySet Name="ItemTransactions" EntityType="Self.ItemTransaction" />
-    <EntitySet Name="tblGoogsTrans" EntityType="Self.tblGoogsTran" />
-    <EntitySet Name="tblInvoices" EntityType="Self.tblInvoice" />
-    <EntitySet Name="tblReceiptDetails" EntityType="Self.tblReceiptDetail" />
-    <EntitySet Name="tblReceiptTransactions" EntityType="Self.tblReceiptTransaction" />
-    <EntitySet Name="tblTanents" EntityType="Self.tblTanent" />
-    <EntitySet Name="tblBudgets" EntityType="cbtsplco_ommsuppliersModel.tblBudget" />
-    <EntitySet Name="tblBudgetMasters" EntityType="cbtsplco_ommsuppliersModel.tblBudgetMaster" />
-    <EntitySet Name="task_TaskDetails" EntityType="cbtsplco_ommsuppliersModel.task_TaskDetails" />
-  </EntityContainer>
-  <EntityType Name="tblBudget">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="group1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="group2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="createdDate" Type="DateTime" Precision="3" />
-    <Property Name="group3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="group4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="tblBudgetMaster">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="salary" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="fromDate" Type="DateTime" Precision="3" />
-    <Property Name="todate" Type="DateTime" Precision="3" />
-    <Property Name="need" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="want" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="saving" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="monthName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="montOrder" Type="Int32" />
-    <Property Name="year" Type="Int32" />
-    <Property Name="salaryDate" Type="DateTime" Precision="0" />
-  </EntityType>
-  <EntityType Name="task_TaskDetails">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="taskName" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
-    <Property Name="group1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="group2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="group3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="group4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="isActive" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="taskDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
 </Schema>

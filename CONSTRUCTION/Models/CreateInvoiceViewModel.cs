@@ -297,6 +297,11 @@ namespace CONSTRUCTION.Models
             get;
             set;
         }
+        public string tHSN
+        {
+            get;
+            set;
+        }
         public Nullable<decimal> tQty
         {
             get;

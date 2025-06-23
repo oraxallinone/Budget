@@ -1,0 +1,111 @@
+﻿@model IEnumerable<CONSTRUCTION.Models.tblBudgetMaster>
+
+@{
+    ViewBag.Title = "SalaryList";
+    Layout = "~/Views/Shared/_LayoutOrax.cshtml";
+}
+
+<style type="text/css">
+    #salaryList > tr:hover {
+        background-color: red;
+    }
+</style>
+
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-info card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title">Salary List</h3>
+                        </div>
+                        <div>
+                            <div class="card-body">
+
+                                <table class="table" id="salaryList">
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.year)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.month)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.salary)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.fromDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.todate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.need)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.want)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.saving)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.year)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.monthName)    (@Html.DisplayFor(modelItem => item.month))
+                                            </td>
+                                            <td>
+                                                @String.Format("{0:c}", item.salary)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.fromDate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.todate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.need)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.want)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.saving)
+                                            </td>
+                                            <td>
+                                                @{
+                                                    if (item.month == "all")
+                                                    {
+                                                        continue;
+                                                    }
+                                                    @Html.ActionLink("Edit", "SalaryEdit", "Orax", new { id = item.id }, null)
+                                                }
+
+                                            </td>
+                                        </tr>
+                                                    }
+
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+
+

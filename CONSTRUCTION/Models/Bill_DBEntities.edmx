@@ -106,7 +106,6 @@
           <Property Name="details" Type="nvarchar(max)" />
           <Property Name="price" Type="decimal" Precision="18" Scale="0" />
           <Property Name="createdDate" Type="datetime" />
-          <Property Name="group2int" Type="int" />
         </EntityType>
         <EntityType Name="tblBudgetMaster">
           <Key>
@@ -369,7 +368,6 @@
           <Property Name="details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="createdDate" Type="DateTime" Precision="3" />
-          <Property Name="group2int" Type="Int32" />
         </EntityType>
         <EntityType Name="tblBudgetMaster">
           <Key>
@@ -495,7 +493,7 @@
           <Property Name="type" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="branch" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -599,7 +597,6 @@
           <EntitySetMapping Name="tblBudgets">
             <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblBudget">
               <MappingFragment StoreEntitySet="tblBudget">
-                <ScalarProperty Name="group2int" ColumnName="group2int" />
                 <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="details" ColumnName="details" />

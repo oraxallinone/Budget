@@ -249,6 +249,7 @@ namespace CONSTRUCTION.Controllers
             return View();
         }
         #endregion ------------------------------------
+
         #region ----------------------  common  --------
         public string MonthName(int i)
         {
@@ -422,7 +423,7 @@ namespace CONSTRUCTION.Controllers
 
 
 
-        #region ----------------------  salary ------------------------------
+        #region ----------------------  salary verified ------------------------------
         public ActionResult SalaryEntry()
         {
             return View();
@@ -433,7 +434,6 @@ namespace CONSTRUCTION.Controllers
         {
             try
             {
-
                 tblBudgetMaster obj = new tblBudgetMaster();
                 obj.month = data.month;
                 obj.salary = data.salary;
@@ -455,7 +455,6 @@ namespace CONSTRUCTION.Controllers
                 ViewBag.message = "fail";
                 throw;
             }
-
             return RedirectToAction("SalaryList");
         }
 
@@ -491,13 +490,13 @@ namespace CONSTRUCTION.Controllers
 
             tblBudgetMaster obj = db.tblBudgetMasters.FirstOrDefault(xy => xy.month == "all");
             obj.salary = monthTotalIncome;
-
             obj.need = monthTotalIncome * 50 / 100;
             obj.want = monthTotalIncome * 30 / 100;
             obj.saving = monthTotalIncome * 20 / 100;
 
             db.SaveChanges();
         }
+
         #endregion ----------------------------------------------------------
 
         #region ----------------------  Mobile-----------
@@ -509,42 +508,25 @@ namespace CONSTRUCTION.Controllers
         [HttpPost]
         public ActionResult GetBymonthMobile(GetExpensiveViewModel data)
         {
-            IEnumerable<RenderExpensiveViewModel2> allList = null;
 
             string param = "@forYear,@forMonth";
             string paramvalue = data.forYear.ToString() + "," + data.forMonth.ToString();
             DataTable dTable = SatyaDBClass.SPReturnDataTable("sp_monthlyList", param, paramvalue);
             IEnumerable<RenderExpensiveViewModel2> dList = ConvertDataTableToList(dTable);
 
-            //allList = dList.ToList();
-
-
-
-            //var monthMaster = db.tblBudgetMasters.Where(x => x.month == data.forMonth).FirstOrDefault();
-            //var fromDate = monthMaster.fromDate;
-            //var toDate = monthMaster.todate;
-
-
-            //allList = db.tblBudgets.Where(m => m.createdDate > fromDate && m.createdDate < toDate).OrderBy(d => d.createdDate).ToList();
-
-
-
-            //List<RenderExpensiveViewModel2> list1 = new List<RenderExpensiveViewModel2>();
-
-            //foreach (var s in allList)
-            //{
-            //    RenderExpensiveViewModel2 lst = new RenderExpensiveViewModel2();
-            //    lst.id = s.id.ToString();
-            //    lst.details = s.details;
-            //    lst.price = s.price.ToString();
-            //    lst.createdDate = Convert.ToDateTime(s.createdDate ?? DateTime.Now).ToString("yyyy-MM-dd");
-            //    list1.Add(lst);
-            //}
-
             var result = new { monthTransList = dList.ToList() };
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        //public DateTime ISTZone(DateTime dateTimeNow)
+        //{
+        //    DateTime utcTime = dateTimeNow.ToUniversalTime();
+        //    TimeZoneInfo timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
+        //    DateTime istTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, timeZoneInfo);
+        //    return istTime;
+        //}
+
 
         private IEnumerable<RenderExpensiveViewModel2> ConvertDataTableToList(DataTable dataTable)
         {
@@ -576,7 +558,7 @@ namespace CONSTRUCTION.Controllers
 
         #endregion ------------------------------------
 
-        #region ----------------------Test-------------
+        #region ----------------------tree view-------------
         public ActionResult TreeView()
         {
             return View();
@@ -594,29 +576,9 @@ namespace CONSTRUCTION.Controllers
             return View();
         }
         #endregion ------------------------------------
+        
 
-        #region ----------------------track------------
-        public ActionResult TrackShow()
-        {
-            //db.task_TaskDetails.ToList()
-            return View();
-        }
-
-        public ActionResult TrackCreate()
-        {
-            return View();
-        }
-
-        public ActionResult TaskShow()
-        {
-            return View();
-        }
-        #endregion ------------------------------------
-
-
-
-
-        #region ---------------------- Group Master----
+        #region ---------------------- Group Master verified ----
         public ActionResult GroupList()
         {
             return View();

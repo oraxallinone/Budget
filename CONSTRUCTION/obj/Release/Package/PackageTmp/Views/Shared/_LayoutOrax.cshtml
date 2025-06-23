@@ -11,8 +11,19 @@
     <link href="~/theme/customeCss.css" rel="stylesheet" />
     <link href="~/theme/fontawesome.css" rel="stylesheet" />
     <script src="~/theme/fontawesome.js"></script>
+    @*https://fontawesome.com/search?q=graph&o=r&ic=free*@
     <script src="~/Scripts/jquery-3.6.0.js"></script>
     <link href="~/Content/application-css/loader.css" rel="stylesheet" />
+
+ @*   <script src="~/Scripts/bootstrap.js"></script>*@
+
+
+    <script src="~/theme/bootstrap.bundle.min.js"></script>
+    <script src="~/theme/bs-custom-file-input.min.js"></script>
+    <script src="~/theme/adminlte.min.js"></script>
+    <script src="~/theme/demo.js"></script>
+    @*<script src="~/theme/all.js"></script>*@
+    <script src="~/theme/sweetalert.min.js"></script>
 
 
     <script type="text/javascript">
@@ -75,14 +86,23 @@
             <div class="sidebar">
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item"> <a href="/Orax/Entry" class="nav-link"> <i class="nav-icon fa-solid fa-mobile"></i> <p> Entry</p> </a> </li>
-                        <li class="nav-item"> <a href="/Orax/Graph" class="nav-link"> <i class="nav-icon fa-solid fa-mobile"></i> <p> &#960; chart</p> </a> </li>
-                        <li class="nav-item"> <a href="/Orax/GraphColumn" class="nav-link"> <i class="nav-icon fa-solid fa-mobile"></i> <p> &#8592;</p> </a> </li>
-                        <li class="nav-item"> <a href="/Orax/MobileGraph" class="nav-link"> <i class="nav-icon fa-solid fa-mobile"></i> <p> MobileGraph</p> </a> </li>
+                        
+                        <li class="nav-item"> <a href="/Orax/Graph" class="nav-link"> <i class="nav-icon fa-solid fa-chart-pie"></i> <p> &#960; Chart</p> </a> </li>
+                        <li class="nav-item"> <a href="/Orax/MobileGraph" class="nav-link"> <i class="nav-icon fa-solid fa-chart-column"></i> <p>|| Chart</p> </a> </li>
 
-                        <li class="nav-item"> <a href="/Orax/MobileEntry" class="nav-link"> <i class="nav-icon fa-solid fa-mobile"></i> <p> MobileEntry</p> </a> </li>
-                        <li class="nav-item"> <a href="/Orax/SalaryEntry" class="nav-link"> <i class="nav-icon fa-solid fa-mobile"></i> <p> SalaryEntry</p> </a> </li>
-                        <li class="nav-item"> <a href="/Orax/SalaryList" class="nav-link"> <i class="nav-icon fa-solid fa-mobile"></i> <p> SalaryList</p> </a> </li>
+
+
+                        <li class="nav-item"> <a href="/Orax/Entry" class="nav-link"> <i class="nav-icon fa-solid fa-plus"></i> <p> Entry</p> </a> </li>
+                        <li class="nav-item"> <a href="/Orax/MobileEntry" class="nav-link"> <i class="nav-icon fa-solid fa-mobile-retro"></i> <p> Mobile Entry</p> </a> </li>
+                        <li class="nav-item"> <a href="/Orax/MobileUpdate" class="nav-link"> <i class="nav-icon fa-solid fa-file-pen"></i> <p> Mobile Update</p> </a> </li>
+                        
+                        
+                        
+                        <li class="nav-item"> <a href="/Orax/SalaryEntry" class="nav-link"> <i class="nav-icon fa-solid fa-credit-card"></i> <p> SalaryEntry</p> </a> </li>
+                        <li class="nav-item"> <a href="/Orax/SalaryList" class="nav-link"> <i class="nav-icon fa-solid fa-list"></i> <p> SalaryList</p> </a> </li>
+                    
+                        <li class="nav-item"> <a href="/Orax/GroupList" class="nav-link"> <i class="nav-icon fa-solid fa-list"></i> <p> Group</p> </a> </li>
+                    
                     </ul>
                 </nav>
             </div>
@@ -96,10 +116,6 @@
 
         @RenderBody()
     </div>
-
-
-    <link href="~/theme/fontawesome.css" rel="stylesheet" />
-    <script src="~/theme/fontawesome.js"></script>
-    <script src="~/theme/sweetalert.min.js"></script>
+    <script>  $(function () { bsCustomFileInput.init(); }); </script>
 </body>
 </html>

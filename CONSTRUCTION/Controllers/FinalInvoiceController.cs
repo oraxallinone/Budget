@@ -147,11 +147,13 @@ namespace CONSTRUCTION.Controllers
                                //transactionData = null
                            }).ToList().FirstOrDefault();
                 var listResult = (from g in db.tblGoogsTrans
+                                  join m in db.GoodsMasters on g.tGoodsDesc equals m.descriptionOfGoods
                                   where g.tInvoiceNo == invNum
                                   select new PrintInvoiceTransaction
                                   {
                                       tInvoiceNo = g.tInvoiceNo,
                                       tGoodsDesc = g.tGoodsDesc,
+                                      tHSN=m.hsn,
                                       tQty = g.tQty,
                                       tRate = g.tRate,
                                       tValue = g.tValue,

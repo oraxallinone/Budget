@@ -1,0 +1,320 @@
+﻿@model CONSTRUCTION.Models.PrintReceiptModel
+
+@{
+    ViewBag.Title = "GstInvoiceCreate";
+    Layout = ""; //~/Views/Shared/_Layout.cshtml
+}
+
+<link href="~/Content/application-css/common-date-format.css" rel="stylesheet" />
+<link href="~/Content/application-css/print.css" rel="stylesheet" />
+<style>
+    .hc {
+        width: 18cm;
+        /*height: 26.7cm;*/
+    }
+
+    .spn-spn {
+        font-weight: 100;
+    }
+
+    .w-top {
+        vertical-align: top;
+    }
+</style>
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid" style="padding-right: 0px; padding-left: 0px">
+
+            @using (Html.BeginForm())
+            {
+                <div class="card card-info card-outline">
+                    @*<div class="card-header">
+                        <h3 class="card-title">Print Bill</h3>
+                    </div>*@
+
+                    <div>
+                        @if (Model.receiptNo == null)
+                        {
+                            <h4>no data found</h4>
+                        }
+                        else
+                        {
+                            <div class="card-body">
+                            <div class="row">
+
+                                <div class="hc" id="tblInvoice">
+
+                                    <table border="1" width="100%" style="border-collapse: collapse; background-color: #d7c67ecc; font-size: 12px; font-weight: 600; ">
+                                        <tr style="border-bottom-color: #d7c67ecc; border-left-color: #d7c67ecc; border-right-color: #d7c67ecc;">
+                                            <td style="width:16.6%"></td>
+                                            <td style="width:16.6%"></td>
+                                            <td style="width:16.6%"></td>
+
+                                            <td style="width:16.6%"></td>
+                                            <td style="width:16.6%"></td>
+                                            <td style="width:16.6%"></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5" style="text-align: center; ">
+                                                <span style="font-size: 14px;">CASH/CREDIT</span> <br />
+                                                <span style="font-size: 18px;">
+                                                    @*OMM SUPPLIER AND CONSTRUCTION*@
+                                                    @Model.CompanyHeader
+                                                </span> <br />
+                                                <span style="font-size: 14px;">
+                                                    @*PLOT NO:651/1631,Anantapur,Jagannathpur,Balianta,Khordha*@
+                                                    @Model.CompanyHeaderAddress
+                                                </span>
+                                                <br />
+                                                <span style="font-size: 14px;">
+                                                    @*PLOT NO:651/1631,Anantapur,Jagannathpur,Balianta,Khordha*@
+                                                    @Model.CompanyHeaderAddress2
+                                                </span>
+                                                <br /><br />
+
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <table style="font-size: 12px; background-color: white;width:100%">
+                                                        <tr>
+                                                            <td>Ref No</td>
+                                                            <td>:</td>
+                                                            <td style="white-space: nowrap; ">  @Model.receiptNo </td> @*016*@
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Date</td>
+                                                            <td>:</td>
+                                                            <td style="white-space: nowrap;">@Convert.ToDateTime(Model.receiptDate).ToString("dd/MM/yyyy")</td>@*10/08/2023*@
+
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="w-top">Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span style="text-transform: capitalize;">@Model.name</span></td>@*Range Officer*@
+                                            <td colspan="2" rowspan="3" class="w-top">
+                                                Address of the recipient/ purchaser place of supply
+                                                <hr />
+                                                <span style="font-weight:400">@Model.purchaseAddress</span>
+                                            </td>
+                                            <td colspan="2" rowspan="3" class="w-top">
+                                                Address of delivery, if different form place of supply
+                                                <hr />
+                                                <span style="font-weight:400">@Model.delivaryAddress</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="w-top" style="height:55px;">
+                                                Address &nbsp;:
+                                                <span style="font-weight:400">@Model.address</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                GST IN&nbsp;&nbsp;&nbsp;:
+                                                <span style="font-weight:400">@Model.gstin</span>
+                                            </td>
+                                        </tr>
+
+
+
+
+
+                                        <tr>
+                                            <td colspan="10" style="padding:0">
+                                                <table id="tblRepeat" border="1" style="font-size: 12px; border-collapse: collapse;">
+                                                    <thead>
+                                                        <tr>
+                                                            <td style="width: 3%;">#</td>
+                                                            <td style="width: 47%; ">Description Of Goods</td>
+                                                            <td style="width: 6%;">HSN</td>
+                                                            <td style="width: 6%;">Quantity</td>
+                                                            <td style="width: 5%;">Price</td>
+                                                            <td style="width: 5%;">Value</td>
+                                                            <td style="width: 5%;">CGST%</td>
+                                                            <td style="width: 7%; white-space: nowrap;">CGST Amt</td>
+                                                            <td style="width: 5%;">SGST%</td>
+                                                            <td style="width: 7%; white-space: nowrap;">SGST Amt</td>
+                                                            <td>Total</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{ int i = 0;
+
+                                                         if (Model.receiptTransaction != null)
+                                                         {
+                                                             foreach (var item in @Model.receiptTransaction)
+                                                             {
+                                                        <tr>
+                                                            <td style="vertical-align: text-top;">@(i = i + 1)</td>
+                                                            <td style="text-align:left;"> @item.descOfGoods </td>
+                                                            <td class="w-top">@item.hsn</td>@*1*@
+                                                            <td class="w-top">@item.quantity</td>@*1144065.00*@
+                                                            <td class="w-top"> @item.goodsPrice</td>@*1144065.00*@
+                                                            <td class="w-top">@item.goodsValue</td>@*9%*@
+                                                            <td class="w-top">@item.cgstP</td>@*1144065.00*@
+                                                            <td class="w-top">@item.cgstA</td>@*9%*@
+                                                            <td class="w-top">@item.scgtP</td>@*1144065.00*@
+                                                            <td class="w-top">@item.sgstA</td>@*1144065.00*@
+                                                            <td class="w-top">@item.total</td>@*1144065.00*@
+                                                        </tr>
+                                                             }
+                                                         }
+                                                        }
+
+
+                                                        @*<tr>
+                                                                <td class="w-top">1</td>
+                                                                <td class="w-top" style="text-align:left;">
+                                                                    Supplying, fi tti ng & fi xing ofSelfi e Zone at G. Udayagiri NACas per your design, Lett ers:3mm. 0-55 Acrylic lett er sizeheight -4ft , Raising lett ers, asper given color patt ern(Mitsubishi brand orequivalent) LED: 3 module lp67LEDs (Samsung) 1.5 wt each.LED box: 6 PVC Chanel (lett erFemale) Power Supplies: RainProof 12vt. Base: 6mm ACPExterior Grade UV Paint, ACPRasing in (Euro Bond/PratapBond & VIVA) MS Structure: MSAngle 75 x 75 x 6 mm MS framefor lett er support, Using MSangle 75 x 75 x 6 mm for lett erstanding, Fountain work wall &waterfall for brick work ,andfront site 5 no of fountainmulti color plumbing work,water pump, Granite work andall fi nishing.
+                                                                    Foundati on: 40 feet length, 8feet width & 6feet height bricktotal height 9ft , piller 5no backand piller 5no of front withdiff erent Color Lighti ng fi xing,and transportati on,
+                                                                    installati on charges all including.
+                                                                </td>
+                                                                <td class="w-top">HSN</td>
+                                                                <td class="w-top">1</td>
+                                                                <td class="w-top">1144065.00</td>
+                                                                <td class="w-top">1144065.00</td>
+                                                                <td class="w-top">9%</td>
+                                                                <td class="w-top">1144065.00</td>
+                                                                <td class="w-top">9%</td>
+                                                                <td class="w-top">1144065.00</td>
+                                                                <td class="w-top">444000.00</td>
+                                                            </tr>*@
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td colspan="10">Grand Total</td>
+                                                            <td>@Model.grandTotal</td>
+                                                        </tr>
+                                                    </tfoot>
+
+
+
+                                                </table>
+
+                                            </td>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <td colspan="3" rowspan="2" class="w-top">
+                                                Invoice Total Amount
+                                                <table style="font-size: 12px">
+                                                    <tr>
+                                                        <td style="text-transform: capitalize;">
+                                                            @*(inwords) Sisty Fie Thousand hundres Fuourt Five Rueesa Snf fourty Peisa only.*@
+                                                            @Model.invoiceAmmountinWords And Zero Paisa Only
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <p style="margin-top: 14px;">
+                                                                All disputes subject to Bhubaneswar jurisdiction only. This registration certificate is valid on the date of issue of tax invoice. Goods once sold can't taken back.
+
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td colspan="3">
+                                                Bank Details
+                                                <table style="font-size: 12px">
+                                                    <tr>
+                                                        <td>Benifisary Name</td>
+                                                        <td>:</td>
+                                                        <td>
+                                                            @Model.bName
+                                                            @*OOm si produciton*@
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Beneficiary A/C No</td>
+                                                        <td>:</td>
+                                                        <td>
+                                                            @Model.acNumber
+                                                            @*342432423*@
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>IFSC Code</td>
+                                                        <td>:</td>
+                                                        <td>
+                                                            @Model.ifcCode
+                                                            @*232*@
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>A/C Type</td>
+                                                        <td>:</td>
+                                                        <td>
+                                                            @Model.acType
+                                                            @*cueenent Account*@
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Branch </td>
+                                                        <td>:</td>
+                                                        <td>
+                                                            @Model.branch
+                                                            @*phulnakahra bbsr*@
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="3" style="height: 85px;" class="w-top">
+                                                <p>For OMM Supplier and Construction</p>
+
+                                            </td>
+
+                                        </tr>
+
+
+
+                                    </table>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                        }
+                        
+                        <div class="card-footer">
+                            <input type="button" class="btn btn-success" onclick="PrintDiv();" value="Print" />
+                            <a href="/FinalInvoice/ReceiptList" class="btn btn-outline-dangerCustome1 btn-dangerCustome1 btn-xs">Back</a>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            }
+        </div>
+    </section>
+</div>
+
+
+<script type="text/javascript">
+    function PrintDiv() {
+        var divContents = document.getElementById("tblInvoice").innerHTML;
+        var printWindow = window.open('', '', 'height=600,width=1200');
+        printWindow.document.write('<html><head><title>Bill Content2</title> <style type="text/css"> .hc { width: 18cm; height: 26.7cm; background-color: #d7c67ecc; } span { font-weight: 100; } .w-top { vertical-align: top; } </style>');
+        printWindow.document.write('</head><body >');
+        printWindow.document.write(divContents);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+    }
+</script>
+

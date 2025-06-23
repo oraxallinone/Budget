@@ -1,0 +1,91 @@
+﻿@model CONSTRUCTION.Models.tblBudgetMaster
+
+@{
+    ViewBag.Title = "SalaryEntry";
+    Layout = "~/Views/Shared/_LayoutOrax.cshtml";
+}
+
+<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<h2>SalaryEntry</h2>
+
+@using (Html.BeginForm("SalaryEdit", "Orax", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-info card-outline">
+                            <div class="card-header">
+                                <h3 class="card-title">Salary Edit</h3>
+                            </div>
+                            <div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-group col-md-3">
+                                            @Html.LabelFor(model => model.month, htmlAttributes: new { @class = "control-label " })
+                                            @Html.EditorFor(model => model.month, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.HiddenFor(model=> model.id)
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            @Html.LabelFor(model => model.salary, htmlAttributes: new { @class = "control-label" })
+                                            @Html.EditorFor(model => model.salary, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            @Html.LabelFor(model => model.fromDate, htmlAttributes: new { @class = "control-label" })
+                                            @Html.EditorFor(model => model.fromDate, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            @Html.LabelFor(model => model.todate, htmlAttributes: new { @class = "control-label " })
+                                            @Html.EditorFor(model => model.todate, new { htmlAttributes = new { @class = "form-control"} })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            @Html.LabelFor(model => model.need, htmlAttributes: new { @class = "control-label " })
+                                            @Html.EditorFor(model => model.need, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            @Html.LabelFor(model => model.want, htmlAttributes: new { @class = "control-label " })
+                                            @Html.EditorFor(model => model.want, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            @Html.LabelFor(model => model.saving, htmlAttributes: new { @class = "control-label " })
+                                            @Html.EditorFor(model => model.saving, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="update" class="btn btn-default" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#salary').change(function () {
+            let salary = $(this).val();
+            let saveing = (20 / 100) * parseInt(salary);
+            let want = (30 / 100) * parseInt(salary);
+            let needing = (50 / 100) * parseInt(salary);
+
+            $('#saving').val(saveing);
+            $('#want').val(want);
+            $('#need').val(needing);
+        });
+    });
+</script>

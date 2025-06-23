@@ -236,6 +236,7 @@
       <DependentUpon>Bill_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DeleteInvViewModel.cs" />
+    <Compile Include="Models\GlobalDate.cs" />
     <Compile Include="Models\GoodsMaster.cs">
       <DependentUpon>Bill_DBEntities.tt</DependentUpon>
     </Compile>
@@ -347,6 +348,8 @@
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Bill_DBEntities.msl" />
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Bill_DBEntities.ssdl" />
     <None Include="Properties\PublishProfiles\satMan.pubxml" />
+    <None Include="Properties\PublishProfiles\swarnamam2.pubxml" />
+    <None Include="Properties\PublishProfiles\withDebug.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -446,9 +449,6 @@
     <Content Include="Views\Orax\MobileGraph.cshtml" />
     <Content Include="Views\Shared\_LayoutOrax.cshtml" />
     <Content Include="Views\Shared\_LayoutTrack.cshtml" />
-    <Content Include="Views\Orax\TrackShow.cshtml" />
-    <Content Include="Views\Orax\TrackCreate.cshtml" />
-    <Content Include="Views\Orax\TaskShow.cshtml" />
     <Content Include="Views\Orax\MobileUpdate.cshtml" />
     <Content Include="Views\Shared\_LayoutOrax - Copy.cshtml" />
     <Content Include="Views\Orax\GroupList.cshtml" />

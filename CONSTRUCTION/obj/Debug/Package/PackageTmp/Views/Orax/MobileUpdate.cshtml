@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "MobileUpdate";
+    Layout = "~/Views/Shared/_LayoutTrack.cshtml"; //null; //
+}
+
+
+<style type="text/css">
+    #tblExpensive tr:nth-child(odd) {
+        background-color: #fdfeff;
+        
+    }
+    .wd-select1{
+        width:100%;
+    }
+    .wd-select2{
+        width:100%;
+    }
+    .wd-select3{
+        width:100%;
+    }
+    select{
+        width:100px !important;
+    }
+</style>
+
+
+<link href="~/Content/application-css/entry.css" rel="stylesheet" />
+
+<div class="content-wrapper" style="border-collapse:collapse;">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-info card-outline">
+                        <div>
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <div class="row row-height-main">
+
+                                            <div class="form-group col-md-12">
+                                                <table class="col-md-12">
+                                                    <tr class="row">
+
+                                                        <td class="col-md-8">
+                                                            <table class="width-100">
+                                                                <tr>
+                                                                    <td><select id="ddlYear" class="form-control form-control-sm month-width"><option value="0">---</option> <option value="2024">24</option> <option selected="selected" value="2025">25</option>  </select> </td>
+                                                                    <td><select id="ddlMonth" class="form-control form-control-sm month-width"><option>-- select --</option> <option value="all">all</option> <option value="1">January</option> <option value="2">February</option> <option value="3">March</option> <option value="4">April</option> <option value="5">May</option>  <option value="6">June</option> <option value="7">July</option>  <option value="8">August</option><option value="9">September</option> <option value="10">October</option> <option value="11">November</option> <option value="12">December</option>  </select> </td>
+                                                                    <td>&nbsp;</td>
+                                                                    <td colspan="2"> &nbsp;</td>
+                                                                    <td>&nbsp;</td>
+                                                                    <td>&nbsp;</td>
+                                                                </tr>
+                                                            </table>
+
+                                                        </td>
+
+
+
+
+
+                                                        <td class="col-md-3"></td>
+
+
+
+
+                                                    </tr>
+
+                                                </table>
+
+                                            </div>
+
+                                            <div class="col-md-12 div-body-main">
+                                                <table class="tbl-custome" id="tblExpensive" border="1" style="border-collapse:collapse;border-collapse: collapse; border: 1px solid #03a9f4; font-size: 14px; font-weight: 400; font-family: serif;"></table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/Scripts/application-js/MobileUpdate.js"></script>

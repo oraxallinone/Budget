@@ -61,12 +61,12 @@
 
                                         <table border="1" width="100%" style="border-collapse: collapse; font-size: 12px;">
                                             <tr>
-                                                <td colspan="10" class="header-bill" style="text-transform: capitalize;">@Model.companyName</td>
+                                                <td colspan="11" class="header-bill" style="text-transform: capitalize;">@Model.companyName</td>
                                                 @*OMM SUPPLIER AND CONSTRUCTION*@
 
                                             </tr>
                                             <tr>
-                                                <td colspan="10" class="align-center ">
+                                                <td colspan="11" class="align-center ">
                                                     <span class="font-12-bold">@Model.address1</span><br />@*PLOT NO-651/1631,ANANTAPUR,KHORDHA,BBSR,754001-ODISHA.INDIA*@
                                                     <span class="font-12-bold">@Model.address2</span><br />@*Mob:- 9439673101, Email Id :mukesh.bplant@gmail.com*@
                                                     <span class="font-12-bold">@Model.companyGst</span><br />@*GSTIN: 21ACEPY9647F1ZA*@
@@ -75,21 +75,19 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="3" class="font-12-bold">Date of Invoice</td>
-                                                <td>
+                                                <td colspan="1">
                                                     @if (Model.dateOfInvoice != null)
                                                     {
                                                         @Convert.ToDateTime(Model.dateOfInvoice).ToString("dd/MM/yyyy");
                                                     }
                                                 </td>
                                                 <td colspan="1" class="font-12-bold">Agreement Date</td>
-                                                <td colspan="5">
+                                                <td colspan="4">
                                                     @if (Model.agreementDate != null)
                                                     {
                                                         @Convert.ToDateTime(Model.agreementDate).ToString("dd/MM/yyyy");
                                                     }
-
-
-                                                </td>@*3/10/2023*@
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="3" class="font-12-bold" style="width: 16%;">Serial No of Invoice</td>
@@ -125,13 +123,14 @@
 
 
                                             <tr>
-                                                <td colspan="10" style="padding: 0; ">
+                                                <td colspan="11" style="padding: 0; ">
                                                     @*height: 44vh !important; vertical-align: text-top;*@
                                                     <table id="tblRepeat" style="border-collapse: collapse; font-size: 12px;">
                                                         <thead>
                                                             <tr>
                                                                 <td style="width: 3%;" class="font-12-bold">#</td>
-                                                                <td style="width: 47%; " class="font-12-bold">Descripti on OfGoods/Services</td>
+                                                                <td style="width: 41%; " class="font-12-bold">Descripti on OfGoods/Services</td>
+                                                                <td style="width: 6%;" class="font-12-bold">HSN</td>
                                                                 <td style="width: 6%;" class="font-12-bold">Quantity</td>
                                                                 <td style="width: 5%;" class="font-12-bold">Rate</td>
                                                                 <td style="width: 5%;" class="font-12-bold">Value</td>
@@ -154,7 +153,7 @@
                                                                             @* Supplying, fi tti ng & fi xing ....*@
                                                                             @item.tGoodsDesc
                                                                         </td>
-
+                                                                        <td class="w-top">@item.tHSN</td>
                                                                         <td class="w-top">@item.tQty</td>@*1*@
                                                                         <td class="w-top">@item.tRate</td>@*1144065.00*@
                                                                         <td class="w-top"> @item.tValue</td>@*1144065.00*@
@@ -168,7 +167,19 @@
                                                                 }
                                                             }
 
-                                                            <tr id="dynamicRowHeight"> <td style="border-top: 2px solid white;"></td> <td style="text-align: left; border-top: 2px solid white;"></td> <td class="w-top" style="border-top: 2px solid white;"></td> <td class="w-top" style="border-top: 2px solid white;"></td> <td class="w-top" style="border-top: 2px solid white;"></td> <td class="w-top" style="border-top: 2px solid white;"></td> <td class="w-top" style="border-top: 2px solid white;"></td> <td class="w-top" style="border-top: 2px solid white;"></td> <td class="w-top" style="border-top: 2px solid white;"></td> <td class="w-top" style="border-top: 2px solid white;"></td> </tr>
+                                                            <tr id="dynamicRowHeight">
+                                                                <td style="border-top: 2px solid white;"></td>
+                                                                <td style="text-align: left; border-top: 2px solid white;"></td>
+                                                                <td class="w-top" style="border-top: 2px solid white;"></td>
+                                                                <td class="w-top" style="border-top: 2px solid white;"></td>
+                                                                <td class="w-top" style="border-top: 2px solid white;"></td>
+                                                                <td class="w-top" style="border-top: 2px solid white;"></td>
+                                                                <td class="w-top" style="border-top: 2px solid white;"></td>
+                                                                <td class="w-top" style="border-top: 2px solid white;"></td>
+                                                                <td class="w-top" style="border-top: 2px solid white;"></td>
+                                                                <td class="w-top" style="border-top: 2px solid white;"></td>
+                                                                <td class="w-top" style="border-top: 2px solid white;"></td>
+                                                            </tr>
 
                                                         </tbody>
                                                     </table>
@@ -177,20 +188,20 @@
                                             </tr>
 
                                             <tr>
-                                                <td colspan="4" class="align-right font-12-bold">Total Invoice Value(InFigure)</td>
+                                                <td colspan="5" class="align-right font-12-bold">Total Invoice Value(InFigure)</td>
 
                                                 <td colspan="6" class="align-center font-bold-norm total-invoice-display" style="text-align: right; padding-right: 8px;"></td>@*13,49,996.00*@
 
                                             </tr>
                                             <tr>
-                                                <td colspan="4" class="align-right  font-12-bold">Rounded Value(In Figure)</td>
+                                                <td colspan="5" class="align-right  font-12-bold">Rounded Value(In Figure)</td>
 
                                                 <td colspan="6" class="align-center font-bold-norm" style="text-align: right; padding-right: 8px;">@Model.TotalInvoice.00</td>@*13,49,996.00*@
 
                                             </tr>
 
                                             <tr>
-                                                <td colspan="10" style="text-transform: capitalize;">
+                                                <td colspan="11" style="text-transform: capitalize;">
                                                     Total Invoice Value (In Word):
                                                     <span class="font-bold-norm"> </span>
                                                     @Model.totalInfigure And Zero Paisa Only
@@ -199,7 +210,7 @@
 
 
                                             <tr>
-                                                <td colspan="10">
+                                                <td colspan="11">
                                                     <span class="font-12-bold">NEFT /RTGS details</span><br />
                                                     <table class="font-12-bold">
                                                         <tr>
@@ -259,13 +270,13 @@
 
 
                                             <tr>
-                                                <td colspan="10" class="font-bold-norm align-center">
+                                                <td colspan="11" class="font-bold-norm align-center">
                                                     PLOT NO-651/1631,ANANTAPUR,KHORDHA,BBSR,754001-ODISHA,INDIA<br />
                                                     Mob:- 9439673101, Email Id :mukesh.bplant@gmail.com
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="20" style="text-align: center;"> 
+                                                <td colspan="20" style="text-align: center;">
                                                     This is a computer generated invoice.
                                                 </td>
                                             </tr>

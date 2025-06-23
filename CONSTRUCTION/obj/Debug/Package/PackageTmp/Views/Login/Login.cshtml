@@ -1,0 +1,64 @@
+﻿@model CONSTRUCTION.Models.LoginCredential
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>OMM Supplier and Construction</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link href="~/Content/application-css/loginscreen.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <h3>BILLING</h3>
+
+        <label for="username">UserID</label>
+        @Html.TextBoxFor(m => m.userId, new { placeholder = "userId", autocomplete = "off" })
+
+        <label for="password">Password</label>
+        @Html.PasswordFor(m => m.password, new { placeholder = "Password", maxlength = "5" })
+
+
+        if (ViewBag.loginStatus != null)
+        {
+            <script type="text/javascript">
+                alert('User Id or Password not match. Please try again');
+            </script>
+        }
+
+
+        <button type="submit">Log In</button>
+    }
+
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            $('[id^=password]').keypress(validateNumber);
+
+            function validateNumber(event) {
+                var key = window.event ? event.keyCode : event.which;
+                if (event.keyCode === 8 || event.keyCode === 46) {
+                    return true;
+                } else if (key < 48 || key > 57) {
+                    return false;
+                } else {
+                    return true;
+                }
+            };
+        });
+
+
+    </script>
+</body>
+</html>

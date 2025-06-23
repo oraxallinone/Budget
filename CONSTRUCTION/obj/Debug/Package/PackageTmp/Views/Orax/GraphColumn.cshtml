@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Graph";
+    Layout = "~/Views/Shared/_LayoutOrax.cshtml"; //null; //
+}
+
+
+<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script type="text/javascript" src="https://cdn.canvasjs.com/jquery.canvasjs.min.js"></script>
+
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-info card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title">Column Chart 1 </h3>
+                        </div>
+                        <div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <select id="ddlGroup1" class="form-control form-control-sm"> <option value="">-- select one --</option> <option value="need">Need</option> <option value="want">Want</option> <option value="save">Save</option>  </select>
+                                                </td>
+                                                <td>
+                                                    <select id="ddlGroup2" class="form-control form-control-sm"> <option value="">-- select one --</option> <option value="beer-1.5k">beer-1.5k</option> <option value="emi">emi</option> <option value="essential-5k">essential-5k</option> <option value="extra-10k">extra-10k</option> <option value="food-5k" style="background-color:yellow;">food-5k</option> <option value="fromSaving-60k">fromSaving-60k</option> <option value="h-rent">h-rent</option> <option value="oil-4k">oil-4k</option> <option value="saving">saving</option> <option value="unplaned">unplaned</option> <option value="creditCard">Credit Card</option> <option value="mrg">mrg</option> <option value="goa">Goa</option> </select>
+                                                </td>
+                                                <td>
+                                                    <select id="ddlGroup3" class="form-control form-control-sm"> <option value="">-- select one --</option> <option value="repeat">Repeat</option><option value="carOil">Car Oil</option> <option value="bikeOil">Bike Oil</option> <option value="LIC">LIC</option><option value="stock">stock</option>  </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row" style="height: 460px;">
+                                    <div class="form-group col-md-12">
+                                        <div id="chartContainer" style="height: 300px; width: 100%;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <table id="monthMasterTable" border="1">
+                                            <tr>
+                                                <td>oct</td>
+                                                <td>nov</td>
+                                                <td>dec</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1234</td>
+                                                <td>4435</td>
+                                                <td>678</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+<script src="~/Scripts/application-js/graphColumn.js"></script>

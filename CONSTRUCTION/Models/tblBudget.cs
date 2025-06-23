@@ -22,6 +22,5 @@ namespace CONSTRUCTION.Models
         public string details { get; set; }
         public Nullable<decimal> price { get; set; }
         public Nullable<System.DateTime> createdDate { get; set; }
-        public Nullable<int> group2int { get; set; }
     }
 }

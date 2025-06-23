@@ -89,19 +89,6 @@
     <Property Name="UpdatedDate" Type="datetime" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="task_TaskDetails">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="taskName" Type="nvarchar" MaxLength="350" />
-    <Property Name="group1" Type="varchar" MaxLength="50" />
-    <Property Name="group2" Type="varchar" MaxLength="50" />
-    <Property Name="group3" Type="varchar" MaxLength="50" />
-    <Property Name="group4" Type="varchar" MaxLength="50" />
-    <Property Name="isActive" Type="varchar" MaxLength="50" />
-    <Property Name="taskDate" Type="datetime" Nullable="false" />
-  </EntityType>
   <EntityType Name="tblBudget">
     <Key>
       <PropertyRef Name="id" />
@@ -151,6 +138,17 @@
     <Property Name="isActive" Type="bit" />
     <Property Name="createdDate" Type="datetime" />
     <Property Name="updatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblGroupMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="groupName" Type="varchar" MaxLength="50" />
+    <Property Name="haveFixPrice" Type="bit" />
+    <Property Name="priceGroup" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IsShow" Type="bit" />
+    <Property Name="group2int" Type="int" />
   </EntityType>
   <EntityType Name="tblInvoice">
     <Key>
@@ -235,10 +233,10 @@
     <EntitySet Name="InvoiceDetail" EntityType="Self.InvoiceDetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ItemMaster" EntityType="Self.ItemMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ItemTransaction" EntityType="Self.ItemTransaction" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="task_TaskDetails" EntityType="Self.task_TaskDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblBudget" EntityType="Self.tblBudget" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblBudgetMaster" EntityType="Self.tblBudgetMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblGoogsTrans" EntityType="Self.tblGoogsTrans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblGroupMaster" EntityType="Self.tblGroupMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblInvoice" EntityType="Self.tblInvoice" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblReceiptDetails" EntityType="Self.tblReceiptDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblReceiptTransaction" EntityType="Self.tblReceiptTransaction" Schema="dbo" store:Type="Tables" />
