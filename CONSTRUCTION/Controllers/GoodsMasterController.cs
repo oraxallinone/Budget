@@ -1,4 +1,5 @@
 ﻿using CONSTRUCTION.Models;
+using HotelBill.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace CONSTRUCTION.Controllers
                 try
                 {
                     good.isActive = true;
-                    good.createdDate = DateTime.Now;
+                    good.createdDate = SatyaDBClass.ISTZoneNull(DateTime.Now);
                     db.GoodsMasters.Add(good);
                     db.SaveChanges();
                 }
@@ -67,7 +68,7 @@ namespace CONSTRUCTION.Controllers
                 cust2.cgst_p = cust.cgst_p;
                 cust2.sgst_p = cust.sgst_p;
                 cust2.isActive = cust.isActive;
-                cust2.updatedDate = DateTime.Now;
+                cust2.updatedDate = SatyaDBClass.ISTZoneNull(DateTime.Now);
                 db.SaveChanges();
                 return RedirectToAction("GoodsList");
             }

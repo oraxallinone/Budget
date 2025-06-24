@@ -11,23 +11,17 @@ namespace CONSTRUCTION.Controllers
 {
     public class FinalInvoiceController : Controller
     {
-        //add new line
-
         Bill_DBEntities db = new Bill_DBEntities();
 
         #region----------------------------- invoice & print ------------------------
         public ActionResult CreateInvoice()
         {
-            ViewBag.pageInfo = "Create Invoice";//Create New Receipt
-
-
+            ViewBag.pageInfo = "Create Invoice";
             CreateInvoiceViewModel tbl = new CreateInvoiceViewModel();
             tbl.serialNoOfInvoice = getGoodsInvoice();
             ViewBag.goods = new SelectList(db.GoodsMasters.ToList().OrderBy(y => y.descriptionOfGoods), "goodsId", "descriptionOfGoods");
             ViewBag.customer = new SelectList(GetCustomerList(), "CustBasicInfo", "CustName");
-
             ViewBag.tanentList = new SelectList(getTanentList(), "TanentID", "TanentName");
-
             var AvailTimes = new SelectList(new[] {
                new SelectListItem { Value = "0", Text = "--" },
             new SelectListItem { Value = "1", Text = "c1" },
@@ -42,7 +36,6 @@ namespace CONSTRUCTION.Controllers
         [HttpPost]
         public ActionResult CreateInvoice(CreateInvoiceViewModel model)
         {
-
             try
             {
                 var isAvlSerialNo = db.tblInvoices.Any(x => x.serialNoOfInvoice == model.serialNoOfInvoice);
@@ -51,8 +44,8 @@ namespace CONSTRUCTION.Controllers
                 {
                     tblInvoice tbl1 = new tblInvoice();
                     tbl1.companyName = model.companyName;
-                    tbl1.dateOfInvoice = model.dateOfInvoice;
-                    tbl1.agreementDate = model.agreementDate;
+                    tbl1.dateOfInvoice = SatyaDBClass.ISTZoneNull(model.dateOfInvoice);
+                    tbl1.agreementDate = SatyaDBClass.ISTZoneNull(model.agreementDate);
                     tbl1.serialNoOfInvoice = model.serialNoOfInvoice;
                     tbl1.projectManager = model.projectManager;
                     tbl1.panNo = model.panNo;
@@ -63,8 +56,8 @@ namespace CONSTRUCTION.Controllers
                     tbl1.shipToGSTIN = model.shipToGSTIN;
                     tbl1.TotalInvoice = model.TotalInvoice;
                     tbl1.isActive = model.isActive;
-                    tbl1.createdDate = model.createdDate;
-                    tbl1.updatedDate = model.updatedDate;
+                    tbl1.createdDate = SatyaDBClass.ISTZoneNull(model.createdDate);
+                    tbl1.updatedDate = SatyaDBClass.ISTZoneNull(model.updatedDate);
                     db.tblInvoices.Add(tbl1);
                     db.SaveChanges();
 
@@ -82,8 +75,8 @@ namespace CONSTRUCTION.Controllers
                         tbl2.sgstA = s.sgstA;
                         tbl2.total = s.total;
                         tbl2.isActive = s.isActive;
-                        tbl2.createdDate = s.createdDate;
-                        tbl2.updatedDate = s.updatedDate;
+                        tbl2.createdDate = SatyaDBClass.ISTZoneNull(s.createdDate);
+                        tbl2.updatedDate = SatyaDBClass.ISTZoneNull(s.updatedDate);
                         db.tblGoogsTrans.Add(tbl2);
                         db.SaveChanges();
                     }
@@ -95,7 +88,6 @@ namespace CONSTRUCTION.Controllers
                         cnt.counterValue = newDbCounter;
                         db.SaveChanges();
                     }
-
                 }
                 else
                 {
@@ -113,10 +105,7 @@ namespace CONSTRUCTION.Controllers
 
         public ActionResult PrintInvoice(string invNo)
         {
-            //int tanentId = 2;
-            string invNum = invNo;// "OSC/2023/2024/0007";
-
-
+            string invNum = invNo;
             if (invNo != null)
             {
                 var res = (from i in db.tblInvoices
@@ -128,8 +117,8 @@ namespace CONSTRUCTION.Controllers
                                address1 = t.tanentaddr1,
                                address2 = t.tanentaddr2,
                                companyGst = t.tanentGST,
-                               dateOfInvoice = i.dateOfInvoice,
-                               agreementDate = i.agreementDate,
+                               dateOfInvoice = SatyaDBClass.ISTZoneNull(i.dateOfInvoice),
+                               agreementDate = SatyaDBClass.ISTZoneNull(i.agreementDate),
                                serialNoOfInvoice = i.serialNoOfInvoice,
                                projectManager = i.projectManager,
                                panNo = i.panNo,
@@ -144,8 +133,8 @@ namespace CONSTRUCTION.Controllers
                                iFSCCode = t.ifsc,
                                acType = t.type,
                                branch = t.branch
-                               //transactionData = null
                            }).ToList().FirstOrDefault();
+
                 var listResult = (from g in db.tblGoogsTrans
                                   join m in db.GoodsMasters on g.tGoodsDesc equals m.descriptionOfGoods
                                   where g.tInvoiceNo == invNum
@@ -153,7 +142,7 @@ namespace CONSTRUCTION.Controllers
                                   {
                                       tInvoiceNo = g.tInvoiceNo,
                                       tGoodsDesc = g.tGoodsDesc,
-                                      tHSN=m.hsn,
+                                      tHSN = m.hsn,
                                       tQty = g.tQty,
                                       tRate = g.tRate,
                                       tValue = g.tValue,
@@ -170,8 +159,8 @@ namespace CONSTRUCTION.Controllers
                 obj.address1 = res.address1;
                 obj.address2 = res.address2;
                 obj.companyGst = res.companyGst;
-                obj.dateOfInvoice = res.dateOfInvoice;
-                obj.agreementDate = res.agreementDate;
+                obj.dateOfInvoice = SatyaDBClass.ISTZoneNull(res.dateOfInvoice);
+                obj.agreementDate = SatyaDBClass.ISTZoneNull(res.agreementDate);
                 obj.serialNoOfInvoice = res.serialNoOfInvoice;
                 obj.projectManager = res.projectManager;
                 obj.panNo = res.panNo;
@@ -191,10 +180,8 @@ namespace CONSTRUCTION.Controllers
                 int v2 = obj.TotalInvoice == null ? default(int) : Convert.ToInt32(obj.TotalInvoice);
                 double d = v2;
                 int itt = (int)d;
-                //string decimalPart = d.ToString().Split('.')[1];
-                string text = NumberToWord.NumberToText(itt, true);//+ " Point" + Se2.DecimalToText(decimalPart);
+                string text = NumberToWord.NumberToText(itt, true);
                 obj.totalInfigure = text;
-
                 return View(obj);
             }
             else
@@ -202,9 +189,6 @@ namespace CONSTRUCTION.Controllers
                 PrintInvoiceViewModel obj = new PrintInvoiceViewModel();
                 return View(obj);
             }
-
-
-
         }
 
         [HttpPost]
@@ -221,8 +205,6 @@ namespace CONSTRUCTION.Controllers
                     var tData = db.tblGoogsTrans.First(c => c.tInvoiceNo == model.serialNoOfInvoice);
                     db.tblGoogsTrans.Remove(tData);
                     db.SaveChanges();
-
-
                     return Json("deletedSuccessfully");
                 }
                 else
@@ -235,39 +217,30 @@ namespace CONSTRUCTION.Controllers
                 return Json("notDeleted");
                 throw;
             }
-            
-
-
-
         }
 
         public ActionResult InvoiceList()
         {
-
             var data = (from inv in db.tblInvoices
-                        join cus in db.tblTanents//CustomerMasters
+                        join cus in db.tblTanents
                        on inv.companyName equals cus.tanentId
                         select new InvoiceListViewModel
                         {
                             custName = cus.tanentName,
                             serialNoOfInvoice = inv.serialNoOfInvoice,
-                            dateOfInvoice = inv.dateOfInvoice,
-                            agreementDate = inv.agreementDate,
+                            dateOfInvoice = SatyaDBClass.ISTZoneNull(inv.dateOfInvoice),
+                            agreementDate = SatyaDBClass.ISTZoneNull(inv.agreementDate),
                             projectName = inv.projectName,
                             billTo = inv.billTo,
                             shipTo = inv.shipTo,
                             TotalInvoice = inv.TotalInvoice
                         }).ToList().OrderByDescending(x => x.serialNoOfInvoice);
-
-
             return View(data);
         }
-
 
         public void CallSP()
         {
             string Branch = Session["Branch"].ToString();
-
             //string param = "@Fromdate,@Todate,@Branch,@year";
             //string paramvalue = Convert.ToDateTime(txt_FromDate.Text, SmitaClass.dateformat()).ToString("yyyy-MM-dd") + " , " + Convert.ToDateTime(txt_ToDate.Text, SatyaDBClass.dateformat()).ToString("yyyy-MM-dd") + "," + Branch + "," + year;
             //DataTable dtr = SatyaDBClass.SPReturnDataTable("sp_DailySpareSales_WithReturn_Report1", param, paramvalue);
@@ -295,7 +268,7 @@ namespace CONSTRUCTION.Controllers
                 tblReceiptDetail recept = new tblReceiptDetail();
                 recept.companyName = model.companyName;
                 recept.refNo = model.refNo;
-                recept.receiptDate = model.receiptDate;
+                recept.receiptDate = SatyaDBClass.ISTZoneNull(model.receiptDate);
                 recept.companyName = model.companyName;
                 recept.rsp_name = model.rsp_name;
                 recept.name_addr = model.name_addr;
@@ -304,7 +277,7 @@ namespace CONSTRUCTION.Controllers
                 recept.rsp_gstin = model.rsp_gstin;
                 recept.rsp_grandTotal = model.rsp_grandTotal;
                 recept.isActive = model.isActive;
-                recept.createdDate = model.createdDate;
+                recept.createdDate = SatyaDBClass.ISTZoneNull(model.createdDate);
                 db.tblReceiptDetails.Add(recept);
                 db.SaveChanges();
 
@@ -324,7 +297,7 @@ namespace CONSTRUCTION.Controllers
                     tbl2.trsp_sgstA = sD.trsp_sgstA;
                     tbl2.trsp_total = sD.trsp_total;
                     tbl2.isActive = sD.isActive;
-                    tbl2.createdDate = sD.createdDate;
+                    tbl2.createdDate = SatyaDBClass.ISTZoneNull(sD.createdDate);
                     db.tblReceiptTransactions.Add(tbl2);
                     db.SaveChanges();
                 }
@@ -360,7 +333,7 @@ namespace CONSTRUCTION.Controllers
                                CompanyHeaderAddress = t.tanentaddr1,
                                CompanyHeaderAddress2 = t.tanentaddr2,
                                receiptNo = receipt.refNo,
-                               receiptDate = receipt.receiptDate,
+                               receiptDate = SatyaDBClass.ISTZoneNull(receipt.receiptDate),
                                name = receipt.rsp_name,
                                address = t.tanentaddr1 + " " + t.tanentaddr2,
                                gstin = t.tanentGST,
@@ -379,8 +352,6 @@ namespace CONSTRUCTION.Controllers
                 bool isActive = true;
                 res.invoiceAmmountinWords = NumberToWord.NumberToText(zz, isActive);
 
-
-
                 res.receiptTransaction = (from g in db.tblReceiptTransactions
                                           where g.refNo == refNo
                                           select new PrintReceiptTransactionModel
@@ -396,24 +367,17 @@ namespace CONSTRUCTION.Controllers
                                               sgstA = g.trsp_sgstA,
                                               total = g.trsp_total
                                           }).ToList();
-
-
-
                 return View(res);
             }
             else
             {
                 PrintReceiptModel obj = new PrintReceiptModel();
                 return View(obj);
-
             }
-
-
         }
 
         public ActionResult ReceiptList()
         {
-
             var data = (from rec in db.tblReceiptDetails
                         join cus in db.CustomerMasters
                        on rec.companyName equals cus.custId
@@ -422,17 +386,12 @@ namespace CONSTRUCTION.Controllers
                             custName = rec.rsp_name,
                             refNo = rec.refNo,
                             companyName = rec.companyName == 1 ? "OMM SUPPLIER AND CONSTRUCTION" : "OMM SAI CONSTRUCTION",
-                            receiptDate = rec.receiptDate,
+                            receiptDate = SatyaDBClass.ISTZoneNull(rec.receiptDate),
                             rsp_grandTotal = rec.refNo
                         }).ToList().OrderByDescending(x => x.refNo);
-
-
             return View(data);
         }
-
         #endregion-------------------------------------------------------------
-
-
 
         public IEnumerable<TanentDetails> getTanentList()
         {
@@ -481,6 +440,7 @@ namespace CONSTRUCTION.Controllers
                         CustName = cust.custName
                     }).ToList();
         }
+
         public string getNewDraftNo()
         {
             int dbCount = db.CounterMasters.Where(x => x.counterName == "invoiceDraft").FirstOrDefault().counterValue;
@@ -492,14 +452,11 @@ namespace CONSTRUCTION.Controllers
         public ActionResult GetGoodsById(int id)
         {
             var item = db.GoodsMasters.Where(x => x.goodsId == id).FirstOrDefault();
-
-
             try
             {
                 string param = "@id";
                 string paramvalue = id.ToString();
                 DataTable dtr = SatyaDBClass.SPReturnDataTable("sp_getGoodsById", param, paramvalue);
-
                 var ss = SatyaDBClass.ContDataTabloJSON(dtr);
                 return Json(ss);
             }
@@ -508,27 +465,17 @@ namespace CONSTRUCTION.Controllers
                 string ss = ex.Message;
                 throw;
             }
-
-
-            //return Json(item);
         }
-
-
-
-
 
         public ActionResult IntervalTest()
         {
             return View();
         }
 
-
         public ActionResult Logout()
         {
             return RedirectToAction("Login", "Login");
         }
-
-
 
     }
 }

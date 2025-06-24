@@ -14,6 +14,22 @@ namespace HotelBill.Models
 {
     public class SatyaDBClass
     {
+        public static DateTime ISTZone(DateTime dateTimeNow)
+        {
+            DateTime utcTime = dateTimeNow.ToUniversalTime();
+            TimeZoneInfo timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
+            DateTime istTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, timeZoneInfo);
+            return istTime;
+        }
+        public static DateTime? ISTZoneNull(DateTime? dateTimeNow)
+        {
+            DateTime? utcTime = dateTimeNow?.ToUniversalTime();
+            TimeZoneInfo timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
+            DateTime? istTime = utcTime.HasValue ? TimeZoneInfo.ConvertTimeFromUtc(utcTime.Value, timeZoneInfo) : (DateTime?)null;
+            return istTime;
+        }
+
+
         public static SqlConnection conn()
         {
             SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connectionstring"].ToString());

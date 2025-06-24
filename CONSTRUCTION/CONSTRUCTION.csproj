@@ -347,9 +347,7 @@
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Bill_DBEntities.csdl" />
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Bill_DBEntities.msl" />
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Bill_DBEntities.ssdl" />
-    <None Include="Properties\PublishProfiles\satMan.pubxml" />
-    <None Include="Properties\PublishProfiles\swarnamam2.pubxml" />
-    <None Include="Properties\PublishProfiles\withDebug.pubxml" />
+    <None Include="Properties\PublishProfiles\250623Swarnamam.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -442,10 +440,6 @@
     <Content Include="Views\Orax\SalaryList.cshtml" />
     <Content Include="Views\Orax\MobileEntry.cshtml" />
     <Content Include="Views\Orax\GraphColumn.cshtml" />
-    <Content Include="Views\Orax\TreeView.cshtml" />
-    <Content Include="Views\Orax\TreeView2.cshtml" />
-    <Content Include="Views\Orax\TreeViewTest.cshtml" />
-    <Content Include="Views\Orax\KendoUI.cshtml" />
     <Content Include="Views\Orax\MobileGraph.cshtml" />
     <Content Include="Views\Shared\_LayoutOrax.cshtml" />
     <Content Include="Views\Shared\_LayoutTrack.cshtml" />

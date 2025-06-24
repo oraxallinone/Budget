@@ -2,12 +2,9 @@
 using HotelBill.Models;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 
@@ -34,9 +31,8 @@ namespace CONSTRUCTION.Controllers
             try
             {
                 budgetList = db.tblBudgetMasters.Where(x => x.month == data.forMonth && x.year == data.forYear).FirstOrDefault();
-                var fromDate = budgetList.fromDate;
-                var toDate = budgetList.todate;
-
+                var fromDate = SatyaDBClass.ISTZoneNull(budgetList.fromDate);
+                var toDate = SatyaDBClass.ISTZoneNull(budgetList.todate);
                 if (data.group1 != null)
                 {
                     allList = db.tblBudgets.Where(m => m.createdDate > fromDate && m.createdDate < toDate && m.group1 == data.group1).OrderBy(d => d.createdDate).ToList();
@@ -53,7 +49,6 @@ namespace CONSTRUCTION.Controllers
                 {
                     allList = db.tblBudgets.Where(m => m.createdDate > fromDate && m.createdDate < toDate).OrderBy(d => d.createdDate).ToList();
                 }
-
                 foreach (var s in allList)
                 {
                     RenderExpensiveViewModel2 item = new RenderExpensiveViewModel2();
@@ -63,13 +58,10 @@ namespace CONSTRUCTION.Controllers
                     item.group3 = s.group3;
                     item.details = s.details;
                     item.price = s.price.ToString();
-                    item.createdDate = Convert.ToDateTime(s.createdDate ?? DateTime.Now).ToString("yyyy-MM-dd");
-
+                    item.createdDate = Convert.ToDateTime(SatyaDBClass.ISTZoneNull(s.createdDate) ?? SatyaDBClass.ISTZoneNull(DateTime.Now)).ToString("yyyy-MM-dd");
                     expensiveList.Add(item);
                 }
-
                 var result = new { monthTransList = expensiveList, monthMaster = budgetList };
-
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -91,7 +83,6 @@ namespace CONSTRUCTION.Controllers
 
         #endregion ------------------------------------
 
-
         #region ----------------------  graph  ---------
         public ActionResult Graph()
         {
@@ -105,8 +96,8 @@ namespace CONSTRUCTION.Controllers
             try
             {
                 budgetMaster = db.tblBudgetMasters.Where(x => x.month == data.forMonth && x.year == data.forYear).FirstOrDefault();
-                var fromDate = budgetMaster.fromDate;
-                var toDate = budgetMaster.todate;
+                var fromDate = SatyaDBClass.ISTZoneNull(budgetMaster.fromDate);
+                var toDate = SatyaDBClass.ISTZoneNull(budgetMaster.todate);
                 var monthMaster = db.tblBudgetMasters.Where(m => m.month == data.forMonth).FirstOrDefault();
                 var groupByBudgetRule = db.tblBudgets.Where(m => m.createdDate > fromDate && m.createdDate < toDate).GroupBy(b => b.group1)
                                         .Select(g => new
@@ -116,7 +107,6 @@ namespace CONSTRUCTION.Controllers
                                         })
                                         .ToList();
                 var result = new { monthMaster = monthMaster, groupByBudgetRule = groupByBudgetRule };
-
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -136,8 +126,8 @@ namespace CONSTRUCTION.Controllers
             try
             {
                 budgetMaster = db.tblBudgetMasters.Where(x => x.month == data.forMonth && x.year == data.forYear).FirstOrDefault();
-                var fromDate = budgetMaster.fromDate; 
-                var toDate = budgetMaster.todate;
+                var fromDate = SatyaDBClass.ISTZoneNull(budgetMaster.fromDate); 
+                var toDate = SatyaDBClass.ISTZoneNull(budgetMaster.todate);
                 var groupByAmt = db.tblBudgets.Where(m => m.createdDate >= fromDate && m.createdDate <= toDate).GroupBy(b => b.group2)
                                         .Select(g => new
                                         {
@@ -165,11 +155,9 @@ namespace CONSTRUCTION.Controllers
         [HttpPost]
         public ActionResult GetColumnChart(GetExpensiveViewModel data)
         {
-            //tblBudgetMaster budgetMaster = null;
             IEnumerable<tblBudgetMaster> budgetMasters = null;
             List<BarGraph> barGraphData = new List<BarGraph>();
             IEnumerable<BarGraphdbArrange> datas = null;
-
             try
             {
                 budgetMasters = db.tblBudgetMasters.Where(v => v.month != "all").ToList().OrderBy(m => m.todate);
@@ -229,7 +217,6 @@ namespace CONSTRUCTION.Controllers
                     }
                 }
                 var result = new { monthMstr = budgetMasters, barGraphData = barGraphData };
-
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -295,52 +282,25 @@ namespace CONSTRUCTION.Controllers
             }
             return monthName;
         }
-
-
         #endregion ------------------------------------
 
-
+        #region ---------------- common 2   -------------
         [HttpPost]
         public ActionResult AddExpensive(CreateExpensiveViewModel data)
         {
             try
             {
-                string dateNow = data.createdDate?.ToString("yyyy-MM-dd hh:mm:ss"); //data.createdDate.ToString();
+                string dateNow = SatyaDBClass.ISTZoneNull(data.createdDate)?.ToString("yyyy-MM-dd hh:mm:ss"); 
                 string proccc = data.price.ToString();
-
-
                 string param = "@group2,@createdDate,@details,@price,@group1";
                 string paramvalue = data.group2 + "," + dateNow + "," + data.details + "," + proccc + "," + "n";
                 SatyaDBClass.insertprocedure("sp_mobileInsert", param, paramvalue);
-
-
-
-                //string[] CWParam1 = { "@group2", "@createdDate", "@details", "@price", "@group1" };
-                //string[] CWParamValue1 = { data.group2, dateNow, data.details, proccc, "n" };
-
-
-                //SatyaDBClass.insertprocedurestockcoma("sp_mobileInsert", CWParam1, CWParamValue1);
             }
             catch (Exception ex)
             {
                 string sssss = ex.Message;
                 throw;
             }
-
-
-
-
-
-
-            //tblBudget obj = new tblBudget();
-            //obj.group2 = data.group2;
-            //obj.createdDate = data.createdDate;
-            //obj.details = data.details;
-            //obj.price = data.price;
-            //obj.group1 = "n";
-
-            //db.tblBudgets.Add(obj);
-            //db.SaveChanges();
             return Json("success");
         }
 
@@ -349,15 +309,11 @@ namespace CONSTRUCTION.Controllers
         {
             CultureInfo provider = CultureInfo.InvariantCulture;
             var selectedData = db.tblBudgets.FirstOrDefault(x => x.id == data.id);
-
             tblBudget_MV newData = new tblBudget_MV();
             newData.id = selectedData.id;
-            newData.createdDate = selectedData.createdDate == null ? "" : Convert.ToDateTime(selectedData.createdDate).ToString("yyyy-MM-dd");//selectedData.createdDate;
+            newData.createdDate = selectedData.createdDate == null ? "" : Convert.ToDateTime(SatyaDBClass.ISTZoneNull(selectedData.createdDate)).ToString("yyyy-MM-dd");//selectedData.createdDate;
             newData.price = selectedData.price;
             newData.details = selectedData.details;
-
-
-
             return Json(newData);
         }
 
@@ -366,28 +322,23 @@ namespace CONSTRUCTION.Controllers
         {
             try
             {
-                string dateNow = data.createdDate?.ToString("yyyy-MM-dd hh:mm:ss");
+                string dateNow = SatyaDBClass.ISTZoneNull(data.createdDate)?.ToString("yyyy-MM-dd hh:mm:ss");
                 string proccc = data.price.ToString();
-
-
                 string param = "@id,@details,@price";
                 string paramvalue = data.id + "," + data.details + "," + data.price;
                 SatyaDBClass.insertprocedure("sp_mobileUpdate", param, paramvalue);
-
             }
             catch (Exception ex)
             {
                 string sssss = ex.Message;
                 throw;
             }
-
             return Json("success");
         }
 
         [HttpPost]
         public ActionResult UpdateGroup1(CreateExpensiveViewModel data)
         {
-
             tblBudget obj = db.tblBudgets.FirstOrDefault(xy => xy.id == data.id);
             obj.group1 = data.group1;
             db.SaveChanges();
@@ -420,10 +371,9 @@ namespace CONSTRUCTION.Controllers
             db.SaveChanges();
             return Json("success");
         }
+        #endregion ------------------------------------
 
-
-
-        #region ----------------------  salary verified ------------------------------
+        #region -----------  salary verified ---------
         public ActionResult SalaryEntry()
         {
             return View();
@@ -437,15 +387,15 @@ namespace CONSTRUCTION.Controllers
                 tblBudgetMaster obj = new tblBudgetMaster();
                 obj.month = data.month;
                 obj.salary = data.salary;
-                obj.fromDate = data.fromDate;
-                obj.todate = data.todate;
+                obj.fromDate = SatyaDBClass.ISTZoneNull(data.fromDate);
+                obj.todate = SatyaDBClass.ISTZoneNull(data.todate);
                 obj.need = data.need;
                 obj.want = data.want;
                 obj.saving = data.saving;
                 obj.monthName = data.monthName;
                 obj.montOrder = data.montOrder;
                 obj.year = data.year;
-                obj.salaryDate = data.fromDate;
+                obj.salaryDate = SatyaDBClass.ISTZoneNull(data.fromDate);
                 db.tblBudgetMasters.Add(obj);
                 db.SaveChanges();
                 calculateAllMonth();
@@ -474,8 +424,8 @@ namespace CONSTRUCTION.Controllers
             tblBudgetMaster obj = db.tblBudgetMasters.FirstOrDefault(xy => xy.id == data.id);
             obj.month = data.month;
             obj.salary = data.salary;
-            obj.fromDate = data.fromDate;
-            obj.todate = data.todate;
+            obj.fromDate = SatyaDBClass.ISTZoneNull(data.fromDate);
+            obj.todate = SatyaDBClass.ISTZoneNull(data.todate);
             obj.need = data.need;
             obj.want = data.want;
             obj.saving = data.saving;
@@ -493,10 +443,8 @@ namespace CONSTRUCTION.Controllers
             obj.need = monthTotalIncome * 50 / 100;
             obj.want = monthTotalIncome * 30 / 100;
             obj.saving = monthTotalIncome * 20 / 100;
-
             db.SaveChanges();
         }
-
         #endregion ----------------------------------------------------------
 
         #region ----------------------  Mobile-----------
@@ -508,25 +456,13 @@ namespace CONSTRUCTION.Controllers
         [HttpPost]
         public ActionResult GetBymonthMobile(GetExpensiveViewModel data)
         {
-
             string param = "@forYear,@forMonth";
             string paramvalue = data.forYear.ToString() + "," + data.forMonth.ToString();
             DataTable dTable = SatyaDBClass.SPReturnDataTable("sp_monthlyList", param, paramvalue);
             IEnumerable<RenderExpensiveViewModel2> dList = ConvertDataTableToList(dTable);
-
             var result = new { monthTransList = dList.ToList() };
-
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
-        //public DateTime ISTZone(DateTime dateTimeNow)
-        //{
-        //    DateTime utcTime = dateTimeNow.ToUniversalTime();
-        //    TimeZoneInfo timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
-        //    DateTime istTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, timeZoneInfo);
-        //    return istTime;
-        //}
-
 
         private IEnumerable<RenderExpensiveViewModel2> ConvertDataTableToList(DataTable dataTable)
         {
@@ -535,48 +471,14 @@ namespace CONSTRUCTION.Controllers
                 yield return new RenderExpensiveViewModel2
                 {
                     id = Convert.ToString(row["id"]),
-                    //group1 = Convert.ToString(row["group1"]),
-                    //group2 = Convert.ToString(row["group2"]),
                     details = Convert.ToString(row["details"]),
                     price = Convert.ToString(row["price"]),
                     createdDate = Convert.ToDateTime(row["createdDate"] ?? DateTime.Now).ToString("yyyy-MM-dd")
-                    //group3 = Convert.ToString(row["group3"]),
-                    //group4 = Convert.ToString(row["group4"]),
-
-                    //id = Convert.ToInt32(row["id"]),
-                    //group1 = Convert.ToString(row["group1"]),
-                    //group2 = Convert.ToString(row["group2"]),
-                    //details = Convert.ToString(row["details"]),
-                    //price = Convert.ToDecimal(row["price"]),
-                    //createdDate = Convert.ToDateTime(row["createdDate"]),
-                    //group3 = Convert.ToString(row["group3"]),
-                    //group4 = Convert.ToString(row["group4"]),
                 };
             }
-
         }
 
         #endregion ------------------------------------
-
-        #region ----------------------tree view-------------
-        public ActionResult TreeView()
-        {
-            return View();
-        }
-        public ActionResult TreeViewTest()
-        {
-            return View();
-        }
-        public ActionResult TreeView2()
-        {
-            return View();
-        }
-        public ActionResult KendoUI()
-        {
-            return View();
-        }
-        #endregion ------------------------------------
-        
 
         #region ---------------------- Group Master verified ----
         public ActionResult GroupList()
@@ -610,8 +512,6 @@ namespace CONSTRUCTION.Controllers
                 CounterMaster cnt = db.CounterMasters.Where(x => x.counterName == "group2id").FirstOrDefault();
                 cnt.counterValue = newNo;
                 db.SaveChanges();
-
-
                 return Json("save");
             }
             else if (data.btnText == "Update?")

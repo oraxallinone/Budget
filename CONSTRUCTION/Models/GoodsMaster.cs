@@ -23,5 +23,6 @@ namespace CONSTRUCTION.Models
         public Nullable<System.DateTime> createdDate { get; set; }
         public Nullable<System.DateTime> updatedDate { get; set; }
         public bool isActive { get; set; }
+        public string unit { get; set; }
     }
 }

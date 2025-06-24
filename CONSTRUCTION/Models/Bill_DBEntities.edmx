@@ -34,6 +34,7 @@
           </Key>
           <Property Name="goodsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descriptionOfGoods" Type="nvarchar(max)" />
+          <Property Name="unit" Type="varchar" MaxLength="25" />
           <Property Name="hsn" Type="varchar" MaxLength="50" />
           <Property Name="rate" Type="decimal" Precision="18" Scale="2" />
           <Property Name="cgst_p" Type="int" />
@@ -303,6 +304,7 @@
           <Property Name="createdDate" Type="DateTime" Precision="3" />
           <Property Name="updatedDate" Type="DateTime" Precision="3" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="unit" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="InvoiceDetail">
           <Key>
@@ -527,6 +529,7 @@
           <EntitySetMapping Name="GoodsMasters">
             <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.GoodsMaster">
               <MappingFragment StoreEntitySet="GoodsMaster">
+                <ScalarProperty Name="unit" ColumnName="unit" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
                 <ScalarProperty Name="createdDate" ColumnName="createdDate" />
