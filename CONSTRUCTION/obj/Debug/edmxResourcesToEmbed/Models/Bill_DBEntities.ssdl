@@ -29,6 +29,7 @@
     </Key>
     <Property Name="goodsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="descriptionOfGoods" Type="nvarchar(max)" />
+    <Property Name="unit" Type="varchar" MaxLength="25" />
     <Property Name="hsn" Type="varchar" MaxLength="50" />
     <Property Name="rate" Type="decimal" Precision="18" Scale="2" />
     <Property Name="cgst_p" Type="int" />

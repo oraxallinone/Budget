@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\sync with git hub\swarnaMamNBudget filezilla\hsn add to bill\publish</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\sync with git hub\swarnaMamNBudget filezilla\23-6\pb</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -16,16 +16,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/22/2025 13:41:01</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.pdb">
-      <publishTime>02/22/2013 08:43:40</publishTime>
+      <publishTime>05/22/2025 13:41:01</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
       <publishTime>05/22/2025 13:40:59</publishTime>
     </File>
     <File Include="bin/CONSTRUCTION.dll">
-      <publishTime>06/19/2025 20:52:30</publishTime>
+      <publishTime>06/23/2025 21:15:22</publishTime>
     </File>
     <File Include="bin/CONSTRUCTION.pdb">
-      <publishTime>01/09/2025 12:52:28</publishTime>
+      <publishTime>06/23/2025 21:15:22</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>05/22/2025 13:41:01</publishTime>
@@ -249,9 +249,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/application-js/MobileUpdate.js">
       <publishTime>05/22/2025 13:41:01</publishTime>
     </File>
-    <File Include="Scripts/application-js/UpdateInMobile.js">
-      <publishTime>02/13/2025 11:41:10</publishTime>
-    </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>05/22/2025 13:41:01</publishTime>
     </File>
@@ -412,10 +409,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/22/2025 13:41:01</publishTime>
     </File>
     <File Include="Views/FinalInvoice/InvoiceList.cshtml">
-      <publishTime>05/22/2025 13:41:01</publishTime>
+      <publishTime>06/23/2025 22:23:37</publishTime>
     </File>
     <File Include="Views/FinalInvoice/PrintInvoice.cshtml">
-      <publishTime>06/19/2025 20:46:04</publishTime>
+      <publishTime>06/23/2025 22:25:20</publishTime>
     </File>
     <File Include="Views/FinalInvoice/PrintReceipt.cshtml">
       <publishTime>05/22/2025 13:41:01</publishTime>
@@ -468,18 +465,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
       <publishTime>05/22/2025 13:41:01</publishTime>
     </File>
-    <File Include="Views/Orax/BudgetAnalysis.cshtml">
-      <publishTime>08/24/2024 16:59:09</publishTime>
-    </File>
-    <File Include="Views/Orax/BudgetAnalysisOnly.cshtml">
-      <publishTime>09/07/2024 10:29:09</publishTime>
-    </File>
-    <File Include="Views/Orax/BudgetAnalysisTest.cshtml">
-      <publishTime>09/07/2024 00:52:56</publishTime>
-    </File>
-    <File Include="Views/Orax/ColumnGraphList.cshtml">
-      <publishTime>02/09/2025 08:59:54</publishTime>
-    </File>
     <File Include="Views/Orax/Entry.cshtml">
       <publishTime>05/22/2025 13:41:01</publishTime>
     </File>
@@ -513,15 +498,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Orax/SalaryList.cshtml">
       <publishTime>05/22/2025 13:41:01</publishTime>
     </File>
-    <File Include="Views/Orax/TaskShow.cshtml">
-      <publishTime>02/09/2025 08:59:54</publishTime>
-    </File>
-    <File Include="Views/Orax/TrackCreate.cshtml">
-      <publishTime>02/09/2025 08:59:54</publishTime>
-    </File>
-    <File Include="Views/Orax/TrackShow.cshtml">
-      <publishTime>02/09/2025 08:59:54</publishTime>
-    </File>
     <File Include="Views/Orax/TreeView.cshtml">
       <publishTime>05/22/2025 13:41:01</publishTime>
     </File>
@@ -531,14 +507,8 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Orax/TreeViewTest.cshtml">
       <publishTime>05/22/2025 13:41:01</publishTime>
     </File>
-    <File Include="Views/Orax/UpdateInMobile.cshtml">
-      <publishTime>02/13/2025 11:36:17</publishTime>
-    </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>05/22/2025 13:41:01</publishTime>
-    </File>
-    <File Include="Views/Shared/Lockout.cshtml">
-      <publishTime>08/24/2024 10:41:23</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
       <publishTime>05/22/2025 13:41:01</publishTime>
@@ -552,9 +522,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Shared/_LayoutTrack.cshtml">
       <publishTime>05/22/2025 13:41:01</publishTime>
     </File>
-    <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>08/24/2024 10:41:23</publishTime>
-    </File>
     <File Include="Views/Web.config">
       <publishTime>05/22/2025 13:41:01</publishTime>
     </File>
@@ -562,7 +529,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/22/2025 13:41:01</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/19/2025 20:52:34</publishTime>
+      <publishTime>06/23/2025 21:15:25</publishTime>
     </File>
   </ItemGroup>
 </Project>

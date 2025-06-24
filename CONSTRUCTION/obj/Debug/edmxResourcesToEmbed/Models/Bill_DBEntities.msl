@@ -29,6 +29,7 @@
     <EntitySetMapping Name="GoodsMasters">
       <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.GoodsMaster">
         <MappingFragment StoreEntitySet="GoodsMaster">
+          <ScalarProperty Name="unit" ColumnName="unit" />
           <ScalarProperty Name="isActive" ColumnName="isActive" />
           <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
           <ScalarProperty Name="createdDate" ColumnName="createdDate" />

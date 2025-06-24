@@ -52,6 +52,7 @@
     <Property Name="createdDate" Type="DateTime" Precision="3" />
     <Property Name="updatedDate" Type="DateTime" Precision="3" />
     <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="unit" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="InvoiceDetail">
     <Key>
