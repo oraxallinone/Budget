@@ -28,11 +28,11 @@
                                                     @{
                                                         if (Model.companyName == "OMM SAI CONSTRUCTION")
                                                         {
-                                                            <img src="~/Content/ommSailogo.jpg" style="height: 65px;" />
+                                                    <img src="~/Content/ommSailogo.jpg" style="height: 65px;" />
                                                         }
                                                         else
                                                         {
-                                                            <img src="~/Content/application-css/logo.png" style="height: 65px;" />
+                                                    <img src="~/Content/application-css/logo.png" style="height: 65px;" />
                                                         }
                                                     }
                                                 </td>
@@ -46,12 +46,16 @@
                                                 </td>
                                             </tr>
                                         </table>
+
+
+
+
                                         <table border="1" width="100%" style="border-collapse: collapse; font-size: 12px;">
                                             <tr>
-                                                <td colspan="11" class="header-bill" style="text-transform: capitalize;">@Model.companyName</td>
+                                                <td colspan="12" class="header-bill" style="text-transform: capitalize;">@Model.companyName</td>
                                             </tr>
                                             <tr>
-                                                <td colspan="11" class="align-center ">
+                                                <td colspan="12" class="align-center ">
                                                     <span class="font-12-bold">@Model.address1</span><br />
                                                     <span class="font-12-bold">@Model.address2</span><br />
                                                     <span class="font-12-bold">@Model.companyGst</span><br />
@@ -62,14 +66,14 @@
                                                 <td colspan="1">
                                                     @if (Model.dateOfInvoice != null)
                                                     {
-                                                        @Convert.ToDateTime(Model.dateOfInvoice).ToString("dd/MM/yyyy");
+                                                    @Convert.ToDateTime(Model.dateOfInvoice).ToString("dd/MM/yyyy");
                                                     }
                                                 </td>
                                                 <td colspan="1" class="font-12-bold">Agreement Date</td>
-                                                <td colspan="4">
+                                                <td colspan="5">
                                                     @if (Model.agreementDate != null)
                                                     {
-                                                        @Convert.ToDateTime(Model.agreementDate).ToString("dd/MM/yyyy");
+                                                    @Convert.ToDateTime(Model.agreementDate).ToString("dd/MM/yyyy");
                                                     }
                                                 </td>
                                             </tr>
@@ -87,12 +91,10 @@
                                                     @Model.projectName
                                                 </td>
                                             </tr>
-
                                             <tr>
                                                 <td colspan="4" class="font-bold-norm">Details of Receiver(Billed to):</td>
                                                 <td colspan="6" class="font-bold-norm">Details of Consignee (shipped to):</td>
                                             </tr>
-
                                             <tr>
                                                 <td colspan="4" class="font-bold-size">@Model.billTo</td>
                                                 <td colspan="6" class="font-bold-size">@Model.shipTo</td>
@@ -103,10 +105,8 @@
                                             </tr>
 
 
-
-
                                             <tr>
-                                                <td colspan="11" style="padding: 0; ">
+                                                <td colspan="12" style="padding: 0; ">
                                                     <table id="tblRepeat" style="border-collapse: collapse; font-size: 12px;">
                                                         <thead>
                                                             <tr>
@@ -129,28 +129,26 @@
                                                                 int i = 0;
                                                                 foreach (var item in @Model.transactionData)
                                                                 {
-                                                                    <tr style="vertical-align: top">
-                                                                        <td>@(i = i + 1)</td>
-                                                                        <td style="text-align:left;">
-                                                                            @item.tGoodsDesc
-                                                                        </td>
-                                                                        <td class="w-top">@item.tGoodsUnit</td>
-                                                                        <td class="w-top">@item.tHSN</td>
-                                                                        <td class="w-top">@item.tQty</td>
-                                                                        <td class="w-top">@item.tRate</td>
-                                                                        <td class="w-top"> @item.tValue</td>
-
-                                                                        <td class="w-top">@item.cgstP</td>
-                                                                        <td class="w-top">@item.cgstA</td>
-                                                                        <td class="w-top">@item.scstP</td>
-                                                                        <td class="w-top">@item.sgstA</td>
-                                                                        <td class="w-top calc-tatal-decimal">@item.total</td>
-                                                                    </tr>
+                                                            <tr style="vertical-align: top">
+                                                                <td>@(i = i + 1)</td>
+                                                                <td style="text-align:left;">@item.tGoodsDesc </td>
+                                                                <td class="w-top">@item.tGoodsUnit</td>
+                                                                <td class="w-top">@item.tHSN</td>
+                                                                <td class="w-top">@item.tQty</td>
+                                                                <td class="w-top">@item.tRate</td>
+                                                                <td class="w-top">@item.tValue</td>
+                                                                <td class="w-top">@item.cgstP</td>
+                                                                <td class="w-top">@item.cgstA</td>
+                                                                <td class="w-top">@item.scstP</td>
+                                                                <td class="w-top">@item.sgstA</td>
+                                                                <td class="w-top calc-tatal-decimal">@item.total</td>
+                                                            </tr>
                                                                 }
                                                             }
                                                             <tr id="dynamicRowHeight">
                                                                 <td style="border-top: 2px solid white;"></td>
                                                                 <td style="text-align: left; border-top: 2px solid white;"></td>
+                                                                <td class="w-top" style="border-top: 2px solid white;"></td>
                                                                 <td class="w-top" style="border-top: 2px solid white;"></td>
                                                                 <td class="w-top" style="border-top: 2px solid white;"></td>
                                                                 <td class="w-top" style="border-top: 2px solid white;"></td>
@@ -166,6 +164,7 @@
 
                                                 </td>
                                             </tr>
+
 
                                             <tr>
                                                 <td colspan="5" class="align-right font-12-bold">Total Invoice Value(InFigure)</td>
@@ -215,7 +214,6 @@
 
                                                 </td>
                                             </tr>
-
                                             <tr>
                                                 <td colspan="4" class="font-bold-norm">Other (If any)/Remarks/Instruction</td>
                                                 <td colspan="6" class="font-bold-norm">For @Model.companyName</td>
