@@ -226,6 +226,7 @@
     <Property Name="isActive" Type="Boolean" />
     <Property Name="createdDate" Type="DateTime" Precision="3" />
     <Property Name="updatedDate" Type="DateTime" Precision="3" />
+    <Property Name="trsp_goodsUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="tblTanent">
     <Key>

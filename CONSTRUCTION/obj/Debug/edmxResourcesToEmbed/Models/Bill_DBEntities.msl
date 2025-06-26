@@ -206,6 +206,7 @@
     <EntitySetMapping Name="tblReceiptTransactions">
       <EntityTypeMapping TypeName="cbtsplco_ommsuppliersModel.tblReceiptTransaction">
         <MappingFragment StoreEntitySet="tblReceiptTransaction">
+          <ScalarProperty Name="trsp_goodsUnit" ColumnName="trsp_goodsUnit" />
           <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
           <ScalarProperty Name="createdDate" ColumnName="createdDate" />
           <ScalarProperty Name="isActive" ColumnName="isActive" />

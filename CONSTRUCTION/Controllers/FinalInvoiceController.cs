@@ -117,8 +117,8 @@ namespace CONSTRUCTION.Controllers
                                address1 = t.tanentaddr1,
                                address2 = t.tanentaddr2,
                                companyGst = t.tanentGST,
-                               dateOfInvoice = SatyaDBClass.ISTZoneNull(i.dateOfInvoice),
-                               agreementDate = SatyaDBClass.ISTZoneNull(i.agreementDate),
+                               dateOfInvoice = i.dateOfInvoice,
+                               agreementDate = i.agreementDate,
                                serialNoOfInvoice = i.serialNoOfInvoice,
                                projectManager = i.projectManager,
                                panNo = i.panNo,
@@ -142,6 +142,7 @@ namespace CONSTRUCTION.Controllers
                                   {
                                       tInvoiceNo = g.tInvoiceNo,
                                       tGoodsDesc = g.tGoodsDesc,
+                                      tGoodsUnit=m.unit,
                                       tHSN = m.hsn,
                                       tQty = g.tQty,
                                       tRate = g.tRate,
@@ -228,8 +229,8 @@ namespace CONSTRUCTION.Controllers
                         {
                             custName = cus.tanentName,
                             serialNoOfInvoice = inv.serialNoOfInvoice,
-                            dateOfInvoice = SatyaDBClass.ISTZoneNull(inv.dateOfInvoice),
-                            agreementDate = SatyaDBClass.ISTZoneNull(inv.agreementDate),
+                            dateOfInvoice = inv.dateOfInvoice,
+                            agreementDate = inv.agreementDate,
                             projectName = inv.projectName,
                             billTo = inv.billTo,
                             shipTo = inv.shipTo,
@@ -287,6 +288,7 @@ namespace CONSTRUCTION.Controllers
                     tbl2.refNo = sD.refNo;
                     tbl2.trsp_goodsId = sD.trsp_goodsId;
                     tbl2.trsp_goodsName = sD.trsp_goodsName;
+                    tbl2.trsp_goodsUnit = sD.trsp_goodsUnit;
                     tbl2.trsp_hsn = sD.trsp_hsn;
                     tbl2.trsp_qty = sD.trsp_qty;
                     tbl2.trsp_price = sD.trsp_price;
@@ -333,7 +335,7 @@ namespace CONSTRUCTION.Controllers
                                CompanyHeaderAddress = t.tanentaddr1,
                                CompanyHeaderAddress2 = t.tanentaddr2,
                                receiptNo = receipt.refNo,
-                               receiptDate = SatyaDBClass.ISTZoneNull(receipt.receiptDate),
+                               receiptDate = receipt.receiptDate,
                                name = receipt.rsp_name,
                                address = t.tanentaddr1 + " " + t.tanentaddr2,
                                gstin = t.tanentGST,
@@ -353,10 +355,12 @@ namespace CONSTRUCTION.Controllers
                 res.invoiceAmmountinWords = NumberToWord.NumberToText(zz, isActive);
 
                 res.receiptTransaction = (from g in db.tblReceiptTransactions
+                                          join i in db.GoodsMasters on g.trsp_goodsName equals i.descriptionOfGoods
                                           where g.refNo == refNo
                                           select new PrintReceiptTransactionModel
                                           {
                                               descOfGoods = g.trsp_goodsName,
+                                              goodsUnit = i.unit,
                                               hsn = g.trsp_hsn,
                                               quantity = g.trsp_qty,
                                               goodsPrice = g.trsp_price,
@@ -386,7 +390,7 @@ namespace CONSTRUCTION.Controllers
                             custName = rec.rsp_name,
                             refNo = rec.refNo,
                             companyName = rec.companyName == 1 ? "OMM SUPPLIER AND CONSTRUCTION" : "OMM SAI CONSTRUCTION",
-                            receiptDate = SatyaDBClass.ISTZoneNull(rec.receiptDate),
+                            receiptDate = rec.receiptDate,
                             rsp_grandTotal = rec.refNo
                         }).ToList().OrderByDescending(x => x.refNo);
             return View(data);

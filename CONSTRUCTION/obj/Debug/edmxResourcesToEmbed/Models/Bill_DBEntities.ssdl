@@ -198,6 +198,7 @@
     <Property Name="refNo" Type="int" />
     <Property Name="trsp_goodsId" Type="varchar" MaxLength="50" />
     <Property Name="trsp_goodsName" Type="nvarchar(max)" />
+    <Property Name="trsp_goodsUnit" Type="varchar" MaxLength="50" />
     <Property Name="trsp_hsn" Type="varchar" MaxLength="50" />
     <Property Name="trsp_qty" Type="int" />
     <Property Name="trsp_price" Type="decimal" Precision="18" Scale="2" />

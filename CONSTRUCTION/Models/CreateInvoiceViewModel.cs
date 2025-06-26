@@ -114,6 +114,11 @@ namespace CONSTRUCTION.Models
             get;
             set;
         }
+        public string tGoodsUnit
+        {
+            get;
+            set;
+        }
         public Nullable<decimal> tQty
         {
             get;
@@ -293,6 +298,11 @@ namespace CONSTRUCTION.Models
             set;
         }
         public string tGoodsDesc
+        {
+            get;
+            set;
+        }
+        public string tGoodsUnit
         {
             get;
             set;

@@ -60,19 +60,21 @@
                                        })
                                         </div>
 
+                                        <div class="form-group col-md-3">
+                                            <label for="unit">Unit</label>
+                                            @Html.TextBoxFor(m => m.unit, new
+                                       {
+                                           placeholder = "Goods unit",
+                                           @class = "form-control form-control-sm"
+                                       })
+                                            @Html.ValidationMessageFor(m => m.unit, "", new
+                                       {
+                                           @class = "text-danger",
+                                           @cols = 3,
+                                           @rows = 3
 
-
-
-
-                                        @*<div class="form-group col-md-2">
-                                                <label for="exampleInputEmail1">Gst</label>
-                                                <select class="form-control form-control-sm" id="Gst" name="Gst">
-                                                    <option value="0">-- Select One --</option>
-                                                    <option value="5">5</option>
-                                                    <option value="12">12</option>
-                                                    <option value="18">18</option>
-                                                </select>
-                                            </div>*@
+                                       })
+                                        </div>
                                     </div>
 
                                     <div class="row">
@@ -177,6 +179,8 @@
             e.preventDefault();
             var ItemCode = $("#ItemCode").val();
             var ItemDetails = $("#ItemDetails").val();
+            var ItemUnit = $("#unit").val();
+
             var HSN = $("#HSN").val();
             var Rate = $("#Rate").val();
             var Gst = $("#Gst").val();
@@ -184,10 +188,12 @@
 
             if (ItemCode == "") { swal("", "Item Code should not be empty", "error"); return false; }
             if (ItemDetails == "") { swal("", "Item Details should not be empty", "error"); return false; }
+            if (ItemUnit == "") { swal("", "Item Unit should not be empty", "error"); return false; }
 
             if (HSN == "") { swal("", "HSN should not be empty", "error"); return false; }
             if (Rate == "") { swal("", "Rate should not be empty", "error"); return false; }
             if (Gst == "" || Gst == 0) { swal("", "Gst should not be empty", "error"); return false; }
+
 
             isPost = true
 

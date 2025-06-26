@@ -56,6 +56,21 @@
                                            @class = "text-danger"
                                        })
                                         </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="exampleInputEmail1">Unit</label>
+                                            @Html.TextBoxFor(m => m.unit, new
+                                       {
+                                           placeholder = "Goods Unit",
+                                           @class = "form-control form-control-sm"
+                                       })
+                                            @Html.ValidationMessageFor(m => m.unit, "", new
+                                       {
+                                           @class = "text-danger",
+                                           @cols = 3,
+                                           @rows = 3
+
+                                       })
+                                        </div>
 
                                         @Html.HiddenFor(m => m.goodsId)
 
@@ -224,6 +239,8 @@
             e.preventDefault();
             var ItemCode = $("#ItemCode").val();
             var ItemDetails = $("#ItemDetails").val();
+            var Itemunit = $("#unit").val();
+
             var HSN = $("#HSN").val();
             var Rate = $("#Rate").val();
             var Gst = $("#Gst").val();
@@ -231,6 +248,7 @@
 
             if (ItemCode == "") { swal("", "Item Code should not be empty", "error"); return false; }
             if (ItemDetails == "") { swal("", "Item Details should not be empty", "error"); return false; }
+            if (Itemunit == "") { swal("", "Item unit should not be empty", "error"); return false; }
 
             if (HSN == "") { swal("", "HSN should not be empty", "error"); return false; }
             if (Rate == "") { swal("", "Rate should not be empty", "error"); return false; }

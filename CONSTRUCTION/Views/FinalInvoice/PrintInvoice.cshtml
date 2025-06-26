@@ -129,9 +129,10 @@
                                                         <thead>
                                                             <tr>
                                                                 <td style="width: 3%;" class="font-12-bold">#</td>
-                                                                <td style="width: 41%; " class="font-12-bold">Descripti on OfGoods/Services</td>
-                                                                <td style="width: 6%;" class="font-12-bold">HSN</td>
-                                                                <td style="width: 6%;" class="font-12-bold">Quantity</td>
+                                                                <td style="width: 40%; " class="font-12-bold">Descripti on OfGoods/Services</td>
+                                                                <td style="width: 4%;" class="font-12-bold">Unit</td>
+                                                                <td style="width: 5%;" class="font-12-bold">HSN</td>
+                                                                <td style="width: 5%;" class="font-12-bold">Quantity</td>
                                                                 <td style="width: 5%;" class="font-12-bold">Rate</td>
                                                                 <td style="width: 5%;" class="font-12-bold">Value</td>
                                                                 <td style="width: 5%;" class="font-12-bold">CGST%</td>
@@ -148,21 +149,20 @@
                                                                 {
                                                                     <tr style="vertical-align: top">
                                                                         <td>@(i = i + 1)</td>
-
                                                                         <td style="text-align:left;">
-                                                                            @* Supplying, fi tti ng & fi xing ....*@
                                                                             @item.tGoodsDesc
                                                                         </td>
+                                                                        <td class="w-top">@item.tGoodsUnit</td>
                                                                         <td class="w-top">@item.tHSN</td>
-                                                                        <td class="w-top">@item.tQty</td>@*1*@
-                                                                        <td class="w-top">@item.tRate</td>@*1144065.00*@
-                                                                        <td class="w-top"> @item.tValue</td>@*1144065.00*@
+                                                                        <td class="w-top">@item.tQty</td>
+                                                                        <td class="w-top">@item.tRate</td>
+                                                                        <td class="w-top"> @item.tValue</td>
 
-                                                                        <td class="w-top">@item.cgstP</td>@*9%*@
-                                                                        <td class="w-top">@item.cgstA</td>@*1144065.00*@
-                                                                        <td class="w-top">@item.scstP</td>@*9%*@
-                                                                        <td class="w-top">@item.sgstA</td>@*1144065.00*@
-                                                                        <td class="w-top calc-tatal-decimal">@item.total</td>@*1144065.00*@
+                                                                        <td class="w-top">@item.cgstP</td>
+                                                                        <td class="w-top">@item.cgstA</td>
+                                                                        <td class="w-top">@item.scstP</td>
+                                                                        <td class="w-top">@item.sgstA</td>
+                                                                        <td class="w-top calc-tatal-decimal">@item.total</td>
                                                                     </tr>
                                                                 }
                                                             }

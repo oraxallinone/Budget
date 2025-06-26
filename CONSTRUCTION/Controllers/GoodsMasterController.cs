@@ -62,8 +62,8 @@ namespace CONSTRUCTION.Controllers
             {
                 GoodsMaster cust2 = db.GoodsMasters.Where(x => x.goodsId == cust.goodsId).FirstOrDefault();
                 cust2.descriptionOfGoods = cust.descriptionOfGoods;
+                cust2.unit = cust.unit;
                 cust2.hsn = cust.hsn;
-
                 cust2.rate = cust.rate;
                 cust2.cgst_p = cust.cgst_p;
                 cust2.sgst_p = cust.sgst_p;

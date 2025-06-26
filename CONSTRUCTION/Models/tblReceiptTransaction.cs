@@ -30,5 +30,6 @@ namespace CONSTRUCTION.Models
         public Nullable<bool> isActive { get; set; }
         public Nullable<System.DateTime> createdDate { get; set; }
         public Nullable<System.DateTime> updatedDate { get; set; }
+        public string trsp_goodsUnit { get; set; }
     }
 }

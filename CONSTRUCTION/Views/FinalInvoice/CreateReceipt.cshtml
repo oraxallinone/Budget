@@ -10,18 +10,9 @@
 <div class="content-wrapper">
     <section class="content">
         <div class="container-fluid" style="padding-right: 0px; padding-left: 0px">
-
             @using (Html.BeginForm())
             {
-               
-
-
                 <div class="card card-info card-outline">
-                    @*<div class="card-header">
-                            <h3 class="card-title">Create New Receipt</h3>
-
-
-                        </div>*@
                     <div style="background-color: #d7c67ecc">
                         <div class="card-body">
                             <div class="row">
@@ -39,11 +30,6 @@
                                        id = "companyId"
                                    })
                                 </div>
-
-
-
-
-
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-2">
@@ -82,8 +68,6 @@
                                 </div>
                             </div>
 
-
-
                             <div class="row">
                                 <div class="form-group col-md-2">
                                     <label for="rsp_gstin" style="font-size:13px">GSTIN</label>
@@ -96,17 +80,6 @@
                                })
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
-
-
 
                             <div class="row">
                                 <div class="form-group col-md-4">
@@ -138,31 +111,7 @@
                                    maxlength = "150"
                                })
                                 </div>
-
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                             <div class="row">
                                 <table id="tblInvoice" width="100%" class="tableCust" style="border: 1px solid #dfd198; background-color: #dfd198;">
@@ -170,6 +119,7 @@
                                         <tr class="fontMenuHeader textCenter" style="font-size: 11px;">
                                             <td style="width:4% ;text-align: center;"> SL No </td>
                                             <td style="width:21% ;"> Description Of Goods/Services </td>
+                                            <td style="width:3% ;"> Unit </td>
                                             <td style="width:8% ;"> HSN</td>
                                             <td style="width:12% ;"> Qantity</td>
                                             <td style="width:8% ;"> Rate </td>
@@ -190,6 +140,7 @@
                                                @class = "form-control form-control-sm"
                                            })
                                             </td>
+                                            <td class="textCenter"><input id="goods_unit" type="text" class="form-control form-control-sm" placeholder="Unit" readonly="readonly" /></td>
                                             <td class="textCenter"><input id="goods_hsn" type="text" class="form-control form-control-sm" placeholder="HSN" readonly="readonly" /></td>
                                             <td class="textCenter">
                                                 <table>
@@ -254,25 +205,13 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-
-
-
-
         $(".numbers-only").keypress(function (e) {
             if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
         });
 
-
-        //$("#dateOfInvoice").val(formatDate());
         $("#receiptDate").val(formatDate());
         console.clear();
 
-
-        //$('[id^=itm_Quantity]').keypress(validateNumber);
-
-
-
-        //get item detais by id
         $("#goods_desc").change(function () {
             let selectedItemId = $('select#goods_desc option:selected').val();
             let goods = parseInt(selectedItemId);
@@ -283,6 +222,8 @@
                 dataType: "json",
                 success: function (data) {
                     var result = JSON.parse(data);
+                    $("#goods_unit").val(result[0].hsn);
+                    $("#goods_unit").val(result[0].unit);
                     $("#goods_rate").val(result[0].rate);
                     $("#goods_hsn").val(result[0].hsn);
                     $("#goods_value").val('');
@@ -305,7 +246,6 @@
             if (itmName == "-- Select One --") { swal("", "Please select a good", "error"); return false; }
             let value = $("#goods_qty").val();
             if (value == "" || parseInt(value) == 0) { swal("", "Please add a quantity", "info"); return false; }
-
             taxCalculation();
         });
 
@@ -336,6 +276,7 @@
             let goodsId = $('select#goods_desc option:selected').val();
             let goodsName = $('select#goods_desc option:selected').text();
             let goodsHsn = $("#goods_hsn").val();
+            let goodsUnit = $("#goods_unit").val();
             let goodsQty = $("#goods_qty").val();
             let goodsRate = $("#goods_rate").val();
             let goodsValue = $("#goods_value").val();
@@ -358,6 +299,7 @@
             let bodyHtml = " <tr class='fontMenuBody tableBorderitem cTableRow' style='vertical-align: text-top;'>" +
                                   "<td class='textCenter cItmCode' style='color:#b9bfb4'>" + goodsId + "  <span style='color:black'>" + slno + "</span> </td>" +
                                   "<td class='cItmName'>" + goodsName + " </td>" +
+                                  "<td class='cItmUnit'>" + goodsUnit + " </td>" +
                                    "<td class='cItmHsn'>" + goodsHsn + " </td>" +
                                   "<td class='textCenter cItmQty'>" + goodsQty + "</td>" +
                                   "<td class='textCenter cItmRate'>" + goodsRate + "</td>" +
@@ -375,7 +317,6 @@
 
             $("#tblInvoice tbody").append(bodyHtml);
             calulateValue();
-            //gstCalculation();
             resetAdd();
         });
 
@@ -400,7 +341,6 @@
             let receiptDate = $('#receiptDate').val();
             let rsp_name = $('#rsp_name').val();
             let rsp_gstin = $('#rsp_gstin').val();
-
 
             let name_addr = $('#name_addr').val();
             let rsp_addrOfP = $('#rsp_addrOfP').val();
@@ -427,23 +367,22 @@
             $('#tblInvoice tbody > tr').each(function (index, tr) {
                 let _cItmCode = $(this).find('td.cItmCode').text();
                 let _cItmName = $(this).find('td.cItmName').text();
+                let _cItmUnit = $(this).find('td.cItmUnit').text();
                 let _cItmHsn = $(this).find('td.cItmHsn').text();
-
                 let _cItmQty = $(this).find('td.cItmQty').text();
                 let _cItmRate = $(this).find('td.cItmRate').text();
                 let _cItmValue = $(this).find('td.cItmValue').text();
-
                 let _cItmCGSTp = $(this).find('td.cItmCGSTp').text();
                 let _cItmCGSTa = $(this).find('td.cItmCGSTa').text();
                 let _cItmSGSTp = $(this).find('td.cItmSGSTp').text();
                 let _cItmSGSTa = $(this).find('td.cItmSGSTa').text();
-
                 let _cItmTotal = $(this).find('td.cItmTotal').text();
 
                 let singItem = {
                     refNo: refNo,
                     trsp_goodsName: _cItmName,
-                    trsp_hsn: _cItmHsn,//from here net trackd
+                    trsp_goodsUnit: _cItmUnit,
+                    trsp_hsn: _cItmHsn,
                     trsp_qty: parseFloat(_cItmQty),
                     trsp_price: parseFloat(_cItmRate),
                     trsp_valueOfGoods: parseFloat(_cItmValue),
@@ -522,21 +461,13 @@
             let halfTax = taxAble / 2;
             let taotal = value + taxAble;
 
-
-
             $("#goods_value").val(value.toFixed(2));
-
 
             $("#goods_sgst_amt").val(halfTax.toFixed(2));
             $("#goods_cgst_amt").val(halfTax.toFixed(2));
 
-
-
-
-
-
             $("#itm_GstValue").val(taxAble.toFixed(2));
-            $("#goods_total").val(taotal.toFixed(2));//Math.round()
+            $("#goods_total").val(taotal.toFixed(2));
         };
 
 
@@ -584,11 +515,6 @@
             $("#goods_sgst_amt").val('');
             $("#goods_total").val('');
             $("#goods_hsn").val('');
-
-
         }
     });
-
-
-
 </script>

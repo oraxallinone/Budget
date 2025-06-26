@@ -94,6 +94,11 @@ namespace CONSTRUCTION.Models
             get;
             set;
         }
+        public string trsp_goodsUnit
+        {
+            get;
+            set;
+        }
         public string trsp_hsn
         {
             get;
@@ -280,6 +285,11 @@ namespace CONSTRUCTION.Models
     public partial class PrintReceiptTransactionModel
     {
         public string descOfGoods
+        {
+            get;
+            set;
+        }
+        public string goodsUnit
         {
             get;
             set;

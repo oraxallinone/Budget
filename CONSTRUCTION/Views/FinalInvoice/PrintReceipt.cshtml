@@ -130,7 +130,8 @@
                                                     <thead>
                                                         <tr>
                                                             <td style="width: 3%;">#</td>
-                                                            <td style="width: 47%; ">Description Of Goods</td>
+                                                            <td style="width: 42%; ">Description Of Goods</td>
+                                                            <td style="width: 5%; ">Unit</td>
                                                             <td style="width: 6%;">HSN</td>
                                                             <td style="width: 6%;">Quantity</td>
                                                             <td style="width: 5%;">Price</td>
@@ -151,43 +152,25 @@
                                                              {
                                                         <tr>
                                                             <td style="vertical-align: text-top;">@(i = i + 1)</td>
-                                                            <td style="text-align:left;"> @item.descOfGoods </td>
-                                                            <td class="w-top">@item.hsn</td>@*1*@
-                                                            <td class="w-top">@item.quantity</td>@*1144065.00*@
-                                                            <td class="w-top"> @item.goodsPrice</td>@*1144065.00*@
-                                                            <td class="w-top">@item.goodsValue</td>@*9%*@
-                                                            <td class="w-top">@item.cgstP</td>@*1144065.00*@
-                                                            <td class="w-top">@item.cgstA</td>@*9%*@
-                                                            <td class="w-top">@item.scgtP</td>@*1144065.00*@
-                                                            <td class="w-top">@item.sgstA</td>@*1144065.00*@
-                                                            <td class="w-top">@item.total</td>@*1144065.00*@
+                                                            <td style="text-align:left;"> @item.descOfGoods</td>
+                                                            <td class="w-top"> @item.goodsUnit</td>
+                                                            <td class="w-top">@item.hsn</td>
+                                                            <td class="w-top">@item.quantity</td>
+                                                            <td class="w-top"> @item.goodsPrice</td>
+                                                            <td class="w-top">@item.goodsValue</td>
+                                                            <td class="w-top">@item.cgstP</td>
+                                                            <td class="w-top">@item.cgstA</td>
+                                                            <td class="w-top">@item.scgtP</td>
+                                                            <td class="w-top">@item.sgstA</td>
+                                                            <td class="w-top">@item.total</td>
                                                         </tr>
                                                              }
                                                          }
                                                         }
-
-
-                                                        @*<tr>
-                                                                <td class="w-top">1</td>
-                                                                <td class="w-top" style="text-align:left;">
-                                                                    Supplying, fi tti ng & fi xing ofSelfi e Zone at G. Udayagiri NACas per your design, Lett ers:3mm. 0-55 Acrylic lett er sizeheight -4ft , Raising lett ers, asper given color patt ern(Mitsubishi brand orequivalent) LED: 3 module lp67LEDs (Samsung) 1.5 wt each.LED box: 6 PVC Chanel (lett erFemale) Power Supplies: RainProof 12vt. Base: 6mm ACPExterior Grade UV Paint, ACPRasing in (Euro Bond/PratapBond & VIVA) MS Structure: MSAngle 75 x 75 x 6 mm MS framefor lett er support, Using MSangle 75 x 75 x 6 mm for lett erstanding, Fountain work wall &waterfall for brick work ,andfront site 5 no of fountainmulti color plumbing work,water pump, Granite work andall fi nishing.
-                                                                    Foundati on: 40 feet length, 8feet width & 6feet height bricktotal height 9ft , piller 5no backand piller 5no of front withdiff erent Color Lighti ng fi xing,and transportati on,
-                                                                    installati on charges all including.
-                                                                </td>
-                                                                <td class="w-top">HSN</td>
-                                                                <td class="w-top">1</td>
-                                                                <td class="w-top">1144065.00</td>
-                                                                <td class="w-top">1144065.00</td>
-                                                                <td class="w-top">9%</td>
-                                                                <td class="w-top">1144065.00</td>
-                                                                <td class="w-top">9%</td>
-                                                                <td class="w-top">1144065.00</td>
-                                                                <td class="w-top">444000.00</td>
-                                                            </tr>*@
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <td colspan="10">Grand Total</td>
+                                                            <td colspan="11">Grand Total</td>
                                                             <td>@Model.grandTotal</td>
                                                         </tr>
                                                     </tfoot>
