@@ -292,14 +292,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\application-css\common-date-format.css" />
+    <Content Include="Content\application-css\entry3.css" />
     <Content Include="Content\application-css\mobileEntry.css" />
     <Content Include="Content\application-css\entry.css" />
     <Content Include="Content\application-css\loader.css" />
     <Content Include="Content\application-css\loginscreen.css" />
-    <Content Include="Content\application-css\logo.png" />
+    <Content Include="Content\OMM_SUPPLIER.png" />
     <Content Include="Content\application-css\print.css" />
     <Content Include="Content\application-css\barGraph.png" />
-    <Content Include="Content\ommSailogo.jpg" />
+    <Content Include="Content\OMM_SAI.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -322,6 +323,7 @@
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\application-js\common.js" />
+    <Content Include="Scripts\application-js\entry3.js" />
     <Content Include="Scripts\application-js\MobileUpdate.js" />
     <Content Include="Scripts\application-js\entry.js" />
     <Content Include="Scripts\application-js\graph.js" />
@@ -446,6 +448,8 @@
     <Content Include="Views\Orax\MobileUpdate.cshtml" />
     <Content Include="Views\Shared\_LayoutOrax - Copy.cshtml" />
     <Content Include="Views\Orax\GroupList.cshtml" />
+    <Content Include="Views\Orax\Entry2.cshtml" />
+    <Content Include="Views\Orax\Entry3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

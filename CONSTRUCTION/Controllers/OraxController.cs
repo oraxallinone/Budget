@@ -21,6 +21,15 @@ namespace CONSTRUCTION.Controllers
         {
             return View();
         }
+        public ActionResult Entry2()
+        {
+            return View();
+        }
+
+        public ActionResult Entry3()
+        {
+            return View();
+        }
 
         [HttpPost]
         public ActionResult GetAllExpensive(GetExpensiveViewModel data)

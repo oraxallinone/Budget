@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "Entry2";
+    Layout = "~/Views/Shared/_LayoutOrax.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Product List</h2>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price ($)</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="product-table-body"></tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade"
+     id="productModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="productModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Edit Product</h5>
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="product-form">
+                <div class="modal-body">
+                    <input type="hidden" id="product-id" />
+
+                    <div class="form-group">
+                        <label for="product-name">Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="product-name"
+                               required />
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price">Price ($)</label>
+                        <input type="number"
+                               class="form-control"
+                               id="product-price"
+                               required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Save changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        var products = [
+          { id: 1, name: "Laptop", price: 1200 },
+          { id: 2, name: "Headphones", price: 150 },
+          { id: 3, name: "Smartphone", price: 800 },
+        ];
+
+        function renderTable() {
+            var rows = "";
+            products.forEach(function (p) {
+                rows += `
+            <tr>
+              <td>${p.id}</td>
+              <td>${p.name}</td>
+              <td>${p.price.toFixed(2)}</td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm btn-more"
+                  data-id="${p.id}"
+                >
+                  More
+                </button>
+              </td>
+            </tr>
+          `;
+            });
+            $("#product-table-body").html(rows);
+        }
+
+        // Initial table render
+        renderTable();
+
+        // Handle "More" button click
+        $(document).on("click", ".btn-more", function () {
+            var id = $(this).data("id");
+            var product = products.find((p) => p.id === id);
+
+            if (product) {
+                $("#product-id").val(product.id);
+                $("#product-name").val(product.name);
+                $("#product-price").val(product.price);
+                $("#productModal").modal("show");
+            }
+        });
+
+        // Handle form submission
+        $("#product-form").on("submit", function (e) {
+            e.preventDefault();
+
+            var id = parseInt($("#product-id").val());
+            var name = $("#product-name").val();
+            var price = parseFloat($("#product-price").val());
+
+            var index = products.findIndex((p) => p.id === id);
+            if (index !== -1) {
+                products[index].name = name;
+                products[index].price = price;
+                renderTable();
+                $("#productModal").modal("hide");
+            }
+        });
+    });
+</script>
